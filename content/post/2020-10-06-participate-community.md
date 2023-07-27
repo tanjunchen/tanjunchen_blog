@@ -5,7 +5,7 @@ subtitle:   ""
 description: "在如今的软件设计，架构及开发中，开源扮演着越来越重要的角色。作为开发工程师，服务器、数据库、各种编程语言和框架的源代码，我们可以随时利用这些开源技术实现自己的业务要求。方便且免费地使用这些技术，当然离不开上述各种技术的开源。当今世界，这是一个开源的时代，所以，我们应该主动拥抱开源，工作之余了解与学习开源社区那些事。"
 author: "陈谭军"
 date: 2020-10-06
-image: "/images/2020-10-06-participate-community/happy.jpeg"
+#image: "/images/2020-10-06-participate-community/happy.jpeg"
 published: true
 tags:
     - opensource
@@ -14,19 +14,17 @@ categories:
 showtoc: true
 ---
 
-# 开源社区
-
-## 介绍
+# 介绍
 
 *【百度百科】开源社区又称开放源代码社区，一般由拥有共同兴趣爱好的人所组成，根据相应的开源软件许可证协议公布软件源代码的网络平台，同时也为网络成员提供一个自由学习交流的空间。由于开放源码软件主要被散布在全世界的编程者所开发，开源社区就成了他们沟通交流的必要途径，因此开源社区在推动开源软件发展的过程中起着巨大的作用。*
 
 在如今的软件设计，架构及开发中，开源扮演着越来越重要的角色。作为开发工程师，服务器、数据库、各种编程语言和框架的源代码，我们可以随时利用这些开源技术实现自己的业务要求。方便且免费地使用这些技术，当然离不开上述各种技术的开源，当今世界，这是一个开源的时代，所以，我们应该主动拥抱开源，工作之余了解与学习开源社区那些事。
 
-## 开源分类
+# 开源分类
 
 其实，开源社区已经存在许久啦，但是对于我和一些人来说，可能比较新奇，所以本文介绍了一些开源社区的概念、如何参与社区、为什么要参与社区？开源社区很多，找到适合自己的才是最好的。比如 [CNCF 基金会](https://www.cncf.io/)、[Apache 软件基金会](https://www.apache.org/)、[Apache 项目列表](http://www.apache.org/index.html#projects-list)。
 
-## 如何挑选社区
+# 如何挑选社区
 
 这里简单地列出了几个条件：
 
@@ -50,9 +48,9 @@ showtoc: true
 
 参与开源社区需要花费一些时间和精力，但它是一个非常有益的经历，可以让你成为一个更好的开发者，并为开源项目做出贡献。
 
-## 如何参与社区
+# 如何参与社区
 
-### 基础概念
+## 基础概念
 
 这里以 CNCF 开源社区为例，说明如何参与 CNCF Kubernetes 开源社区。
 
@@ -74,7 +72,7 @@ CNCF 是一个开源软件基金会，致力于使云原生计算具有普遍性
 
 注意事项：签署 CLA 协议的邮箱应该与 Git 客户端本地配置邮箱保持一致，否则验证不过。访问 CLA 签署网站需要科学上网。所以注册邮箱不推荐使用 QQ 邮箱。具体流程可以参考：[官方指导](https://github.com/kubernetes/community/blob/master/CLA.md#the-contributor-license-agreement)。
 
-### 参与贡献
+## 参与贡献
 
 * 熟悉基本 Linux 操作、Git 操作，推荐 [Git](https://git-scm.com/docs) 操作教程。
 
@@ -90,14 +88,14 @@ CNCF 是一个开源软件基金会，致力于使云原生计算具有普遍性
 开始第一个贡献，如上图所示，在 Issues 中输入 `help` 或者 `good first issue` 进行过滤，新手一般都是从这里开始参与社区贡献之门。
 ![kk-search2](/images/2020-10-06-participate-community/kk-search2.png)
 
-### 进阶之路
+## 进阶之路
 
 1. 参见[贡献指南](https://github.com/kubernetes/community/blob/master/contributors/guide/README.md#open-a-pull-request)，关注 kubernetes 其他仓库，如 [enhancements](https://github.com/kubernetes/enhancements)、[community](https://github.com/kubernetes/community)、[website](https://github.com/kubernetes/website)，enhancements 有关最近 kk 以及未来的发展方向、community 有关 kk 的各种规章制度、website 表示 kk 官网。
 1. 加入 kk 社区的 [Slack](https://kubernetes.slack.com/messages/sig-docs) 频道熟悉 KEP，[KEP](https://github.com/kubernetes/enhancements/tree/master/keps#kubernetes-enhancement-proposals-keps) 的全称是 Kubernetes Enhancement Proposal，因为 Kubernetes 目前已经是比较成熟的项目了，所有的变更都会影响下游的使用者，对于功能和 API 的修改都需要先在 kubernetes/enhancements 仓库对应 SIG 的目录下提交提案才能实施，所有的提案都必须经过讨论、通过社区 SIG Leader 的批准。
 1. 研究 kubernetes 源码，参与相关 [线上会议](https://github.com/kubernetes/community/tree/master/communication#community-groups)。
 1. 新手可以考虑参与 kubernetes 本地化工作，具体可以参考[K8S Meetup 翻译流程与翻译校稿规范](https://github.com/k8smeetup/k8s-official-translation#k8smeetup-%E7%BF%BB%E8%AF%91%E6%B5%81%E7%A8%8B%E4%B8%8E%E7%BF%BB%E8%AF%91%E6%A0%A1%E7%A8%BF%E8%A7%84%E8%8C%83)。
 
-## 期待与收获
+# 期待与收获
 
 Kubernetes 目前已经是云时代的操作系统，作为容器编排领域和云原生领域的事实标准，了解与学习 Kubernetes 成为云原生时代开发工程师的必备技能。
 
@@ -109,13 +107,13 @@ Kubernetes 目前已经是云时代的操作系统，作为容器编排领域和
 1. 大厂加分项等等
 1. ......
 
-## 总结
+# 总结
 
 学习与阅读源码是一门苦差事，参与开源社区也需要持之以恒的毅力。参与开源社区是一个非常有益的经历，可以让你学习新技能、结交志同道合的人、增加你的开发经验。本人参与 Kubernetes 社区，不仅仅学习到了很多知识，比如学习到了 Go 语言的开发规范、庞大的开源社区的治理方式，还从社区中的很多优秀工程师身上学到了软件设计的一些技巧，与优秀的开发者交流提高了我的见解，这些都是在日常工作中很难得到的。可能与我们平时的工作内容相关，毕竟大部分集中于业务开发，框架的使用。优秀的开源社区真的是值得我们去学习与借鉴，等着我们去挖掘和学习。加入开源社区吧、后浪们 ！！！
 
-## 附录
+# 附录
 
-### 社区常用习语
+## 社区常用习语
 
 1. PR: Pull Request。拉取请求。
 1. LGTM: Looks Good To Me。看起来不错，代码已 review，可以合并。
@@ -149,7 +147,7 @@ Kubernetes 目前已经是云时代的操作系统，作为容器编排领域和
 1. Watch：可以理解为"观察"，如果我们 Watch 了一个项目之后，如果这个项目有了任何更新，我们都会在第一时候收到该项目的更新通知。
 1. ......
 
-### Github 得力助手
+## Github 得力助手
 
 [GitHub Trend](https://github.com/trending) 页面总结了每天/每周/每月周期的热门 Repositories 和 Developers，你可以看到在某个周期处于热门状态的开发项目和开发者。
 ![opensource](/images/2020-10-06-participate-community/java/github_trending.png)
