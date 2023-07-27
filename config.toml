@@ -13,7 +13,7 @@ hasCJKLanguage = true
 home = ["HTML", "RSS", "Algolia"]
 
 [params]
-  header_image = "img/home-bg-jeep.jpg"
+  header_image = "img/home.jpeg"
   SEOTitle = "陈谭军的博客 | tanjunchen Blog"
   description = "陈谭军，软件工程师, 开源爱好者"
   keyword = "陈谭军, 互联网, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
