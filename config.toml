@@ -101,19 +101,19 @@ home = ["HTML", "RSS", "Algolia"]
 
   [[params.addtional_menus]]
   title =  "ARCHIVE"
-  href =  "/archive/"
+  href =  "/archive"
   
   [[params.addtional_menus]]
   title =  "LEARNING"
-  href =  "/learning/"
+  href =  "/learning"
 
   [[params.addtional_menus]]
   title =  "PHOTOS"
-  href =  "/photos/"
+  href =  "/photos"
   
   [[params.addtional_menus]]
   title =  "ABOUT"
-  href =  "/about/"
+  href =  "/about"
 
 [outputFormats.Algolia]
 baseName = "algolia"
