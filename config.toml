@@ -1,5 +1,6 @@
 baseurl = "https://tanjunchen.github.io"
 title = "漫步远方，心荡神往"
+copyright = "陈谭军"
 theme = "hugo-cleanwhite"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
