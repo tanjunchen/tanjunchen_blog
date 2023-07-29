@@ -5,12 +5,11 @@ subtitle:   ""
 description: "年龄歧视是软件开发行业中会面临的职业问题吗?"
 author: "陈谭军"
 date: 2018-03-05
-#image: "/images/2020-10-06-participate-community/happy.jpeg"
 published: true
 tags:
-    - linux
+    - mind
 categories:
-    - TECHNOLOGY
+    - THINK
 showtoc: true
 ---
 

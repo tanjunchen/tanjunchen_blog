@@ -5,7 +5,6 @@ subtitle:   ""
 description: "在如今的软件设计，架构及开发中，开源扮演着越来越重要的角色。作为开发工程师，服务器、数据库、各种编程语言和框架的源代码，我们可以随时利用这些开源技术实现自己的业务要求。方便且免费地使用这些技术，当然离不开上述各种技术的开源。当今世界，这是一个开源的时代，所以，我们应该主动拥抱开源，工作之余了解与学习开源社区那些事。"
 author: "陈谭军"
 date: 2020-10-06
-#image: "/images/2020-10-06-participate-community/happy.jpeg"
 published: true
 tags:
     - opensource

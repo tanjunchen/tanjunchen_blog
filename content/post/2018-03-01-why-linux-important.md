@@ -5,7 +5,6 @@ subtitle:   ""
 description: "技术的价值不在于这个技术有多么高超，而在于技术本身给我们带来什么价值，所以很多时候我们学习一个技术，不能盲目学，是为了使用这个技术，知道这个技术的使用场景，知道这个技术带来的便利性，我们才决定要深入学习。那我们干嘛要学习Linux？Linux 能给我们带来什么价值呢，这样我们的学习才不会麻木?"
 author: "陈谭军"
 date: 2018-03-01
-#image: "/images/2020-10-06-participate-community/happy.jpeg"
 published: true
 tags:
     - linux
