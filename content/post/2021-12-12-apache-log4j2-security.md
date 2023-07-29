@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Apache Log4j 远程代码注入漏洞"
+title:      "解析 Apache Log4j 远程代码注入漏洞"
 subtitle:   ""
 description: "2021年12月9日，Apache Log4j2 Java 日志模块存在远程命令执行漏洞可直接控制目标服务器问题，攻击者攻击难度极低。由于 Apache Log4j2 某些功能存在递归解析功能，攻击者可直接构造恶意请求，触发远程代码执行漏洞。该漏洞可通过 critical、error、warining、notice、info、debug等日志级别触发，只需部分日志内容可控，此漏洞波及大量开源组件，包括 ELK、 Apache 、Struts2、Apache Solr、Apache Druid、Apache Flink 等均受影响。目前漏洞细节已被公开，攻击者可利用该漏洞进行远程命令执行。"
 author: "陈谭军"
