@@ -1,0 +1,7 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<details>
+    <summary>
+      {{ with .Get 0}}{{.}}{{else}}{{ end }}
+    </summary>
+    {{.Inner}}
+</details>
