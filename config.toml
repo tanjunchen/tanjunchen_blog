@@ -98,10 +98,6 @@ home = ["HTML", "RSS", "Algolia"]
   [[params.bookmark_link]]
   title =  "Martin Fowler"
   href =  "https://martinfowler.com"
-
-  [[params.addtional_menus]]
-  title =  "ARCHIVE"
-  href =  "/archive"
   
   [[params.addtional_menus]]
   title =  "LEARNING"
@@ -110,6 +106,10 @@ home = ["HTML", "RSS", "Algolia"]
   [[params.addtional_menus]]
   title =  "PHOTOS"
   href =  "/photos"
+
+  [[params.addtional_menus]]
+  title =  "ARCHIVE"
+  href =  "/archive"
   
   [[params.addtional_menus]]
   title =  "ABOUT"
