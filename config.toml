@@ -104,10 +104,6 @@ home = ["HTML", "RSS", "Algolia"]
   href =  "/learning"
 
   [[params.addtional_menus]]
-  title =  "PHOTOS"
-  href =  "/photos"
-
-  [[params.addtional_menus]]
   title =  "ARCHIVE"
   href =  "/archive"
   
