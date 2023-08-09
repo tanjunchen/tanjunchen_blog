@@ -25,7 +25,7 @@ home = ["HTML", "RSS", "Algolia"]
   omit_categories = false
 
   # leancloud storage for page view counter
-  page_view_conter = false 
+  page_view_conter = true 
   leancloud_app_id = ""
   leancloud_app_key = ""
 
@@ -129,3 +129,26 @@ params = ["categories", "tags"]
     style = "dracula"
   [markup.goldmark.renderer]
     unsafe = true
+
+# 添加不蒜子计数
+[params.busuanzi]
+  busuanzi_site_offset = 1000
+  enable = true
+  # 是否开启全站独立访客数
+  site_uv = true
+  # 全站独立访客数前的图标或提示语
+  site_uv_pre = '<i class="fa fa-user"></i>' 
+  # 全站独立访客数后的图标或提示语
+  site_uv_post = ''
+  # 是否开启全站浏览量
+  site_pv = true
+  # 全站浏览量前的图标或提示语
+  site_pv_pre = '<i class="fa fa-eye"></i>'
+  # 全站浏览量后的图标或提示语
+  site_pv_post = ''
+  # 是否开启单页浏览量
+  page_pv = true
+  # 单页浏览量前的图标或提示语
+  page_pv_pre = '<i class="far fa-eye fa-fw"></i>'
+  # 单页浏览量后的图标或提示语
+  page_pv_post = ''
