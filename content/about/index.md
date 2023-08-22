@@ -5,7 +5,7 @@ multilingual: false
 
 ## 自我介绍
 
-大家好，我是陈谭军，目前从事于服务网格（Service Mesh）与容器（Kubernetes）相关研发与落地工作，在云原生、服务网格、容器等技术领域有深入的研究和实践经验。云原生技术追随者与爱好者，热衷技术分享，喜欢参与开源社区。本人 [Github](https://github.com/tanjunchen)，希望后续和大家共同进步与成长。
+大家好，我是陈谭军，本人[Github](https://github.com/tanjunchen)，目前从事于服务网格（Service Mesh）与容器（Kubernetes）相关研发与落地工作，在云原生、服务网格、容器等技术领域有深入的研究和实践经验。云原生技术追随者与爱好者，热衷技术分享，喜欢参与开源社区。
 
 ## 开源社区
 

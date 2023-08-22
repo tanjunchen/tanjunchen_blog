@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Cilium Mesh 常见场景与示例"
-subtitle:   ""
+subtitle:   "Cilium Mesh 流量治理功能，如限流、熔断、负载均衡、灰度、Admin等"
 description: "从早期开始，Cilium 就通过网络和应用程序协议层来提供连接、负载平衡、安全性和可观察性，从而与服务网格概念保持良好一致。对于所有网络处理，包括 IP、TCP 和 UDP 等协议，Cilium 使用 eBPF 作为高效的内核数据路径。HTTP、Kafka、gRPC、DNS 等应用层协议通过 Envoy 等代理进行解析。"
 author: "陈谭军"
 date: 2023-08-12
