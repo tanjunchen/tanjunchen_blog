@@ -180,7 +180,7 @@ spec:
 
 ![](/images/2023-08-12-cilium-mesh-example/4.png)
 
-## 重写
+## URL 重写
 
 部署应用
 
@@ -425,6 +425,7 @@ spec:
 ```
 
 给 echo-service-1 配置 CiliumClusterwideEnvoyConfig 或者 CiliumEnvoyConfig 熔断策略。
+
 ![](/images/2023-08-12-cilium-mesh-example/13.png)
 
 ```yaml
@@ -541,6 +542,142 @@ All done 20 calls (plus 0 warmup) 2.725 ms avg, 724.9 qps
 root@instance-00qqerhq:~/cilium-mesh/strateges#
 ```
 
+## 负载均衡
+
+配置请求客户端 CLIENT：
+```bash
+export CLIENT=$(kubectl get pods -l name=client -o jsonpath='{.items[0].metadata.name}')
+```
+
+测试命令，如下所示：
+```bash
+for i in {1..10}; do  kubectl exec -it $CLIENT -- curl  helloworld:5000/hello; done
+kubectl exec -it $CLIENT -- curl  helloworld:5000/hello
+```
+
+部署 helloworld 测试应用：
+```bash
+kubectl apply -f https://github.com/istio/istio/blob/master/samples/helloworld/helloworld.yaml
+```
+
+配置 CiliumEnvoyConfig 路由策略，随机访问 helloworld v1 与 v2。
+```yaml
+apiVersion: cilium.io/v2
+kind: CiliumEnvoyConfig
+metadata:
+  name: helloworld-lb
+spec:
+  services:
+    - name: helloworld
+      namespace: default
+  resources:
+    - "@type": type.googleapis.com/envoy.config.listener.v3.Listener
+      name: helloworld-lb-listener
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: helloworld-lb-listener
+                rds:
+                  route_config_name: helloworld_lb_route
+                use_remote_address: true
+                skip_xff_append: true
+                http_filters:
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+    - "@type": type.googleapis.com/envoy.config.route.v3.RouteConfiguration
+      name: helloworld_lb_route
+      virtual_hosts:
+        - name: "helloworld_lb_route"
+          domains: [ "*" ]
+          routes:
+            - match:
+                prefix: "/"
+              route:
+                cluster: default/helloworld
+    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+      name: "default/helloworld"
+      connect_timeout: 5s
+      lb_policy: ROUND_ROBIN
+      type: EDS
+```
+
+![](/images/2023-08-12-cilium-mesh-example/18.png)
+
+![](/images/2023-08-12-cilium-mesh-example/19.png)
+
+配置策略，访问 helloworld 的请求，v1 占比 80%，v2 占比 20%。
+
+```yaml
+apiVersion: cilium.io/v2
+kind: CiliumEnvoyConfig
+metadata:
+  name: helloworld-lb
+spec:
+  services:
+    - name: helloworld
+      namespace: default
+  resources:
+    - "@type": type.googleapis.com/envoy.config.listener.v3.Listener
+      name: helloworld-lb-listener
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: helloworld-lb-listener
+                rds:
+                  route_config_name: helloworld_lb_route
+                use_remote_address: true
+                skip_xff_append: true
+                http_filters:
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+    - "@type": type.googleapis.com/envoy.config.route.v3.RouteConfiguration
+      name: helloworld_lb_route
+      virtual_hosts:
+        - name: "helloworld_lb_route"
+          domains: [ "*" ]
+          routes:
+            - match:
+                prefix: "/"
+              route:
+                cluster: default/helloworld
+    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+      name: "default/helloworld"
+      connect_timeout: 5s
+      lb_policy: ROUND_ROBIN
+      type: STATIC
+      load_assignment:
+        cluster_name: "default/helloworld"
+        endpoints:
+        - lb_endpoints:
+          - endpoint:
+              address:
+                socket_address:
+                  address: 10.0.0.55  # helloworld v2 pod IP
+                  port_value: 5000
+            load_balancing_weight: 20
+          - endpoint:
+              address:
+                socket_address:
+                  address: 10.0.0.238
+                  port_value: 5000
+            load_balancing_weight: 80  # helloworld v1 pod IP
+```
+
+```bash
+root@instance-00qqerhq:~/cilium-mesh/strateges# kubectl apply -f cec-envoy-lb-weight-load_assignment.yaml
+ciliumenvoyconfig.cilium.io/helloworld-lb configured
+```
+
+![](/images/2023-08-12-cilium-mesh-example/20.png)
+
+从上述截图中可以得出，配置的 CCEC 策略生效了，接近 80% 的请求发送到 v1，20% 的请求发送到 v2。
+
 ## Metric 
 
 给 envoy 下发 Prometheus 配置，使其暴露 Metric 指标。
@@ -589,6 +726,114 @@ spec:
 http://xxx/stats/prometheus
 ```
 ![](/images/2023-08-12-cilium-mesh-example/15.png)
+
+## AccessLog 
+
+Cilium Mesh 使用的 Envoy 不支持 accesslog，因为 Cilium 使用的 Envoy 构建中未启用这些 Envoy 扩展。具体参见[源码 extensions_build_config](https://github.com/cilium/proxy/blob/main/envoy_build_config/extensions_build_config.bzl#L7-L13)。
+
+## 灰度
+
+针对 echo-service-1 与 echo-service-2 配置 CiliumEnvoyConfig 路由策略，实现 header 灰度效果。
+```yaml
+apiVersion: cilium.io/v2
+kind: CiliumEnvoyConfig
+metadata:
+  name: envoy-lb-listener
+spec:
+  services:
+    - name: echo-service-1
+      namespace: default
+    - name: echo-service-2
+      namespace: default
+  resources:
+    - "@type": type.googleapis.com/envoy.config.listener.v3.Listener
+      name: envoy-lb-listener
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: envoy-lb-listener
+                rds:
+                  route_config_name: lb_route
+                use_remote_address: true
+                skip_xff_append: true
+                http_filters:
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+    - "@type": type.googleapis.com/envoy.config.route.v3.RouteConfiguration
+      name: lb_route
+      virtual_hosts:
+        - name: "lb_route"
+          domains: [ "*" ]
+          routes:
+            - match:
+                prefix: "/"
+                headers:
+                  - name: "version"
+                    exact_match: "foo"
+              route:
+                cluster: default/echo-service-1
+                regex_rewrite:
+                  pattern:
+                    google_re2: { }
+                    regex: "^/foo.*$"
+                  substitution: "/"
+            - match:
+                prefix: "/"
+              route:
+                weighted_clusters:
+                  clusters:
+                    - name: "default/echo-service-1"
+                      weight: 50
+                    - name: "default/echo-service-2"
+                      weight: 50
+                retry_policy:
+                  retry_on: 5xx
+                  num_retries: 3
+                  per_try_timeout: 1s
+    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+      name: "default/echo-service-1"
+      connect_timeout: 5s
+      lb_policy: ROUND_ROBIN
+      type: EDS
+      outlier_detection:
+        split_external_local_origin_errors: true
+        consecutive_local_origin_failure: 2
+    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+      name: "default/echo-service-2"
+      connect_timeout: 3s
+      lb_policy: ROUND_ROBIN
+      type: EDS
+      outlier_detection:
+        split_external_local_origin_errors: true
+        consecutive_local_origin_failure: 2
+```
+如下图所示：默认访问 echo-service-1 foo 接口会报 404 错误，但是如果请求中携带 `header version=foo`，则会请求成功。
+
+![](/images/2023-08-12-cilium-mesh-example/16.png)
+
+```bash
+root@instance-00qqerhq:~/cilium-mesh/strateges# kubectl exec -it $CLIENT2 -- curl -H"version:foo" -I echo-service-1:8080/foo
+HTTP/1.1 200 OK
+x-powered-by: Express
+vary: Origin, Accept-Encoding
+access-control-allow-credentials: true
+accept-ranges: bytes
+cache-control: public, max-age=0
+last-modified: Wed, 21 Sep 2022 10:25:56 GMT
+etag: W/"809-1835f952f20"
+content-type: text/html; charset=UTF-8
+content-length: 2057
+date: Mon, 21 Aug 2023 06:26:17 GMT
+x-envoy-upstream-service-time: 0
+server: envoy
+```
+
+![](/images/2023-08-12-cilium-mesh-example/17.png)
+
+说明 header 路由灰度测试是生效的。
 
 # 总结
 
