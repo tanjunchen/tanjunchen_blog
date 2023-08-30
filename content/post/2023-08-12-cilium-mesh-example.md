@@ -135,6 +135,11 @@ Cilium 提供了通过 CRD CiliumEnvoyConfig 和 CiliumClusterwideEnvoyConfig �
 
 **这些 Envoy CRD 配置根本没有经过 K8s 验证，因此 Envoy 资源中的任何错误只会在 Cilium Agent 看到。kubectl apply 将报告成功，而解析和/或安装节点本地 Envoy 实例的资源可能会失败。目前验证这一点的唯一方法是观察 Cilium Agent 日志中的错误和警告。**
 
+## 版本
+
+* Cilium：v1.14.0
+* Kubernetes：v1.22.17
+
 ## 配置 Admin
 
 给 envoy 下发 admin 配置，使其暴露 admin 管理界面。
@@ -669,6 +674,8 @@ spec:
             load_balancing_weight: 80  # helloworld v1 pod IP
 ```
 
+在上述 *CiliumEnvoyConfig* 配置文件中，*我们使用的是静态 Pod IP，只是作为测试，不太推荐使用*。
+
 ```bash
 root@instance-00qqerhq:~/cilium-mesh/strateges# kubectl apply -f cec-envoy-lb-weight-load_assignment.yaml
 ciliumenvoyconfig.cilium.io/helloworld-lb configured
@@ -677,6 +684,125 @@ ciliumenvoyconfig.cilium.io/helloworld-lb configured
 ![](/images/2023-08-12-cilium-mesh-example/20.png)
 
 从上述截图中可以得出，配置的 CCEC 策略生效了，接近 80% 的请求发送到 v1，20% 的请求发送到 v2。
+
+上述配置静态 Pod IP 不太推荐，我们使用按照比例 90% 的请求发送到 v1，10% 的请求发送到 v2 前，简单了解下述内容。
+
+*Envoy 发现服务 (EDS) 的名字需要遵循 namespace/service-name:port 规范。*
+
+*CiliumClusterwideEnvoyConfig 或者 CiliumEnvoyConfig 中的 BackendServices 指定 Kubernetes 服务，其后端使用 EDS 自动同步到 Envoy。这些服务的流量不会转发到 Envoy 侦听器。这允许 Envoy 侦听器对这些后端的流量进行负载平衡，而正常的 Cilium 服务负载平衡则同时负责平衡这些服务的流量。*
+
+我们需要为 helloworld-v1 与 helloworld-v2 分别定义 service helloworld-v1 与 helloworld-v2，如下所示：
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld
+  labels:
+    app: helloworld
+    service: helloworld
+    version: v1
+spec:
+  ports:
+  - port: 5000
+    name: http
+  selector:
+    app: helloworld
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-v1
+  labels:
+    app: helloworld
+    service: helloworld
+    version: v1
+spec:
+  ports:
+  - port: 5000
+    name: http
+  selector:
+    app: helloworld
+    version: v1
+```
+
+![](/images/2023-08-12-cilium-mesh-example/21.png)
+
+配置路由策略，helloworld 90% 流量指向 v1 版本，10% 流量指向 v2 版本。
+
+```yaml
+apiVersion: cilium.io/v2
+kind: CiliumEnvoyConfig
+metadata:
+  name: envoy-lb-listener
+spec:
+  services:
+    - name: helloworld
+      namespace: default
+  backendServices:
+    - name: helloworld-v1
+      namespace: default
+    - name: helloworld-v2
+      namespace: default
+  resources:
+    - "@type": type.googleapis.com/envoy.config.listener.v3.Listener
+      name: envoy-lb-listener
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                stat_prefix: envoy-lb-listener
+                rds:
+                  route_config_name: lb_route
+                http_filters:
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+    - "@type": type.googleapis.com/envoy.config.route.v3.RouteConfiguration
+      name: lb_route
+      virtual_hosts:
+        - name: "lb_route"
+          domains: [ "*" ]
+          routes:
+            - match:
+                prefix: "/"
+              route:
+                weighted_clusters:
+                  clusters:
+                    - name: "default/helloworld-v1"
+                      weight: 90
+                    - name: "default/helloworld-v2"
+                      weight: 10
+                retry_policy:
+                  retry_on: 5xx
+                  num_retries: 3
+                  per_try_timeout: 1s
+    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+      name: "default/helloworld-v1"
+      connect_timeout: 5s
+      lb_policy: ROUND_ROBIN
+      type: EDS
+      outlier_detection:
+        split_external_local_origin_errors: true
+        consecutive_local_origin_failure: 2
+    - "@type": type.googleapis.com/envoy.config.cluster.v3.Cluster
+      name: "default/helloworld-v2"
+      connect_timeout: 3s
+      lb_policy: ROUND_ROBIN
+      type: EDS
+      outlier_detection:
+        split_external_local_origin_errors: true
+        consecutive_local_origin_failure: 2
+```
+
+执行以下测试命令，我们发现 90 % 的流量指向 v1，10%的流量指向 v2，符合预期。
+
+```bash
+for i in {1..10}; do  kubectl exec -it $CLIENT -- curl  helloworld:5000/hello; done
+```
+
+![](/images/2023-08-12-cilium-mesh-example/22.png)
 
 ## Metric 
 
