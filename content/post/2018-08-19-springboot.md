@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "初始 Spring Boot"
+title:      "初识 Spring Boot"
 subtitle:   ""
 description: ""
 author: "陈谭军"

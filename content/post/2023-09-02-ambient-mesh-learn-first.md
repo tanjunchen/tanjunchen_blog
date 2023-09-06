@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "初始 Istio Ambient Mesh 新模式"
+title:      "初识 Istio Ambient Mesh 新模式"
 subtitle:   "初步了解 Istio 新数据平面 Ambient，目前 Ambient 尚处于 Alpha 阶段，Sidecar 模式依然是首选，但我相信 Ambient 模式是未来很好的选择。"
 description: "Ambient Mesh，这是 Istio 提供的一种新的数据平面模式，旨在简化操作，提供更广泛的应用兼容性，并降低基础设施的成本。Ambient mesh 使得用户可以选择使用一种可以集成到其基础设施中的 Mesh 数据平面，而不是需要和应用一起部署的 sidecar。同时，该模式可以提供和 Sidecar 模式相同的零信任安全、遥测和流量管理等 Istio 的核心功能。目前 Ambient mesh 处于 alpha 阶段。"
 author: "陈谭军"
