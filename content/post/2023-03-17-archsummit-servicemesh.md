@@ -287,8 +287,8 @@ Service Mesh 自从诞生之时，受到各方高度认可，备受工程师关�
 
 ![](/images/2023-03-17-archsummit-servicemesh/34.png)
 
-***架构不是一蹴而就的，只有能够赋能业务，架构才能有生命力。***  
-***Service Mesh 不会是微服务架构演进的终极方向。***
+***{{< align center "架构不是一蹴而就的，只有能够赋能业务，架构才能有生命力。" >}}***
+***{{< align center "Service Mesh 不会是微服务架构演进的终极方向。" >}}***
 
 # 参考
 
