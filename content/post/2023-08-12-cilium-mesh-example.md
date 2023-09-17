@@ -683,11 +683,9 @@ ciliumenvoyconfig.cilium.io/helloworld-lb configured
 
 ![](/images/2023-08-12-cilium-mesh-example/20.png)
 
-从上述截图中可以得出，配置的 CCEC 策略生效了，接近 80% 的请求发送到 v1，20% 的请求发送到 v2。
-
-上述配置静态 Pod IP 不太推荐，我们使用按照比例 90% 的请求发送到 v1，10% 的请求发送到 v2 前，简单了解下述内容。
-
-*Envoy 发现服务 (EDS) 的名字需要遵循 namespace/service-name:port 规范。*
+从上述截图中可以得出，配置的 CCEC 策略生效了，接近 80% 的请求发送到 v1，20% 的请求发送到 v2。  
+上述配置静态 Pod IP 不太推荐，我们使用按照比例 90% 的请求发送到 v1，10% 的请求发送到 v2 前，简单了解下述内容。  
+*Envoy 发现服务 (EDS) 的名字需要遵循 namespace/service-name:port 规范。*  
 
 *CiliumClusterwideEnvoyConfig 或者 CiliumEnvoyConfig 中的 BackendServices 指定 Kubernetes 服务，其后端使用 EDS 自动同步到 Envoy。这些服务的流量不会转发到 Envoy 侦听器。这允许 Envoy 侦听器对这些后端的流量进行负载平衡，而正常的 Cilium 服务负载平衡则同时负责平衡这些服务的流量。*
 
@@ -855,7 +853,7 @@ http://xxx/stats/prometheus
 
 ## AccessLog 
 
-Cilium Mesh 使用的 Envoy 不支持 accesslog，因为 Cilium 使用的 Envoy 构建中未启用这些 Envoy 扩展。具体参见[源码 extensions_build_config](https://github.com/cilium/proxy/blob/main/envoy_build_config/extensions_build_config.bzl#L7-L13)。
+Cilium Mesh 使用的 Envoy 不支持 accesslog，因为 Cilium 使用的 Envoy 构建中未启用这些 Envoy 扩展。具体参见[源码 extensions_build_config](https://github.com/cilium/proxy/blob/main/envoy_build_config/extensions_build_config.bzl#L7-L13)。后续有个 PR 已经打开该特性，可参见 [Enable access logger resource](https://github.com/cilium/proxy/commit/5a76016dde9a7b4d537f37e3ef84593ea1af87c7) PR。
 
 ## 灰度
 
