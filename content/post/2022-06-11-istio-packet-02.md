@@ -309,7 +309,7 @@ e3557ab6a981   jaeger-service1                 "/usr/local/bin/star…"   2 minu
 a072154fa8ca   jaeger-jaeger                   "/go/bin/all-in-one-…"   2 minutes ago   Up 2 minutes             5775/udp, 5778/tcp, 14250/tcp, 6831-6832/udp, 14268/tcp, 0.0.0.0:10000->16686/tcp   jaeger-jaeger-1
 ```
 
-步骤3：在浏览器中打开 http://localhost:8000/trace/1。
+步骤3：在浏览器中打开 [http://localhost:8000/trace/1](http://localhost:8000/trace/1)。
 ```bash
 Hello from behind Envoy (service 1)! hostname e3557ab6a981 resolved 192.168.0.3
 ```
@@ -324,13 +324,13 @@ Hello from behind Envoy (service 1)! hostname e3557ab6a981 resolved 192.168.0.3
 Hello from behind Envoy (service 1)! hostname e3557ab6a981 resolved 192.168.0.3
 ```
 
-步骤5：在浏览器中打开 http://localhost:10000/search 并且访问 Jaeger 的搜索页面。
+步骤5：在浏览器中打开 [http://localhost:10000/search](http://localhost:10000/search) 并且访问 Jaeger 的搜索页面。
 
 步骤6：在 Jaeger 搜索页面中，从下拉菜单中选择“ front proxy” 服务，然后点击 “Find Traces” 按钮。
 
 ![](/images/2022-06-11-istio-packet-02/4.png)
 
-步骤7：查看 http://localhost:8000/trace/1  详细信息，并探索 Envoy 的分布式跟踪功能。
+步骤7：查看 [http://localhost:8000/trace/1](http://localhost:8000/trace/1)  详细信息，并探索 Envoy 的分布式跟踪功能。
 
 ![](/images/2022-06-11-istio-packet-02/5.png)
 

@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "使用 Istio 过程中可能会遇到的常见问题与解决方法（一）"
+title:      "使用 Istio 过程中遇到的常见问题与解决方法（一）"
 subtitle:   "在使用 Istio 过程中可能会碰到的棘手问题以及常见排查手段与解决方法"
 description: ""
 author: "陈谭军"
