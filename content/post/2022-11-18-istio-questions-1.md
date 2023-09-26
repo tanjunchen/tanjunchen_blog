@@ -179,7 +179,7 @@ spec:
       app: nginx
 ```
 
-## Istio Proxy 降低资源消耗
+## 使用 Sidecar CRD 降低 Istio Proxy 资源消耗
 
 根据 Istio 官方文档，Envoy 占用的内存大小和其配置相关，和请求处理速率无关。在一个微服务应用中，一个服务访问的其他服务一般不会超过 10 个，而一个 namespace 中可能部署多达上百个微服务，导致 Envoy 中存在大量冗余配置，导致不必要的内存消耗。最合理的做法是只为一个 sidecar 配置该 sidecar 所代理服务需要访问的外部服务相关的配置。 
 

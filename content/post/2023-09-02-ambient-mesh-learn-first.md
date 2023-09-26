@@ -19,13 +19,12 @@ Ambient Mesh，这是 Istio 提供的一种新的数据平面模式，旨在简�
 # 安装 Ambient Mesh
 
 **前提条件**  
-*要求 Kubernetes 版本 1.24, 1.25, 1.26, 1.27+。*  
-*istio 1.18+。*  
+1. 要求 Kubernetes 版本 1.24, 1.25, 1.26, 1.27+。
+2. istio 1.18+。
 
-*Ambient 目前处于 alpha，alpha 版本中存在已知的性能、稳定性和安全问题，请不要在生产环境中使用。mbient 目前需要使用 istio-cni 来配置 Kubernetes 网络规则，istio-cni 模式目前不支持某些 CNI 类型（即不使用 veth 设备的 CN，如桥接模式）*
+*Ambient 目前处于 alpha，alpha 版本中存在已知的性能、稳定性和安全问题，请不要在生产环境中使用。ambient 目前需要使用 istio-cni 来配置 Kubernetes 网络规则，istio-cni 模式目前不支持某些 CNI 类型（即不使用 veth 设备的 CN，如桥接模式）。*
 
-下载最新版本的 [Istio](https://github.com/istio/istio/releases)，其中 alpha 版本提供对 ambient mesh 的支持。
-
+下载最新版本的 [Istio](https://github.com/istio/istio/releases)，其中 alpha 版本提供对 ambient mesh 的支持。  
 使用 Kind 部署 Kubernetes 集群。
 ```bash
 kind create cluster --config=- <<EOF
@@ -49,7 +48,7 @@ kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
 
 使用 istioctl 安装 Istio 集群
 
-```
+```bash
 istioctl install --set profile=ambient --skip-confirmation
 ```
 
@@ -65,7 +64,7 @@ ambient profile 在集群中安装了 Istiod, ingress gateway, ztunnel 和 istio
 
 # 部署 demo 应用
 
-执行下面的命令，部署 demo 测试应用，我们使用 Istio 官网示例 bookinfo 应用程序。确保 default 命名空间不包含标签 istio-injection=enabled。
+执行下面的命令，部署 demo 测试应用，我们使用 Istio 官网示例 bookinfo 应用程序。确保 default 命名空间不包含标签 `istio-injection=enabled`。
 
 ```bash
 kubectl apply -f samples/bookinfo/platform/kube/bookinfo.yaml
@@ -100,12 +99,12 @@ kubectl exec deploy/notsleep -- curl -s http://productpage:9080/ | grep -o "<tit
 
 # 纳管 demo 应用到 Ambient Mesh
 
-为 default namespace 打上标签来将该 namespace 中的所有应用加入 ambient mesh 中。
+为 default namespace 打上标签来将该 namespace 中的所有应用加入 `ambient mesh` 中。
 ```bash
 kubectl label namespace default istio.io/dataplane-mode=ambient
 ```
 
-我们查看 istio-cni 的日志，可以看到 istio-cni 为 default 命名空间下的应用 pod 创建了相应的路由规则：
+我们查看 `istio-cni` 的日志，可以看到 `istio-cni` 为 `default` 命名空间下的应用 pod 创建了相应的路由规则：
 ```bash
 kubectl -n istio-system logs -f istio-cni-node-wf4rz
 2023-08-28T10:57:57.293344Z	info	ambient	Namespace default is enabled in ambient mesh
@@ -224,11 +223,10 @@ spec:
     protocol: ALL
 ```
 
-![](/images/2023-09-02-ambient-mesh-learn-first/14.png)
-
-![](/images/2023-09-02-ambient-mesh-learn-first/15.png)
-
 istio-waypoint 会通过 Kubernetes Gateway 产生 bookinfo-productpage-istio-waypoint deploy 工作负载（istio-proxy 镜像），作为 productpage L7 流量管理的组件。此时可以查看到 Istio 创建的 waypoint proxy 如下所示：
+
+![](/images/2023-09-02-ambient-mesh-learn-first/14.png)
+![](/images/2023-09-02-ambient-mesh-learn-first/15.png)
 
 重新使用 sleep 访问 productpage，如下所示：
 ![](/images/2023-09-02-ambient-mesh-learn-first/16.png)
@@ -255,7 +253,7 @@ bookinfo-productpage-istio-waypoint-68cb5fb4d6-pxzbr Pod 中的日志如下所�
 {"duration":2,"route_name":"default","authority":"productpage:9080","bytes_sent":1683,"upstream_host":"envoy://connect_originate/10.244.1.24:9080","protocol":"HTTP/1.1","start_time":"2023-08-28T11:59:08.924Z","upstream_cluster":"inbound-vip|9080|http|productpage.default.svc.cluster.local","response_code":200,"request_id":"ab4922ee-f733-4625-84e3-f5c045d979e8","upstream_transport_failure_reason":null,"response_flags":"-","user_agent":"curl/8.2.1","x_forwarded_for":null,"bytes_received":0,"method":"GET","downstream_local_address":"10.96.138.243:9080","requested_server_name":null,"connection_termination_details":null,"downstream_remote_address":"envoy://internal_client_address/","upstream_service_time":"2","response_code_details":"via_upstream","path":"/","upstream_local_address":"envoy://internal_client_address/"}
 ```
 
-可以从上面的日志中看到 (ToServerWaypoint) 标志，并且  bookinfo-productpage-istio-waypoint Envoy 有 access_log，说明请求经过 waypoint proxy，此时应用程序的流量路径如下图所示：
+可以从上面的日志中看到 (ToServerWaypoint) 标志，并且 bookinfo-productpage-istio-waypoint Envoy 有 access_log，说明请求经过 waypoint proxy，此时应用程序的流量路径如下图所示：
 
 ![](/images/2023-09-02-ambient-mesh-learn-first/17.svg)
 
@@ -314,7 +312,7 @@ spec:
     protocol: ALL
 ```
 
-分别通过 VirtualService 与 DestinationRule 创建路由策略，按 80/20 的比例将请求发送到 V1 和 V2 版本，如下所示：
+分别通过 VirtualService 与 DestinationRule 创建路由策略，按 80/20 的比例将请求发送到 v1 和 v2 版本，如下所示：
 ```yaml
 kubectl apply -f - <<EOF
 apiVersion: networking.istio.io/v1alpha3
@@ -365,7 +363,9 @@ EOF
 
 # 与其他 Mesh 对比 
 
-我们简单来介绍 Mesh 周边生态（Istio、Ambient Mesh、Cilium Mesh等）与架构，并且做个对比。Istio 架构如下所示：
+我们简单来介绍 Mesh 周边生态（Istio、Ambient Mesh、Cilium Mesh等）与架构，并且做个对比。
+
+Istio 架构如下所示：
 
 ![](/images/2023-09-02-ambient-mesh-learn-first/20.png)
 
@@ -481,8 +481,8 @@ ztunnel(Rust 编写) 实现了服务网格的核心功能：零信任。当为�
 Istio 采用了 iptables 规则、策略路由[Policy-based Routing](https://en.wikipedia.org/wiki/Policy-based_routing)、TPROXY 等 linux 网络工具来将应用 pod 的流量转发到 ztunnel。Ambient 模式修改了 node 上的 iptables 规则和路由，和某些 k8s cni 插件可能出现冲突。相对而言，sidecar 模式只会影响到 pod 自身的 network namespace，和 k8s cni 的兼容性较好。ambient 模式目前只支持 ptp 类型的 k8s 网络，bridige 模式目前还不支持。
 
 outbound 流量劫持  outbound 方向的流量劫持主要涉及两个步骤：
-* 采用 node 上的 iptables 规则和策略路由将应用 pod 的 outbound 流量路由到 ztunnel pod。
-* 采用 TPROXY 将进入 ztunnel pod 的 outbound 流量重定向到 envoy 的 15001 端口。   
+1. 采用 node 上的 iptables 规则和策略路由将应用 pod 的 outbound 流量路由到 ztunnel pod。
+2. 采用 TPROXY 将进入 ztunnel pod 的 outbound 流量重定向到 envoy 的 15001 端口。   
 
 ![](/images/2023-09-02-ambient-mesh-learn-first/31.png)
 
@@ -492,9 +492,7 @@ inbound 流量劫持 inbound 方向的流量劫持和 outbound 类似，也主�
 
 ![](/images/2023-09-02-ambient-mesh-learn-first/32.png)
 
-*目前的 iptables 应该还会设置 connmark 来跟踪，只有首包会走到 istioout 和 istioin，后续的包会走到 0x400 的 mark 直接走 veth pair 不封包了。抓包的话也可以看到只有 SYN 到了 istioin 的网卡。大家可以试试。*  
-
-具体可以参考 [Istio Ambient 模式流量管理实现机制详解 - ztunnel 流量劫持](https://www.zhaohuabing.com/post/2022-09-11-ambient-deep-dive-2/)
+*目前的 iptables 应该还会设置 mark 来跟踪，只有首包会走到 istioout 和 istioin，后续的包会走到 0x400 的 mark 直接走 veth pair 不封包了。抓包的话也可以看到只有 SYN 到了 istioin 的网卡。大家可以试试。* 具体可以参考 [Istio Ambient 模式流量管理实现机制详解 - ztunnel 流量劫持](https://www.zhaohuabing.com/post/2022-09-11-ambient-deep-dive-2/)
 
 **什么是 istio-cni？为什么 Istio 提供 istio-cni？**    
 默认情况下，Istio 需要在网格中部署的 pod 中注入一个 init 容器 istio-init。istio-init 容器初始化拦截 Pod 进出流量到 sidecar iptables 规则。istio-init 要求将 pod 部署到网格的用户或服务帐户拥有足够的 Kubernetes RBAC 权限来部署具有 NET_ADMIN 和 NET_RAW 功能的容器。  
@@ -511,7 +509,6 @@ inbound 流量劫持 inbound 方向的流量劫持和 outbound 类似，也主�
 ```bash
 istioctl install --set profile=ambient --set values.cni.ambient.redirectMode="ebpf"
 ```
-
 ......当然，Ambient Mesh 肯定不止这些内容需要我们去研究，如 L4 劫持过程、L7 劫持过程、ztunnel 实现原理，
 这些内容后续在继续深入调研与研究。
 
