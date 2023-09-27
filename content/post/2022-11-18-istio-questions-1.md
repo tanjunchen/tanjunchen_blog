@@ -17,9 +17,20 @@ showtoc: true
 
 # Istio 常见问题列表
 
+1. 注入 sidecar 后，应用程序启动失败
+1. Istio Proxy 开启 accesslog 日志
+1. 使用 Sidecar CRD 降低 Istio Proxy 资源消耗
+1. Istio Proxy 响应值删除指定的 header
+1. Envoy 默认暴露的 Metrics 指标使网络进出口流量增大
+1. Istio Proxy 响应值返回 502
+1. Istio 跨集群下服务所关联的 endpoint 不全问题（no healthy upstream）
+1. 使用 lua 给 Istio Proxy 添加自定义 header
+1. 使用 lua 与 envoyfilter 打印 header
+1. istio-ingressgateway 启动失败，出现文件描述符报错
+
 ## 注入 sidecar 后，应用程序启动失败
 
-**现象**：应用在启动时通常会从一些外部服务中获取数据，并采用这些数据对自身进行初始化，如从配置中心读取程序配置，从数据库中初始化程序用户信息等。初始化 init 容器已经在 Pod 中创建了 iptables rule 规则，因此应用向外发送的网络流量会被重定向到 Envoy，Envoy 启动后会通过 xDS 协议向 Pilot 请求服务和路由配置信息，当 Pilot 通过 xDS 协议给 Envoy 下发配置较慢时，Envoy 没有对上述应用请求进行处理的监听器和路由规则，无法对此进行处理，导致网络请求失败。
+**现象**：应用在启动时可能会从一些外部服务中获取数据，并采用这些数据对自身进行初始化，如从配置中心读取程序配置，从数据库中初始化程序用户信息等。初始化 init 容器已经在 Pod 中创建了 iptables rule 规则，因此应用向外发送的网络流量会被重定向到 Envoy，Envoy 启动后会通过 xDS 协议向 Pilot 请求服务和路由配置信息，当 Pilot 通过 xDS 协议给 Envoy 下发配置较慢时，Envoy 没有对上述应用请求进行处理的监听器和路由规则，无法对此进行处理，导致网络请求失败。
 
 **解决方案**：参考 [ProxyConfig 文档](https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/#ProxyConfig)，设置 `holdApplicationUntilProxyStarts` 为 `true`。备注：Istio 要求 1.7+。
 
@@ -91,7 +102,7 @@ EOF
 kubectl apply -f ./telemtry-example.yaml
 ```
 
-**Mesh Config**：在 istio-system/istio ConfigMap 中添加如下配置。
+**全局配置 Mesh Config**：在 istio-system/istio ConfigMap 中添加如下配置。
 
 ```yaml
 apiVersion: v1

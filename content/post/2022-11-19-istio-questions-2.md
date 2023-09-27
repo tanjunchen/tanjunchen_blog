@@ -15,6 +15,17 @@ showtoc: true
 
 # Istio 常见问题列表
 
+1. 在 Istio 中指定 HTTP Header 大小写
+1. 业务注入 Sidecar 后 pod 处于 CrashLoopBackOff 状态
+1. Istio Proxy 如何使用 tcpdump 或 iptables
+1. 开启 Istio Proxy 本地局部限流
+1. Trace 链路追踪信息不完整
+1. 调整 istio-proxy 日志级别
+1. Envoy 默认重试策略导致服务异常
+1. Envoy 默认熔断不生效
+1. 长连接导致 Envoy CPU 负载不均衡
+1. Metrics 导致 Envoy 内存爆炸增长
+
 ## 在 Istio 中指定 HTTP Header 大小写
 
 Envoy 缺省会把 http header 的 key 转换为小写，例如有一个 http header `Content-Type: text/html; charset=utf-8`，经过 Envoy 代理后会变成 `content-type: text/html; charset=utf-8`。根据 [RFC 2616 规范](https://www.ietf.org/rfc/rfc2616.txt)，在正常情况下，HTTP Header 大小写不会影响结果。
@@ -81,6 +92,62 @@ Content-Type: text/html; charset=utf-8
 Content-Length: 1683
 Date: Mon, 25 Sep 2023 05:44:35 GMT
 x-Envoy-upstream-service-time: 6
+```
+
+如果希望 Envoy 对某些请求开启 Header 首字母大写的规则，可以用以下 EnvoyFilter：
+```yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: http-header-proper-case-words
+  namespace: istio-system
+spec:
+  configPatches:
+  - applyTo: NETWORK_FILTER 
+    match:
+      # context omitted so that this applies to both sidecars and gateways
+      listener:
+        name: XXX # 指定 cos 使用的 listener name，可以从 config_dump 中查询到
+        filterChain:
+          filter:
+            name: "envoy.http_connection_manager"
+    patch:
+      operation: MERGE
+      value:
+        name: "envoy.http_connection_manager"
+        typed_config:
+          "@type": "type.googleapis.com/envoy.config.filter.network.http_connection_manager.v2.HttpConnectionManager"
+          http_protocol_options:
+            header_key_format:
+              proper_case_words: {}
+```
+
+如果希望直接全局开启 Header 首字母大写的规则，可以使用以下 EnvoyFileter：
+```yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+ name: http-header-proper-case-words
+ namespace: istio-system
+spec:
+  configPatches:
+  - applyTo: NETWORK_FILTER
+    match:
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.filters.network.http_connection_manager"
+    patch:
+      operation: MERGE
+      value:
+        typed_config:
+          "@type": "type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager"
+          http_protocol_options:
+            header_key_format:
+              stateful_formatter:
+                name: preserve_case
+                typed_config:
+                  "@type": type.googleapis.com/envoy.extensions.http.header_formatters.preserve_case.v3.PreserveCaseFormatterConfig
 ```
 
 **最佳实践**：应用程序应遵循 [RFC 2616 规范](https://www.ietf.org/rfc/rfc2616.txt)，对 Http Header 的处理采用大小写不敏感的原则。有关更多详细的信息可参考[Envoy config-http-conn-man-header-casing](https://www.Envoyproxy.io/docs/Envoy/latest/configuration/http/http_conn_man/header_casing#config-http-conn-man-header-casing)。
