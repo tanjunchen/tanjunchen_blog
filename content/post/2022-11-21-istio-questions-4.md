@@ -5,7 +5,7 @@ subtitle:   "在使用 Istio 过程中可能会碰到的棘手问题以及常见
 description: ""
 author: "陈谭军"
 date: 2022-11-21
-published: false
+published: true
 tags:
     - istio
 categories:
@@ -330,25 +330,24 @@ spec:
 
 # Istio 控制平面与数据平面性能优化
 
-**背景**：Istio 提供了丰富的功能，如流量管理、安全、观察性等，这些功能的实现和运行可能会对系统性能产生一定影响，因此，对 Istio 进行优化是必要的。如下是几个原因：
+**背景**：Istio 提供了丰富的功能，如流量管理、安全、观察性等，这些功能的实现和运行可能会对系统性能产生一定影响，因此，对 Istio 进行优化是必要的。如下所示：
 * 提高性能：随着 Envoy 代理的注入，会增加网络延迟和 CPU 使用率。
 * 提升可扩展性：随着服务数量的增加，Istio 的控制平面可能会面临更大的压力。
 * 降低资源消耗：Istio 的运行需要消耗一定的系统资源，如 CPU、内存。
 * 提高稳定性：优化可以帮助减少 Istio 的错误和故障，提高系统的稳定性。
 
-我们可以分为控制平面与数据平面对 Istio 进行优化，如下所示：
+我们可以分别从控制平面与数据平面对 Istio 进行优化。
 
-**控制平面**：我们可以从以下方面进行优化，如下所示：
-
+**控制平面**：
 * 使用参数 `ENABLE_ENHANCED_RESOURCE_SCOPING` 开启 Istio CRD 隔离，`meshConfig.discoverySelectors` 将限制 CRD 配置（如Gateway、VirtualService、DestinationRule、Ingress等），在 Kubernetes 集群中新建多个 Istio 网格实例，此选项很有意思，能够实现 CRD 隔离，降低 Pilot 资源消耗与提升控制平面的稳定性。
 * Istiod 减少 Kubernetes 元数据（尤其是大规模集群）对 CPU、内存等资源消耗。相关代码提交可参考 [Istio Bump k8s dependencies to v0.26](https://github.com/istio/istio/commit/3fcff36ddc5e69ed20755c6385d44eb1a0e50505#diff-f5208fc7b2fabcbd75534363ac5e26deaccd9cefcf75e92722407c9a96de3f68)。要求 Istio 1.14+。Istiod 内存能在大规模集群下降低 40% 以上。主要是不使用 Kubernetes 无效的字段 `unused field`。
-* 使用选择性服务发现[discovery selectors](https://istio.io/v1.14/blog/2021/discovery-selectors/)。要求 Istio 1.10+。选择性服务发现可以减少 Envoy 代理需要处理的服务信息的数量。
+* 使用选择性服务发现 [discovery selectors](https://istio.io/v1.14/blog/2021/discovery-selectors/)。要求 Istio 1.10+。选择性服务发现可以减少 Envoy 代理需要处理的服务信息的数量。
 * istiod 保持负载均衡。Envoy 提供了一个定时重连的机制。通过这个机制，Envoy 会定期断开与 Istiod 的连接，然后重新建立连接。在重新建立连接时，Envoy 会根据负载均衡策略选择一个 Istiod 实例，这样就可以保证 Istiod 的负载均衡。
 * istiod HPA。istiod 是无状态的，我们可以通过 HPA 进行负载均衡，提升 istiod 稳定性。
-* xDS 按需下发。增量 xDS 推送，可参见[Delta xDS](https://docs.google.com/document/d/1hwC81_jS8qARBDcDE6VTxx6fA31In96xAZWqfwnKhpQ/edit#heading=h.xw1gqgyqs5b)。[Slime](https://github.com/slime-io/slime) 是网易开源的一个项目，它实现了 Istio 的 lazyXDS 机制。
+* xDS 按需下发。增量 xDS 推送，可参见 [Delta xDS](https://docs.google.com/document/d/1hwC81_jS8qARBDcDE6VTxx6fA31In96xAZWqfwnKhpQ/edit#heading=h.xw1gqgyqs5b)。[Slime](https://github.com/slime-io/slime) 是网易开源的一个项目，它实现了 Istio 的 lazyXDS 机制。
 * 控制平面参数优化。开启 `PILOT_ENABLE_EDS_DEBOUNCE` 参数，默认情况下，此功能已启用。`PILOT_PUSH_THROTTLE`(默认值 100ms)，限制允许的并发推送数量，在较大的机器上，可以增加此限制以实现更快的推送。`PILOT_DEBOUNCE_AFTER`(默认值 100ms)、`PILOT_DEBOUNCE_MAX`(默认值 10s)，用于防抖动的配置/注册事件的延迟，其他参数优化。
 * 关闭 mtls。如果认为集群内是安全的，可以关掉 mtls 以提升性能。示例的 yaml 文件如下所示：
-```
+```yaml
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:

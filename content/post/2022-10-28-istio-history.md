@@ -2,7 +2,7 @@
 layout:     post
 title:      "说道说道 Istio，重新扬帆加入 CNCF"
 subtitle:   "Istio 发展历史与简介"
-description: "2022年9月底，CNCF TOC（技术监督委员会，Technical Oversight Committee ）已经投票接受了 Istio 作为 CNCF 的孵化项目。Istio 扬帆加入 CNCF，具体细节可参见 Istio 扬帆加入 CNCF。"
+description: "2022年9月底，CNCF TOC（技术监督委员会，Technical Oversight Committee ）已经投票接受了 Istio 作为 CNCF 的孵化项目，Istio 扬帆加入 CNCF"
 author: "陈谭军"
 date: 2022-10-28
 published: true
@@ -17,7 +17,7 @@ showtoc: true
 
 # 序言
 
-2022年9月底，CNCF TOC（技术监督委员会，Technical Oversight Committee ）已经投票接受了 Istio 作为 CNCF 的孵化项目。Istio 扬帆加入 CNCF，具体细节可参见 Istio 扬帆加入 CNCF。
+2022年9月底，CNCF TOC（技术监督委员会，Technical Oversight Committee ）已经投票接受了 Istio 作为 CNCF 的孵化项目。Istio 扬帆加入 CNCF。
 
 # 介绍
 
@@ -68,7 +68,7 @@ Istio 是 2017 年 5 月 24 日开源的。至今(2022-10月)为止，Istio 已�
 
 ## 主要目录
 ```bash
-chentanjun@tanjunchenMac~/opensource cloc istio
+chentanjun@tanjunchenMac~/opensource cloc istio
   4069 text files.
   3832 unique files.
   844 files ignored.
@@ -125,24 +125,24 @@ serviceregistry：注册中心
 
 ## 重点模块
 
-XDS 协议层参见 [go-control-plane](https://github.com/envoyproxy/go-control-plane)  
+XDS 协议层参见 [go-control-plane](https://github.com/envoyproxy/go-control-plane)。
 
 # 调试与答疑
 
 ## 控制平面
 
-1. 获取 Pilot 中的 CRD 信息，curl -s 127.1:15014/debug/configz
-1. 获取 Pilot 内部状态的指标，curl -s 127.1:15014/metrics
+1. 获取 Pilot 中的 CRD 信息，`curl -s 127.1:15014/debug/configz`。
+1. 获取 Pilot 内部状态的指标，`curl -s 127.1:15014/metrics`。
 
-具体可参见：https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/ 、https://istio.io/latest/docs/ops/diagnostic-tools/
+具体可参见：[](https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/)、[https://istio.io/latest/docs/ops/diagnostic-tools/](https://istio.io/latest/docs/ops/diagnostic-tools/)。
 
 ## 数据平面
 
-1. 获取 Envoy 接收到的 configdump，curl -s 127.1:15000/config_dump
-1. 获取 Envoy 接收到的实例状态信息，curl -s 127.1:15000/clusters ，数据有请求成功数，失败数，超时数，连接信息，健康状态等
-1. 更改数据平面的日志级别，curl -s -X POST 127.1:15000/logging?level=trace
+1. 获取 Envoy 接收到的 configdump，`curl -s 127.1:15000/config_dump`。
+1. 获取 Envoy 接收到的实例状态信息，`curl -s 127.1:15000/clusters`，数据有请求成功数，失败数，超时数，连接信息，健康状态等
+1. 更改数据平面的日志级别，`curl -s -X POST 127.1:15000/logging?level=trace`。
 
-具体可参考：https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/、https://istio.io/latest/docs/ops/diagnostic-tools/
+具体可参考：[https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/](https://istio.io/latest/docs/ops/diagnostic-tools/proxy-cmd/)、[https://istio.io/latest/docs/ops/diagnostic-tools/](https://istio.io/latest/docs/ops/diagnostic-tools/)。
 
 # 总结
 
