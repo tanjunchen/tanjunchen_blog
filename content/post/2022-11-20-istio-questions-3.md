@@ -13,6 +13,13 @@ categories:
 showtoc: true
 ---
 
+服务网格为微服务提供了一个服务通信的基础设施层，统一为上层的微服务提供了服务发现、负载均衡、重试、熔断等基础通信功能，以及服务路由、灰度发布等高级治理功能。如果我们在使用服务网格系统出现问题的话，我们如何才能快速定位问题以及处理呢？
+
+[使用 Istio 过程中遇到的常见问题与解决方法（一）](https://tanjunchen.github.io/post/2022-11-18-istio-questions-1/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（二）](https://tanjunchen.github.io/post/2022-11-19-istio-questions-2/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（三）](https://tanjunchen.github.io/post/2022-11-20-istio-questions-3/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（四）](https://tanjunchen.github.io/post/2022-11-21-istio-questions-4/)  
+
 # Istio 常见问题列表
 
 1. Istio 实用安装选项
@@ -26,7 +33,7 @@ showtoc: true
 1. http Header 大写导致基于 Header 会话保持不生效
 1. 支持 websocket 协议
 
-## Istio 实用安装选项
+# Istio 实用安装选项
 
 我们在使用 Istio 时，如果想体验某个功能，往往需要在安装 Istio 时开启特性开关，因此我列举 Istio 安装时动态可选项，如下所示：
 ```bash
@@ -97,7 +104,7 @@ istioctl install -f test-iop.yaml
 istioctl manifest generate -f test-iop.yaml 
 ```
 
-## 多集群（跨集群应用）service 访问不通
+# 多集群（跨集群应用）service 访问不通
 
 **现象**：同一网格实例的多个集群之间通过 service 调用，可能会发现跨集群服务访问不通。
 
@@ -109,7 +116,7 @@ istioctl manifest generate -f test-iop.yaml
 
 **排查方式4**：查看主集群中的 istiod 纳管远程集群是否成功，主集群是否可以通过 secret 连接到远程集群获取 `Endpoint` 元数据，istiod 在多集群模式下是否有报错日志。
 
-## gRPC 服务导致请求负载不均衡问题
+# gRPC 服务导致请求负载不均衡问题
 
 **现象**：在使用 Istio 对 gRPC 协议的服务进行流量控制时，会出现流量负载不均衡的问题。同一个 client（gRPC 协议） 的请求始终只打到同一个 server 的 pod，造成负载不均衡。
 

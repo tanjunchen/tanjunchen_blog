@@ -13,6 +13,13 @@ categories:
 showtoc: true
 ---
 
+服务网格为微服务提供了一个服务通信的基础设施层，统一为上层的微服务提供了服务发现、负载均衡、重试、熔断等基础通信功能，以及服务路由、灰度发布等高级治理功能。如果我们在使用服务网格系统出现问题的话，我们如何才能快速定位问题以及处理呢？
+
+[使用 Istio 过程中遇到的常见问题与解决方法（一）](https://tanjunchen.github.io/post/2022-11-18-istio-questions-1/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（二）](https://tanjunchen.github.io/post/2022-11-19-istio-questions-2/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（三）](https://tanjunchen.github.io/post/2022-11-20-istio-questions-3/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（四）](https://tanjunchen.github.io/post/2022-11-21-istio-questions-4/)  
+
 # Istio 常见问题列表
 
 1. 在 Istio 中指定 HTTP Header 大小写
@@ -26,7 +33,7 @@ showtoc: true
 1. 长连接导致 Envoy CPU 负载不均衡
 1. Metrics 导致 Envoy 内存爆炸增长
 
-## 在 Istio 中指定 HTTP Header 大小写
+# 在 Istio 中指定 HTTP Header 大小写
 
 Envoy 缺省会把 http header 的 key 转换为小写，例如有一个 http header `Content-Type: text/html; charset=utf-8`，经过 Envoy 代理后会变成 `content-type: text/html; charset=utf-8`。根据 [RFC 2616 规范](https://www.ietf.org/rfc/rfc2616.txt)，在正常情况下，HTTP Header 大小写不会影响结果。
 
@@ -152,7 +159,7 @@ spec:
 
 **最佳实践**：应用程序应遵循 [RFC 2616 规范](https://www.ietf.org/rfc/rfc2616.txt)，对 Http Header 的处理采用大小写不敏感的原则。有关更多详细的信息可参考[Envoy config-http-conn-man-header-casing](https://www.Envoyproxy.io/docs/Envoy/latest/configuration/http/http_conn_man/header_casing#config-http-conn-man-header-casing)。
 
-## 业务注入 Sidecar 后 pod 处于 CrashLoopBackOff 状态
+# 业务注入 Sidecar 后 pod 处于 CrashLoopBackOff 状态
 
 **现象**：业务注入 Sidecar 后，Istio Proxy 一直处于 `CrashLoopBackOff` 状态，查看 `istio-proxy` 容器，发现启动失败。
 查看 `istio-init` 容器的日志，报错日志如下所示：
@@ -170,7 +177,7 @@ Try `iptables-restore -h' or 'iptables-restore --help' for more information.
 
 **解决方式**：因为 istio-proxy 劫持流量需要使用 `iptables`，所以我们需要 Kubernetes Node 节点满足上述 [istio prerequisites](https://istio.io/latest/docs/setup/platform-setup/prerequisites/) 条件。
 
-## Istio Proxy 如何使用 tcpdump 或 iptables
+# Istio Proxy 如何使用 tcpdump 或 iptables
 
 **现象**：在 Kubernetes 集群中，Istio 通过 sidecar 模式将 Envoy 代理注入到每个 Pod 中，所有的入站和出站流量都会经过这个代理。
 当流量访问不通或者需要抓取 istio-proxy 中的网络包时，我们需要在容器中执行 `iptables` 或 `tcpdump` 命令，但是会遇到以下类似错误：
@@ -258,7 +265,7 @@ sudo tcpdump -i eth0 -n -vvvv -A  "((src portrange 20000-65535 and src $ETH0_IP)
 sudo tcpdump -ni eth0 "tcp port 8500 and (tcp[((tcp[12] & 0xf0) >> 2)] = 0x16)
 ```
 
-## 开启 Istio Proxy 本地局部限流
+# 开启 Istio Proxy 本地局部限流
 
 限流中的相关概念，Domain: domain 是一组限流的容器，限流服务所有的 domain 必须是全局唯一的。Descriptor: Descriptor(描述符)是 Domain 拥有的 key/val 列表，限流服务使用它来选择是否进行限流。每一个配置都会包含一个 Descriptor 并且区分大小写和支持嵌套。tcp 限流 ratelimit 过滤器创建在 listener，Envoy 为每个连接调用 ratelimit 限流服务，这样能限制每秒该 listener 上建立的连接数。http 级别限流，ratelimit 过滤器创建在 router，既可以限制到目标 upstream cluster 的所有请求速率，也可以限制不同来源的到目标 upstream cluster 的请求限流。
 
@@ -320,7 +327,7 @@ spec:
 429
 ```
 
-## Trace 链路追踪信息不完整
+# Trace 链路追踪信息不完整
 
 **现象**：通过 UI 展示的 Trace 链路追踪显示不完整，缺失上下游的链路调用关系。
 
@@ -407,7 +414,7 @@ private JsonObject getRatings(String productId, HttpHeaders requestHeaders) {
 
 **解决方式**：在业务中正确地传递 trace 链路追踪中所需要的 header。
 
-## 调整 istio-proxy 日志级别
+# 调整 istio-proxy 日志级别
 
 在 istio 中如何自定义数据面 (proxy) 的日志级别，方便我们排查问题时进行调试。
 调低 proxy 日志级别进行 debug 有助于排查问题，但输出内容较多且耗资源，不建议在生产环境开启。
@@ -460,7 +467,7 @@ kubectl -n istio-system edit configmap istio-sidecar-injector
 istioctl install --set profile=demo --set values.global.proxy.logLevel=debug
 ```
 
-## Envoy 默认重试策略导致服务异常
+# Envoy 默认重试策略导致服务异常
 
 **现象**：Istio Proxy 默认的重试策略可能会在某些情况下导致服务异常。例如，如果服务在处理请求时出现暂时性的问题，Istio Proxy 会尝试重新发送请求。然而，如果问题是由于服务本身的错误（如代码错误或配置问题）导致的，那么重试请求只会导致更多的错误，并可能使问题变得更糟。Istio 为 Envoy 设置了缺省的重试策略，会在 `connect-failure, refused-stream, unavailable, cancelled, retriable-status-codes` 等情况下重试两次。出现上述错误时，可能已经触发了服务器逻辑，如果操作不是幂等（任意多次执行所产生的影响均与一次执行的影响相同）的情况下，可能会导致错误。
 
@@ -508,7 +515,7 @@ Envoy_cluster_upstream_cx_connect_attempts_exceeded{cluster_name="xds-grpc"} 0
 100  392k    0  392k    0     0  92.2M      0 --:--:-- --:--:-- --:--:-- 95.9M
 ```
 
-## Envoy 默认熔断不生效
+# Envoy 默认熔断不生效
 
 **现象**：给服务配置了 `DestinationRule` 限流熔断策略，但是没有生效，其中 `DestinationRule` 文件如下所示：
 ```yaml
@@ -542,7 +549,7 @@ spec:
         http1MaxPendingRequests: 1
 ```
 
-## 长连接导致 Envoy CPU 负载不均衡
+# 长连接导致 Envoy CPU 负载不均衡
 
 **现象**：Envoy 进程占用的 CPU 不均衡。Ingress Gateway Pod 一共有 16 个 worker，但部分 worker 的 CPU 使用率较高，其他 CPU 使用率很低，出现该问题后，虽然很多的 CPU 还是空闲的，但会由于 Envoy 的处理能力不足而导致请求积压，请求时延变长，甚至请求超时。如下所示：
 ![](/images/2022-11-19-istio-questions-2/3.png)
@@ -623,7 +630,7 @@ spec:
 
 **总结**：当长连接压力客户端启动之后，异常慢请求开始出现，数量开始时迅速增加，往后逐渐减少到趋于稳定。从耗时来看，`upstream_lantency` 的时间始终都很短，在几十毫秒以内，说明上游后端服务的处理时间很短，但是 `new_total_latency` 总耗时部分请求时延明显增加，并且耗时分布不均匀，几百毫秒到十几秒都有。缺省情况下，Envoy 不会在多个 worker 线程之间对连接数量进行均衡。在大部分 upstream 连接都是短连接的情况下，操作系统可以很好地将连接比较均匀地分配到多个 worker 线程上。但是，在长连接的情况下（例如 HTTP2/GRPC），多个 worker 线程分配到的连接数量可能不够均匀，就会出现有的 CPU 使用率高，有的 CPU 使用率低的现象。
 
-## Metrics 导致 Envoy 内存爆炸增长
+# Metrics 导致 Envoy 内存爆炸增长
 
 **现象**：业务给 Pod 配置了遥测 `Telemetry` CRD 后，Envoy 内存迅速增长，不久后内存溢出，导致 Pod 不断重启。`Telemetry` CRD 如下所示：
 ```yaml

@@ -13,6 +13,13 @@ categories:
 showtoc: true
 ---
 
+服务网格为微服务提供了一个服务通信的基础设施层，统一为上层的微服务提供了服务发现、负载均衡、重试、熔断等基础通信功能，以及服务路由、灰度发布等高级治理功能。如果我们在使用服务网格系统出现问题的话，我们如何才能快速定位问题以及处理呢？
+
+[使用 Istio 过程中遇到的常见问题与解决方法（一）](https://tanjunchen.github.io/post/2022-11-18-istio-questions-1/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（二）](https://tanjunchen.github.io/post/2022-11-19-istio-questions-2/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（三）](https://tanjunchen.github.io/post/2022-11-20-istio-questions-3/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（四）](https://tanjunchen.github.io/post/2022-11-21-istio-questions-4/)  
+
 # Istio 常见问题列表
 
 1. 使用 corsPolicy 解决跨域问题
@@ -23,8 +30,8 @@ showtoc: true
 1. Istio 最好使用默认路由
 1. 服务 service 显式指定协议
 1. Istio 控制平面与数据平面性能优化
-1. Istio 常见的调试技巧与方法
-1. Envoy 常见异常状态码汇总
+1. headless service 相关问题
+1. EnvoyFilter 与 lua 实现动态路由
 
 # 使用 corsPolicy 解决跨域问题
 
@@ -338,14 +345,13 @@ spec:
 
 我们可以分别从控制平面与数据平面对 Istio 进行优化。
 
-**控制平面**：
-* 使用参数 `ENABLE_ENHANCED_RESOURCE_SCOPING` 开启 Istio CRD 隔离，`meshConfig.discoverySelectors` 将限制 CRD 配置（如Gateway、VirtualService、DestinationRule、Ingress等），在 Kubernetes 集群中新建多个 Istio 网格实例，此选项很有意思，能够实现 CRD 隔离，降低 Pilot 资源消耗与提升控制平面的稳定性。
-* Istiod 减少 Kubernetes 元数据（尤其是大规模集群）对 CPU、内存等资源消耗。相关代码提交可参考 [Istio Bump k8s dependencies to v0.26](https://github.com/istio/istio/commit/3fcff36ddc5e69ed20755c6385d44eb1a0e50505#diff-f5208fc7b2fabcbd75534363ac5e26deaccd9cefcf75e92722407c9a96de3f68)。要求 Istio 1.14+。Istiod 内存能在大规模集群下降低 40% 以上。主要是不使用 Kubernetes 无效的字段 `unused field`。
-* 使用选择性服务发现 [discovery selectors](https://istio.io/v1.14/blog/2021/discovery-selectors/)。要求 Istio 1.10+。选择性服务发现可以减少 Envoy 代理需要处理的服务信息的数量。
+**控制平面**：  
+* 使用参数 `ENABLE_ENHANCED_RESOURCE_SCOPING` 开启 Istio CRD 隔离，`meshConfig.discoverySelectors` 将限制 CRD 配置（如 Gateway、VirtualService、DestinationRule、Ingress 等）生效范围，在 Kubernetes 集群中新建多个 Istio 网格实例，此选项很有意思，能够实现 CRD 隔离，明显降低 Pilot 对 CPU、内存资源消耗，从而进一步提升控制平面的稳定性。
+* 解决 Kubernetes 元数据（尤其是大规模集群）对 Istiod 造成的 CPU、内存等资源消耗倍增问题。相关代码提交可参考 [Istio Bump k8s dependencies to v0.26](https://github.com/istio/istio/commit/3fcff36ddc5e69ed20755c6385d44eb1a0e50505#diff-f5208fc7b2fabcbd75534363ac5e26deaccd9cefcf75e92722407c9a96de3f68)。要求 Istio 1.14+。Istiod 内存能在大规模集群下降低 40% 以上，主要是不使用 Kubernetes 无效的字段 `unused field`。
+* 使用选择性服务发现 [discovery selectors](https://istio.io/v1.14/blog/2021/discovery-selectors/)。要求 Istio 1.10+，选择性服务发现可以减少 Envoy 代理需要处理的服务信息的数量。
 * istiod 保持负载均衡。Envoy 提供了一个定时重连的机制。通过这个机制，Envoy 会定期断开与 Istiod 的连接，然后重新建立连接。在重新建立连接时，Envoy 会根据负载均衡策略选择一个 Istiod 实例，这样就可以保证 Istiod 的负载均衡。
 * istiod HPA。istiod 是无状态的，我们可以通过 HPA 进行负载均衡，提升 istiod 稳定性。
 * xDS 按需下发。增量 xDS 推送，可参见 [Delta xDS](https://docs.google.com/document/d/1hwC81_jS8qARBDcDE6VTxx6fA31In96xAZWqfwnKhpQ/edit#heading=h.xw1gqgyqs5b)。[Slime](https://github.com/slime-io/slime) 是网易开源的一个项目，它实现了 Istio 的 lazyXDS 机制。
-* 控制平面参数优化。开启 `PILOT_ENABLE_EDS_DEBOUNCE` 参数，默认情况下，此功能已启用。`PILOT_PUSH_THROTTLE`(默认值 100ms)，限制允许的并发推送数量，在较大的机器上，可以增加此限制以实现更快的推送。`PILOT_DEBOUNCE_AFTER`(默认值 100ms)、`PILOT_DEBOUNCE_MAX`(默认值 10s)，用于防抖动的配置/注册事件的延迟，其他参数优化。
 * 关闭 mtls。如果认为集群内是安全的，可以关掉 mtls 以提升性能。示例的 yaml 文件如下所示：
 ```yaml
 apiVersion: security.istio.io/v1beta1
@@ -358,9 +364,9 @@ spec:
   mtls:
     mode: DISABLE
 ```
+* 控制平面参数优化。开启 `PILOT_ENABLE_EDS_DEBOUNCE` 参数，默认情况下，此功能已启用。`PILOT_PUSH_THROTTLE`(默认值 100ms)，限制允许的并发推送数量，在较大的机器上，可以增加此限制以实现更快的推送。`PILOT_DEBOUNCE_AFTER`(默认值 100ms)、`PILOT_DEBOUNCE_MAX`(默认值 10s)，用于防抖动的配置/注册事件的延迟，其他参数优化。
 
-**数据平面**：
-
+**数据平面**：  
 * 使用 Sidecar CRD 以减少 Envoy 资源消耗。istio 默认会下发 mesh 内集群服务所有可能需要的信息，以便让 sidecar 能够与任意 workload 通信。当集群规模较大，可能就会导致 sidecar 占用资源非常高。如果只有部分 namespace 使用了 istio，而网格中的服务与其它 namespace 没有注入 sidecar 的服务没有多大关系，可以配置下 istio 的 Sidecar 资源，避免 sidecar 加载大量无用 outbound 的规则。如下所示：
 ```yaml
 apiVersion: networking.istio.io/v1beta1
@@ -375,12 +381,143 @@ spec:
     - "test/*"
 ```
 
-**说明**：定义在 istio-system 命名空间下表示 Sidecar 配置针对所有 namespace 生效。在 egress 的 hosts 配置中加入开启了 sidecar 自动注入的 namespace，表示只下发跟这些 namespace 相关的服务给 Envoy。
+**说明**：定义在 istio-system 命名空间下表示 Sidecar 配置针对所有 namespace 生效。在 egress 的 hosts 配置中加入开启了 sidecar 自动注入的 namespace，表示只下发跟这些 namespace 相关的服务给 Envoy。更多详细信息可参考 [Istio sidecar 官方文档](https://istio.io/latest/docs/reference/config/networking/sidecar/)。
 
-# Istio 常见的调试技巧与方法
+# headless service 相关问题
 
+**现象**：**对于 `headless service` 服务，pod 重建后访问失败**。client 通过 `headless service`（有状态服务） 访问 server，当 server 的 pod 因为某种原因重启后，client 访问 server 会失败，从 access log 中可以看到 `response_flags` 标志是 `UF,URX`。Istio（1.5及以下版本）会有该问题。
 
+**原因**：client 通过 dns 解析 `headless service`，返回其中一个 Pod IP，然后发起请求。envoy 检测到是 `headless service`，使用 `ORIGINAL_DST` 进行转发，即不做负载均衡，直接转发到原始的目的 IP。当 `headless service` 关联的 pod 发生重建后，由于 client 与它的 sidecar (envoy) 是长连接，所以 client 侧的连接并没有断开。client 继续发请求并不会重新解析 dns，而是仍然发请求给之前解析到的旧 Pod IP。由于旧 Pod 已经销毁，Envoy 会返回错误 (503)。客户端并不会因为服务端返回错误而断开连接，后续请求继续发给旧的 Pod IP，重复循环，一直失败。
 
-# Envoy 常见异常状态码汇总
+**解决办法**：升级 istio 到 1.6+，Envoy 在 Upstream 链接断开后会主动断开和 Downstream 的长链接。
 
+**现象**：**对于 `headless service` 服务，负载均衡策略不生效**。由于 istio 默认对 `headless service` 进行 passthrough，使用 ORIGINAL_DST 转发，直接转发到原始的目的 IP，因此不会做任何的负载均衡策略，`Destinationrule` 配置的 `trafficPolicy.loadBalancer` 不会生效，会话保持 (consistentHash)、地域感知 (localityLbSetting)策略不会生效。
 
+**解决办法**：单独再创建一个 service (非 headless)。
+
+**现象**：**默认的 mtls 策略影响通信**。client (有 sidecar) 通过 `headless service` 访问 server (无 sidecar)，访问失败，access log 中可以看到 response_flags 为 UF,URX。
+
+**原因**：istio 1.5/1.6 对 `headless service` 支持有 bug，不管 endpoint 有没有 sidecar，都会使用 mtls，导致没有 sidecar 的 headless 服务(如 redis) 访问被拒绝，更多详情请参考[Istio 1.5 prevents all connection attempts to Redis (headless) service](https://github.com/istio/istio/issues/21964)。
+
+**解决办法**：配置 `DestinationRule` 禁用 `mtls`，所使用的 Yaml 文件如下所示：
+```yaml
+kind: DestinationRule
+metadata:
+  name: redis-disable-mtls
+spec:
+  host: redis.default.svc.cluster.local
+  trafficPolicy:
+    tls:
+      mode: DISABLE 
+```
+
+**解决办法**：升级 istio 到 1.7 及其以上的版本。
+
+**现象**：**`headless service`影响传统微服务通信（注入 sidecar）**。传统服务 (比如 Srping Cloud) 迁移到 istio 后，服务间调用返回 404。
+
+**原因**：`headless service` 没走 Kubernetes 的服务发现，而是通过注册中心获取服务 IP 地址，然后服务间调用不经过域名解析，直接向获取到的目的 IP 发起调用。由于 istio 的 LDS 会拦截 `headless service` 中包含的 `PodIP+Port` 的请求，然后匹配请求 hosts，如果没有 hosts 或者 hosts 中没有这个 `PodIP+Port` 的 service 域名，就会匹配失败，最后返回 404。
+
+**解决办法**：注册中心不直接注册 Pod IP 地址，而是注册 service 域名；或者客户端请求时带上 hosts (需要改代码)。
+
+# EnvoyFilter 与 lua 实现动态路由
+
+**需求**：需要实现一个将服务名和 subset 携带在 http 请求的 header，然后根据这个 header 来实现将服务转发到特定的 istio 服务的 subset。携带 `service: test tag: gray` 的话，将其路由去 test 的 `gray subset`。携带 `service: test tag: default` 的话，将其路由去 test 的 `default subset`。我可以使用 vs + dr 实现上述需求，Yaml 文件如下所示：
+```yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: test
+spec:
+  gateways:
+  - test-gateway
+  hosts:
+  - test.com
+  http:
+  - match:
+    - headers:
+        service:
+          exact: test
+        tag:
+          exact: gray
+    route:
+    - destination:
+        host: test.default.svc.cluster.local
+        subset: gray
+      headers:
+        response:
+          set:
+            test: "test gray"
+  - match:
+    - headers:
+        service:
+          exact: test
+    route:
+    - destination:
+        host: test.default.svc.cluster.local
+        subset: default
+      headers:
+        response:
+          set:
+            test: "test default"
+```
+
+上述 `vs + dr` 实现方式配置不够灵活，如果面对几百个服务，配置是个巨大的工作量；不同的namespace要配置不同的规则。那么，我们是不是有其他的实现方式呢？下面我们以 `Envoyfilter + Lua` 实现上述功能，Yaml 文件如下所示：
+```yaml
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: test-routing
+  namespace: istio-system
+spec:
+  workloadSelector:
+    labels:
+      istio: ingressgateway
+  configPatches:
+  - applyTo: VIRTUAL_HOST
+    match:
+      context: GATEWAY
+    patch:
+      operation: ADD
+      value:
+        name: dynamic_routing
+        domains:
+          - 'test.com'
+          - 'test.com:*'
+        routes:
+          - name: "path-matching"
+            match:
+              prefix: "/"
+            route:
+              cluster_header: "x-service"
+  - applyTo: HTTP_FILTER
+    match:
+      context: GATEWAY
+      listener:
+        filterChain:
+          filter:
+            name: "envoy.http_connection_manager"
+            subFilter:
+              name: "envoy.router"
+    patch:
+      operation: INSERT_BEFORE
+      value:
+       name: envoy.service-helper
+       typed_config:
+         "@type": "type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua"
+         inlineCode: |
+          function envoy_on_request(request_handle)
+            local headers = request_handle:headers()
+            local mesh_service = headers:get("service")
+            local tag = headers:get("tag")
+            if mesh_service ~= nil then
+              if tag ~= nil then
+                request_handle:headers():replace("x-service", "outbound|80|" .. tag .. "|" .. mesh_service .. ".svc.cluster.local")
+              end
+            end
+          end
+
+          function envoy_on_response(response_handle)
+            response_handle:headers():add("test", "from envoy filter response")
+          end
+```
+**原理**：设置 route 的 `cluster_header` 字段为 `x-service`。从 header 读取 service 和 tag 的值组合出 `upstream cluster`，并将 `x-service` header 替换。

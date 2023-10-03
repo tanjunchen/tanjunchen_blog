@@ -15,6 +15,11 @@ showtoc: true
 
 服务网格为微服务提供了一个服务通信的基础设施层，统一为上层的微服务提供了服务发现、负载均衡、重试、熔断等基础通信功能，以及服务路由、灰度发布等高级治理功能。如果我们在使用服务网格系统出现问题的话，我们如何才能快速定位问题以及处理呢？
 
+[使用 Istio 过程中遇到的常见问题与解决方法（一）](https://tanjunchen.github.io/post/2022-11-18-istio-questions-1/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（二）](https://tanjunchen.github.io/post/2022-11-19-istio-questions-2/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（三）](https://tanjunchen.github.io/post/2022-11-20-istio-questions-3/)  
+[使用 Istio 过程中遇到的常见问题与解决方法（四）](https://tanjunchen.github.io/post/2022-11-21-istio-questions-4/)  
+
 # Istio 常见问题列表
 
 1. 注入 sidecar 后，应用程序启动失败
@@ -28,7 +33,7 @@ showtoc: true
 1. 使用 lua 与 envoyfilter 打印 header
 1. istio-ingressgateway 启动失败，出现文件描述符报错
 
-## 注入 sidecar 后，应用程序启动失败
+# 注入 sidecar 后，应用程序启动失败
 
 **现象**：应用在启动时可能会从一些外部服务中获取数据，并采用这些数据对自身进行初始化，如从配置中心读取程序配置，从数据库中初始化程序用户信息等。初始化 init 容器已经在 Pod 中创建了 iptables rule 规则，因此应用向外发送的网络流量会被重定向到 Envoy，Envoy 启动后会通过 xDS 协议向 Pilot 请求服务和路由配置信息，当 Pilot 通过 xDS 协议给 Envoy 下发配置较慢时，Envoy 没有对上述应用请求进行处理的监听器和路由规则，无法对此进行处理，导致网络请求失败。
 
@@ -77,7 +82,7 @@ data:
       holdApplicationUntilProxyStarts: true 
 ```
 
-## Istio Proxy 开启 accesslog 日志
+# Istio Proxy 开启 accesslog 日志
 
 我们可以通过 Telemetry API、Mesh Config、EnvoyFilter 等三种方式支持开启 istio-proxy 的 accesslog 日志。
 
@@ -190,7 +195,7 @@ spec:
       app: nginx
 ```
 
-## 使用 Sidecar CRD 降低 Istio Proxy 资源消耗
+# 使用 Sidecar CRD 降低 Istio Proxy 资源消耗
 
 根据 Istio 官方文档，Envoy 占用的内存大小和其配置相关，和请求处理速率无关。在一个微服务应用中，一个服务访问的其他服务一般不会超过 10 个，而一个 namespace 中可能部署多达上百个微服务，导致 Envoy 中存在大量冗余配置，导致不必要的内存消耗。最合理的做法是只为一个 sidecar 配置该 sidecar 所代理服务需要访问的外部服务相关的配置。 
 
@@ -211,7 +216,7 @@ spec:
     - istio-system/*   # istiod 所在的命名空间
 ```
 
-## Istio Proxy 响应值删除指定的 header
+# Istio Proxy 响应值删除指定的 header
 
 **现象**：业务注入 Envoy 后，响应返回的 Header 中会有 envoy 信息，业务需要删除 x-envoy-decorator-operation 等相关的 header，默认 Envoy 会自动生成这些特定的 header，如下所示：
 ```bash
@@ -266,7 +271,7 @@ content-length: 1683
 x-envoy-upstream-service-time: 4
 ```
 
-## Envoy 默认暴露的 Metrics 指标使网络进出口流量增大
+# Envoy 默认暴露的 Metrics 指标使网络进出口流量增大
 
 **现象**：注入了 enovy 的 pod，发现网络流出流量增加了 xmb/s，如下所示：
 
@@ -283,7 +288,7 @@ x-envoy-upstream-service-time: 4
 * 使用 telemetry crd 定义 Metircs、Logging、Trace 配置信息。telemetry 如果不生效，则可能是与 envoyfilter crd 冲突了，这两个 crd 只能选择其一，具体原因可参见[https://github.com/istio/istio/issues/44266](https://github.com/istio/istio/issues/44266)。
 * 单独使用 envoyfilter workSelector 针对某个 Pod 生效(merge 覆盖 istio-system 下面的 envoyfilter 即可)。
 
-## Istio Proxy 响应值返回 502
+# Istio Proxy 响应值返回 502
 
 **现象**：内部某个业务接入 Mesh 后，某个接口出现 502，接口访问方式如下所示：
 ```bash
@@ -359,7 +364,7 @@ curl -I 'http://x.x.x.:8080/test/card3/?word=%E8%A5%BF%E5%AE%89%E5%86%A0%E5%BF%8
 
 **解决方式**：业务中相关的接口修改代码，将 header 中的 key 设置正确，不使用带有空格的值作为 header 的 key。
 
-## Istio 跨集群下服务所关联的 endpoint 不全问题（no healthy upstream）
+# Istio 跨集群下服务所关联的 endpoint 不全问题（no healthy upstream）
 
 **现象**：集群 A（北京地域）与集群 B（苏州地域）在同一个命令空间 test 下，服务 test（跨集群应用） 所对应的后端 endpoint 只存在北京地域，
 苏州地域的 Pod 实例在 envoy 的 clusters 接口 `curl localhost:15000/clusters` 中获取不到。
@@ -369,7 +374,7 @@ curl -I 'http://x.x.x.:8080/test/card3/?word=%E8%A5%BF%E5%AE%89%E5%86%A0%E5%BF%8
 
 **解决方式**：重新定义 svc，保证两个集群的 svc 信息一致即可解决问题。
 
-## 使用 lua 给 Istio Proxy 添加自定义 header
+# 使用 lua 给 Istio Proxy 添加自定义 header
 
 在 Istio 中，可以使用 Envoy 的 Lua filter 来添加自定义的 HTTP header。需要在 Istio 配置中启用 EnvoyFilter，以下是一个示例配置：
 ```yaml
@@ -405,7 +410,7 @@ spec:
 
 在 inlineCode 部分，我们定义了一个 Lua 函数，该函数在接收到请求时被调用，并添加了自定义的 header。
 
-## 使用 lua 与 envoyfilter 打印 header
+# 使用 lua 与 envoyfilter 打印 header
 
 HTTP 请求和响应中的 header 包含了很多重要的信息，例如客户端信息、服务端信息、请求方法、响应状态码等。这些信息对于理解和调试服务的行为非常有用。使用 envoyFilter + lua 打印 HTTP header 是一种在微服务环境中进行调试和监控的有效方法。
 
@@ -451,7 +456,7 @@ spec:
               end
 ```
 
-## istio-ingressgateway 启动失败，出现文件描述符报错
+# istio-ingressgateway 启动失败，出现文件描述符报错
 
 **现象**：istio-ingressgateway 启动失败，出现文件描述符报错，如下所示：
 ```

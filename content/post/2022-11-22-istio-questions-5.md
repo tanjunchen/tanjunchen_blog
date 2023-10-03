@@ -17,8 +17,5 @@ showtoc: true
 
 1. 如何编译 Istio 二进制与相关镜像
 1. 解读 Istio 代码目录与核心功能
-1. Istio 常见实用脚本与工具
-1. headless service 相关问题
-1. EnvoyFilter 与 lua 实现动态路由 
-
-## 在 Istio 中指定 HTTP Header 大小写
+1. Istio 常见的调试技巧与方法
+1. Envoy 常见异常状态码汇总
