@@ -23,6 +23,17 @@ showtoc: true
 
 # Istio 常见问题列表
 
+1. 无法访问不带 sidecar 的 Pod
+1. 使用 ab 压测服务失败
+1. 服务使用 istio 保留端口导致 pod 启动失败
+1. Envoy 报错: `gRPC config stream closed`
+1. Pod 启动卡住 `MountVolume.SetUp failed for volume "istio-token"`
+1. Istio 高频链接
+1. 服务地域感知不生效
+1. Istio 常见的调试技巧、方法、脚本
+1. Envoy 常见异常状态码汇总
+1. 如何编译 Istio 二进制与相关镜像
+
 # 无法访问不带 sidecar 的 Pod
 
 **现象**：不能从带 sidecar proxy 的 pod 访问不带 sidecar proxy 的服务。

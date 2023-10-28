@@ -57,6 +57,8 @@ metadata:
   namespace: istio-system
 spec:
   profile: default
+  hub: docker.io/istio
+  tag: 1.16.5
   values:
     global:
       istioNamespace: istio-system
