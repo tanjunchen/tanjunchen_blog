@@ -190,7 +190,7 @@ tcp      6 431990 ESTABLISHED src=10.0.1.3 dst=10.0.1.5 sport=60744 dport=80 src
 在上图中，telnet 连接到的是 10.0.1.7:80 (nginx-2)。
 上述实现原理是首先为每个容器识别特定的 overlay 网络，然后找到负载均衡器网络命名空间。然后，它在 conntrack 表中查找最终要连接的实际目标地址。
 
-# 基于 Kubernetes Kube Proxy
+# Kubernetes Kube Proxy
 
 搭建 Kubernetes 集群，如下所示：
 ```bash
@@ -242,7 +242,7 @@ conntrack v1.4.6 (conntrack-tools): 194 flow entries have been shown.
 
 当数据包从服务器传输到客户端时，Linux 内核会在 conntrack 表中查找相应的连接，这就是 conntrack 表中第二个 IP:PORT 以相反顺序出现的原因。在本场景中，client 已建立到 10.244.0.6:80 (nginx-pod-2) 的连接。
 
-# 基于 Istio Service Mesh
+# Istio Service Mesh
 
 现在让我们看看相同的场景，在 Istio Service Mesh 下 client 访问 nginx service 是如何通信的。安装 istio，具体安装教程可参考 [istio-install](https://istio.io/latest/docs/setup/getting-started/)。
 
@@ -274,7 +274,7 @@ Istio 会将 sidecar 代理注入 pod，其组件 Pilot-agent 会配置 iptables
 
 ![](/images/2023-09-16-kubernetes-service/7.png)
 
-# 基于 Cilium
+# Cilium
 
 Cilium 是 Kubernetes 最强大的 CNI 网络插件之一，它不仅提供基本的网络和安全功能，还提供基于 eBPF 替代 Kubernetes 的 kube-proxy 实现 Service通信功能。搭建 Cilium 环境，更多详情参考 [cilium-install](https://docs.cilium.io/en/stable/gettingstarted/k8s-install-default/#k8s-install-quick)。
 
