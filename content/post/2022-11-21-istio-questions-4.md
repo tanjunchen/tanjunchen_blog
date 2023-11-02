@@ -348,7 +348,7 @@ spec:
 我们可以分别从控制平面与数据平面对 Istio 进行优化。
 
 **控制平面**：  
-* 使用参数 `ENABLE_ENHANCED_RESOURCE_SCOPING` 开启 Istio CRD 隔离，`meshConfig.discoverySelectors` 将限制 CRD 配置（如 Gateway、VirtualService、DestinationRule、Ingress 等）生效范围，在 Kubernetes 集群中新建多个 Istio 网格实例，此选项很有意思，能够实现 CRD 隔离，明显降低 Pilot 对 CPU、内存资源消耗，从而进一步提升控制平面的稳定性。
+* 使用参数 `ENABLE_ENHANCED_RESOURCE_SCOPING` 开启 Istio CRD 隔离，`meshConfig.discoverySelectors` 将限制 CRD 配置（如 Gateway、VirtualService、DestinationRule、Ingress 等）生效范围，在 Kubernetes 集群中新建多个 Istio 网格实例，此选项很有意思，能够实现 CRD 隔离，明显降低 Pilot 对 CPU、内存资源消耗，从而进一步提升控制平面的稳定性。此参数要求 istio 1.18+ 版本。
 * 解决 Kubernetes 元数据（尤其是大规模集群）对 Istiod 造成的 CPU、内存等资源消耗倍增问题。相关代码提交可参考 [Istio Bump k8s dependencies to v0.26](https://github.com/istio/istio/commit/3fcff36ddc5e69ed20755c6385d44eb1a0e50505#diff-f5208fc7b2fabcbd75534363ac5e26deaccd9cefcf75e92722407c9a96de3f68)。要求 Istio 1.14+。Istiod 内存能在大规模集群下降低 40% 以上，主要是不使用 Kubernetes 无效的字段 `unused field`。
 * 使用选择性服务发现 [discovery selectors](https://istio.io/v1.14/blog/2021/discovery-selectors/)。要求 Istio 1.10+，选择性服务发现可以减少 Envoy 代理需要处理的服务信息的数量。
 * istiod 保持负载均衡。Envoy 提供了一个定时重连的机制。通过这个机制，Envoy 会定期断开与 Istiod 的连接，然后重新建立连接。在重新建立连接时，Envoy 会根据负载均衡策略选择一个 Istiod 实例，这样就可以保证 Istiod 的负载均衡。

@@ -20,7 +20,7 @@ showtoc: true
 # 常见问题列表
 
 1. istio 常见 yaml 文件
-1. 常见脚本与 yaml 文件
+1. k8s 常见 yaml 文件
 1. 容器常见命令
 1. 批量删除 consul 不健康的 service
 1. 批量同步与迁移镜像到其他镜像仓库

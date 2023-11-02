@@ -177,7 +177,43 @@ Try `iptables-restore -h' or 'iptables-restore --help' for more information.
 
 具体详细信息可参考：[istio prerequisites](https://istio.io/latest/docs/setup/platform-setup/prerequisites/)。
 
-**解决方式**：因为 istio-proxy 劫持流量需要使用 `iptables`，所以我们需要 Kubernetes Node 节点满足上述 [istio prerequisites](https://istio.io/latest/docs/setup/platform-setup/prerequisites/) 条件。
+**解决方式**：因为 istio-proxy 劫持流量需要使用 `iptables`，所以我们需要 Kubernetes Node 节点满足上述 [istio prerequisites](https://istio.io/latest/docs/setup/platform-setup/prerequisites/) 条件。参考类似的 [issue](https://github.com/istio/istio/issues/23009)。
+
+**解决方式1**：istio 安装开启 cni 插件：
+```bash
+--set components.cni.enabled=true 
+```
+
+**解决方式2**：centos8 及一些红帽系 Linux 使用 `iptables-nftables`，不使用 iptables。Istio 通过使用 iptables 添加 nat 规则来拦截流量，Linux 应该启用 `netfix linux` 内核模块。
+
+永久生效（重启机器）：
+```bash
+cat >/etc/modules-load.d/99-istio-modules.conf <<EOF
+br_netfilter
+nf_nat
+nf_nat_redirect
+xt_REDIRECT
+xt_owner
+iptable_nat
+iptable_mangle
+iptable_filter
+EOF
+
+# 重启 node 机器
+reboot
+```
+
+临时生效（不重启机器），机器重启后失效。
+```bash
+modprobe br_netfilter
+modprobe nf_nat
+modprobe nf_nat_redirect
+modprobe xt_REDIRECT
+modprobe xt_owner
+modprobe iptable_nat
+modprobe iptable_mangle
+modprobe iptable_filter
+```
 
 # Istio Proxy 如何使用 tcpdump 或 iptables
 
