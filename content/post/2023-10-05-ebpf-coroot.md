@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "使用 coroot 实现 Kubernetes 服务可观测性（1）"
+title:      "使用 coroot 实现 Kubernetes 服务可观测性（2）"
 subtitle:   "coroot 是针对微服务架构的可观测性和故障分析工具，它基于 eBPF 来可视化展示服务之间的拓扑关系，并对七层与四层的可观测性进行了强化，可以帮助你快速定位七层与四层的故障。"
 description: "本篇文章主要介绍 Coroot 架构、核心功能、示例、核心源码、示例等。"
 author: "陈谭军"
