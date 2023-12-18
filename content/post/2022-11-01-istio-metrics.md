@@ -173,6 +173,12 @@ Istio 封装 Envoy 所有的指标，可参考 [envoy-attributes](https://www.en
 * 打开的 Tcp 连接数 (istio_tcp_connections_opened_total)：针对每个打开的连接递增的计数器。
 * 关闭的 Tcp 连接数 (istio_tcp_connections_angled_total)：针对每个关闭的连接递增的计数器。
 
+## 性能指标
+
+经过测试，发现 istio 1.13.2 版本在 kubernetes 集群（service 1300+、CRD 1000+、Pod 1200+）规模下，Istiod 的 `Proxy Push Time（pilot_proxy_convergence_time_bucket）` 指标推送时长持续上升，p99 达到 30s+，如下所示：
+
+![](/images/2022-11-01-istio-metrics/4.png)
+
 ## 控制平面
 
 以下是 Istio 1.16.5 版本为基础梳理的控制平面与数据平面核心指标。
