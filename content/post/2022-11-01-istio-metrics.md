@@ -184,9 +184,9 @@ Istio 封装 Envoy 所有的指标，可参考 [envoy-attributes](https://www.en
 以下是 Istio 1.16.5 版本为基础梳理的控制平面与数据平面核心指标。
 | 名称                                      | 描述                                         |
 |-------------------------------------------|----------------------------------------------|
-| per_istiod_running_status                  | istiod 运行状态异常                           |
-| per_istiod_mem_usage_rate                  | istiod 内存使用率                             |
-| per_istiod_cpu_usage_rate                  | istiod CPU 使用率                             |
+| istiod_running_status                     | istiod 运行状态异常                           |
+| istiod_mem_usage_rate                     | istiod 内存使用率                             |
+| istiod_cpu_usage_rate                     | istiod CPU 使用率                             |
 | controller_sync_errors_total               | istiod controller 启动失败次数                |
 | istio_agent_num_outgoing_retries           | istio-agent 携带 k8s jwt token 访问 istiod 获取证书，如果 jwt 验证失败，该指标会增加 |
 | pilot_eds_no_instances                     | 没有 ep 的服务数量                           |

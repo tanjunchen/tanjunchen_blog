@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Kubernetes 中数据包的生命周期（Part3）Kube-Proxy"
+title:      "Kubernetes 中数据包的生命周期 Kube-Proxy（Part3）"
 subtitle:   "本文我们将讨论 Kubernetes 的 kube-proxy 角色以及它如何使用 iptables 来控制流量。"
 description: "主要内容如下所示：iptables 规则、Pod 到 Pod、Pod 到 External、Pod 到 Service、External Traffic Policy、Kube-Proxy等"
 author: "陈谭军"
@@ -52,7 +52,7 @@ node-1# cat /proc/sys/net/ipv4/ip_forward
 1
 ```
 
-# tables
+## tables
 
 以下是可用的表，我们将重点关注 NAT 表。
 * Filter：这是默认的表，在这个表中，决定是否允许数据包进入/出计算机。如果想阻塞一个端口以停止接收任何东西，可以在这里实现。
@@ -90,7 +90,7 @@ Pod通过ClusterIP或Kubernetes添加的DNS条目连接到后端。集群中的C
 
 ![](/images/2021-10-15-kubernetes-pod-part03/4.png)
 
-# NodePort
+## NodePort
 
 现在我们有了可以用于在集群中的服务之间进行通信的DNS。从外部服务器访问前端Pod的IP地址，无法访问Pod IP，因为它是一个无法路由的私有IP地址。
 
@@ -119,7 +119,7 @@ spec:
 
 现在我们可以通过 `<anyClusterNode>:<nodePort>` 访问前端服务。如果想要一个特定的端口号，可以在nodePort字段中指定一个值。控制平面将会分配给那个端口，或者分配失败。通常需要自己处理可能的端口冲突。还必须使用一个有效的端口号，这个端口号必须在为NodePort使用配置的范围内。
 
-# Headless Services
+## Headless Services
 
 有时，可能不需要负载均衡和单一的服务 IP。在这种情况下，可以通过明确指定集群 IP (.spec.clusterIP) 为 “None” 来创建所谓的“无头”服务。可以使用无头服务来与其他服务发现机制交互，而不受 Kubernetes 实现的限制。对于无头服务，不分配集群 IP，kube-proxy 不处理这些服务，平台不进行负载均衡或代理。
 
