@@ -22,6 +22,28 @@ showtoc: true
 
 # 介绍
 
+## 前置条件
+
+* Coroot 依赖 eBPF，支持的最小 Linux 版本 4.16+；
+* 基于 eBPF 的持续性能分析（profiling）利用了 CO-RE。大多数现代Linux发行版都支持 CO-RE，如下所示：
+  * Ubuntu 20.10及以上版本
+  * Debian 11及以上版本
+  * RHEL 8.2及以上版本
+* Coroot 收集指标（Metrics）、日志（Logs）、跟踪（Traces）和性能分析数据（Profiling），每个遥测 telemetry 都与容器相关联。在这个上下文中，容器指的是在专用 cgroup 中运行的一组进程。支持以下类型的容器：
+  * 使用Docker、Containerd 或 CRI-O 作为运行时环境的 Kubernetes Pods 等
+  * 独立容器：Docker、Containerd、CRI-O 等
+  * Docker Swarm 等
+  * Systemd units：任何systemd服务也被视为容器。
+* 支持的容器编排系统如下所示：
+  * Kubernetes：自建 Kubernetes 集群、EKS（支持 AWS Fargate）、GKE、AKS、OKE
+  * OpenShift
+  * K3s
+  * MicroK8s
+  * Docker Swarm
+* 限制
+  * 由于 eBPF 限制，Coroot 不支持 Docker-in-Docker环境，如MiniKube
+  * 目前还不支持WSL（Windows Subsystem for Linux）
+
 ## coroot
 
 https://github.com/coroot/coroot 是一款基于 eBPF 的开源可观测性工具，可将遥测数据转化为可操作视图，帮助快速识别和解决应用程序问题。官方示例可参考 https://community-demo.coroot.com/p/qcih204s。coroot 的架构设计基于 prometheus，同时也依赖了 eBPF，同时官方也开源了不少 exporter，比如 node，pg，aws 等。
