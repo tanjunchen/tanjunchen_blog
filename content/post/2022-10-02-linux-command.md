@@ -164,7 +164,7 @@ dmesg 是 Linux 中的一个命令，它用于显示内核消息日志。内核�
 root@instance-frllxehj:~/tanjunchen# dmesg | grep rdma
 [    8.999152] systemd[1]: /etc/systemd/system/rdma.service:15: Unknown key name 'Default-Start' in section 'Unit', ignoring.
 [    9.000360] systemd[1]: /etc/systemd/system/rdma.service:26: Unknown key name 'ExecStatus' in section 'Service', ignoring.
-[    9.341073] systemd[1]: Starting rdma - configure baidu rdma devices...
+[    9.341073] systemd[1]: Starting rdma - configure rdma devices...
 ```
 
 主要测试
