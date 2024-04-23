@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "深入理解 Kubernetes Scheduler Framework 调度框架（Part 1）"
-subtitle:   "基于 Scheduler Framework 框架自定义调度器"
-description: "Scheduler 分两个 cycle：Scheduling Cycle 和 Binding Cycle。在 Scheduling Cycle 中为了提升效率的一个重要原则就是 Pod、 Node 等信息从本地缓存中获取，而具体的实现原理就是先使用 list 获取所有 Node、Pod 的信息，然后再 watch 他们的变化更新本地缓存。在 Bind Cycle 中，会有两次外部 api 调用：调用 pv controller 绑定 pv 和调用 kube-apiserver 绑定 Node，api 调用是耗时的，所以将 bind 扩展点拆分出来，另起一个 go 协程进行 bind。"
+subtitle:   "Scheduler Framework 框架整体架构与 Pod 调度到 Node 流程插件拓展点"
+description: ""
 author: "陈谭军"
 date: 2024-04-06
 published: true
@@ -13,6 +13,12 @@ categories:
     - TECHNOLOGY
 showtoc: true
 ---
+
+Scheduler 分两个 cycle：Scheduling Cycle 和 Binding Cycle。在 Scheduling Cycle 中为了提升效率的一个重要原则就是 Pod、 Node 等信息从本地缓存中获取，而具体的实现原理就是先使用 list 获取所有 Node、Pod 的信息，然后再 watch 他们的变化更新本地缓存。在 Bind Cycle 中，会有两次外部 api 调用：调用 pv controller 绑定 pv 和调用 kube-apiserver 绑定 Node，api 调用是耗时的，所以将 bind 扩展点拆分出来，另起一个 go 协程进行 bind。调度周期是串行，绑定周期是并行的。本文主要介绍 Scheduler Framework 框架整体架构与 Pod 调度到 Node 流程插件拓展点。
+
+[深入理解 Kubernetes Scheduler Framework 调度框架（Part 2）](https://tanjunchen.github.io/post/2024-04-06-scheduler-framework-02/)  
+[深入理解 Kubernetes Scheduler Framework 调度框架（Part 1）](https://tanjunchen.github.io/post/2024-04-06-scheduler-framework-01/)  
+
 
 # 调度器介绍
 
