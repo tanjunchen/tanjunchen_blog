@@ -13,13 +13,12 @@ categories:
 showtoc: true
 ---
 
+最近在深入学习 Kubernetes 基础知识，通过追踪 HTTP 请求到达 Kubernetes 集群上的服务过程来深入学习 Kubernetes 实现原理。希望下列文章能够对我们熟悉 Kubernetes 有一定的帮助。
 
-最近在深入学习 Kubernetes 基础知识，通过追踪 HTTP 请求到达 Kubernetes 集群上的服务过程来深入学习 Kubernetes 实现原理。
-希望下列文章能够对我们熟悉 Kubernetes 有一定的帮助。
 * [Linux 网络、Namespace 与容器网络 CNI 基础知识](https://tanjunchen.github.io/post/2021-10-22-kubernetes-pod-part01/)
 * [Kubernetes CNI 大利器 - Calico](https://tanjunchen.github.io/post/2021-10-29-kubernetes-pod-part02/)
 * [Kubernetes 流量核心组件 - kube-proxy](https://tanjunchen.github.io/post/2021-10-15-kubernetes-pod-part03/)
-* Kubernetes 使用 Ingress 处理七层流量
+* [Kubernetes 使用 Ingress 处理七层流量](https://tanjunchen.github.io/post/2021-11-05-kubernetes-pod-part04/)
 
 本文我们将讨论 Kubernetes CNI Calico 核心组件 CNI 的基础知识。
 
