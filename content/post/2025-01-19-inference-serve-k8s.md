@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "vLLM 多机多卡推理测试与验证（Docker）"
-subtitle:   "vLLM 多机多卡推理 docker 验证"
+title:      "vLLM 多机多卡推理测试与验证（Kubernetes）"
+subtitle:   "vLLM 多机多卡推理 Kubernetes 验证"
 description: "vLLM 采用多机多卡推理，是为了解决超大规模模型的显存限制、算力瓶颈、高并发吞吐需求以及长序列处理等挑战。通过模型并行、数据并行和高效的内存管理技术，vLLM 能将模型参数和计算任务分布到多块 GPU 和多台机器上，充分利用硬件资源，实现快速、高效的推理能力，满足工业级场景中对性能和扩展性的要求。"
 author: "陈谭军"
 date: 2025-01-19
@@ -136,143 +136,172 @@ GPU 3: NVIDIA L20 (UUID: GPU-70c1a850-a443-6619-7b42-ba59aec4d07a)
 
 ***因为涉及到跨机通信，环境无 IB/RoCE RDMA 高性能网卡，所以使用以太网进行验证***
 
-1、搭建ray集群
-
-run_cluster.sh 脚本如下所示：
+1、使用以下 yaml 搭建ray集群
 ```bash
-#!/bin/bash
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vllm
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vllm-config
+  namespace: vllm
+data:
+  IP_OF_HEAD_NODE: "vllm-head-service.vllm.svc.cluster.local" # 主机网络模式可填 ray head node 的 IP 地址
+  NCCL_SOCKET_IFNAME: "eth0" # 以太网接口名称，根据实际情况修改
+  NCCL_DEBUG: "TRACE" # 调试信息级别，可根据需要调整
+  NCCL_IB_DISABLE: "1" # 禁用 InfiniBand，根据实际情况调整
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vllm-head-service
+  namespace: vllm
+spec:
+  selector:
+    app: vllm-head
+  ports:
+    - name: ray-port
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
+    - name: object-manager-port
+      protocol: TCP
+      port: 8625
+      targetPort: 8625
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-head
+  namespace: vllm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-head
+  template:
+    metadata:
+      labels:
+        app: vllm-head
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.30.4 # ray 集群 head node 的 hostname，根据实际情况调整
+      # hostNetwork: true   # 主机网络模式，根据实际情况调整
+      containers:
+      - name: vllm-head
+        image: vllm/vllm-openai:v0.6.4.post1  
+        command:
+          - "/bin/bash"   
+        args:
+          - "-c"
+          - |
+            ray start --head --port=6379 --dashboard-host=0.0.0.0 --object-manager-port=8625 --block
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: shm-volume
+          mountPath: /dev/shm
+        - name: hf-cache
+          mountPath: /root/.cache/huggingface 
+        envFrom:
+        - configMapRef:
+            name: vllm-config
+      volumes:
+      - name: shm-volume
+        emptyDir:
+          medium: Memory  
+          sizeLimit: 10Gi  
+      - name: hf-cache
+        hostPath:
+          path: /root/chentanjun/multiple-nodes-vllm/models
+---
 
-# Check for minimum number of required arguments
-if [ $# -lt 4 ]; then
-    echo "Usage: $0 docker_image head_node_address --head|--worker path_to_hf_home [additional_args...]"
-    exit 1
-fi
-
-# Assign the first three arguments and shift them away
-DOCKER_IMAGE="$1"
-HEAD_NODE_ADDRESS="$2"
-NODE_TYPE="$3"  # Should be --head or --worker
-PATH_TO_HF_HOME="$4"
-shift 4
-
-# Additional arguments are passed directly to the Docker command
-ADDITIONAL_ARGS=("$@")
-
-# Validate node type
-if [ "${NODE_TYPE}" != "--head" ] && [ "${NODE_TYPE}" != "--worker" ]; then
-    echo "Error: Node type must be --head or --worker"
-    exit 1
-fi
-
-# Define a function to cleanup on EXIT signal
-cleanup() {
-    docker stop node
-    docker rm node
-}
-trap cleanup EXIT
-
-# Command setup for head or worker node
-RAY_START_CMD="ray start --block"
-if [ "${NODE_TYPE}" == "--head" ]; then
-    RAY_START_CMD+=" --head --port=6379 --dashboard-host=0.0.0.0"
-else
-    RAY_START_CMD+=" --address=${HEAD_NODE_ADDRESS}:6379"
-fi
-
-# Run the docker command with the user specified parameters and additional arguments
-docker run \
-    --entrypoint /bin/bash \
-    --privileged \
-    --network host \
-    --ipc host \
-    --name node \
-    --shm-size 10.24g \
-    --gpus all \
-    -v "${PATH_TO_HF_HOME}:/root/.cache/huggingface" \
-    "${ADDITIONAL_ARGS[@]}" \
-    "${DOCKER_IMAGE}" -c "${RAY_START_CMD}"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vllm-worker
+  namespace: vllm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vllm-worker
+  template:
+    metadata:
+      labels:
+        app: vllm-worker
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: 192.168.30.5 # ray 集群 worker node 的 hostname，根据实际情况调整
+      # hostNetwork: true # 主机网络模式，根据实际情况调整
+      containers:
+      - name: vllm-worker
+        image: vllm/vllm-openai:v0.6.4.post1   
+        command:
+          - "/bin/bash"  
+        args:
+          - "-c"
+          - |
+            ray start --address=${IP_OF_HEAD_NODE}:6379 --block
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: hf-cache
+          mountPath: /root/.cache/huggingface
+        - name: shm-volume
+          mountPath: /dev/shm
+        envFrom:
+        - configMapRef:
+            name: vllm-config
+      volumes:
+      - name: shm-volume
+        emptyDir:
+          medium: Memory  
+          sizeLimit: 10Gi 
+      - name: hf-cache
+        hostPath:
+          path: /root/chentanjun/multiple-nodes-vllm/models
 ```
 
-head 节点：
-```bash
-export IP_OF_HEAD_NODE=192.168.30.4
-export MODEL_PATH=/root/chentanjun/multiple-nodes-vllm/models
+2、检查 ray 集群状态（随机找ray集群中的节点就行，执行命令 `kube exec -it vllm-head-5b555598cc-ftdlz bash`）：
 
-nohup bash run_cluster.sh  vllm/vllm-openai:v0.6.4.post1 $IP_OF_HEAD_NODE --head $MODEL_PATH -e NCCL_SOCKET_IFNAME=eth0 -e NCCL_DEBUG=TRACE -e NCCL_IB_DISABLE=1  > nohup.log 2>&1 & 
-``` 
+![](/images/2025-01-19-inference-serve-k8s/1.png)
 
-worker 节点：
-```bash
-export IP_OF_HEAD_NODE=192.168.30.4
-export MODEL_PATH=/root/chentanjun/multiple-nodes-vllm/models 
+![](/images/2025-01-19-inference-serve-k8s/2.png)
 
-nohup bash run_cluster.sh  vllm/vllm-openai:v0.6.4.post1 $IP_OF_HEAD_NODE --worker $MODEL_PATH -e NCCL_SOCKET_IFNAME=eth0 -e NCCL_DEBUG=TRACE -e NCCL_IB_DISABLE=1  > nohup.log 2>&1 & 
-```
-
-2、检查 ray 集群状态（随机找ray集群中的节点就行，执行命令 `docker exec -it node bash`）：
-```bash
-root@instance-crwsvl7m-1:/vllm-workspace# ray status
-======== Autoscaler status: 2025-01-18 04:26:08.652980 ========
-Node status
----------------------------------------------------------------
-Active:
- 1 node_5fabbf7fa271a449afd0784e469b505b46eb1e8987e1c4e4f9fed6bc
- 1 node_2c42a16ded3d6043b5cb685362edf41193f2895654e44fa1f44153a3
-Pending:
- (no pending nodes)
-Recent failures:
- (no failures)
-
-Resources
----------------------------------------------------------------
-Usage:
- 0.0/224.0 CPU
- 0.0/8.0 GPU
- 0B/646.08GiB memory
- 0B/280.88GiB object_store_memory
-
-Demands:
- (no resource demands)
-```
+![](/images/2025-01-19-inference-serve-k8s/3.png)
 
 3、启动 vLLM 服务
 
 在节点 head 的容器中启动服务，如下所示：
 ```bash
-vllm serve /root/.cache/huggingface/Qwen2.5-32B-Instruct-GPTQ-Int4 \
-    --served-model-name Qwen2.5-32B-Instruct-GPTQ-Int4 \
-    --tensor-parallel-size 4 \
-    --pipeline-parallel-size 2 \
-    --max-model-len 4096 \
-    --quantization gptq_marlin \
-    --gpu-memory-utilization 0.95 \
-    --trust-remote-code \
-    --port 8009
-
-# 守护进程启动
 nohup vllm serve /root/.cache/huggingface/Qwen2.5-32B-Instruct-GPTQ-Int4 \
     --served-model-name Qwen2.5-32B-Instruct-GPTQ-Int4 \
     --tensor-parallel-size 4 \
     --pipeline-parallel-size 2 \
     --max-model-len 4096 \
     --quantization gptq_marlin \
-    --gpu-memory-utilization 0.95 \
+    --gpu-memory-utilization 0.90 \
     --trust-remote-code \
     --port 8009 > vllm_serve.log 2>&1 &
 ```
 
-![](/images/2025-01-19-inference-serve/1.png)
+查看服务日志，确保服务正常启动；
 
-![](/images/2025-01-19-inference-serve/2.png)
+![](/images/2025-01-19-inference-serve-k8s/4.png)
 
-![](/images/2025-01-19-inference-serve/3.png)
+![](/images/2025-01-19-inference-serve-k8s/5.png)
 
+![](/images/2025-01-19-inference-serve-k8s/6.png)
 
 4、请求 openapi 测试
 ```bash
-export IP_OF_HEAD_NODE=192.168.30.4
-
-# Qwen2.5-32B-Instruct-GPTQ-Int4 
+# Qwen2.5-32B-Instruct-GPTQ-Int4 vllm 对外暴露的服务地址
+export IP_OF_HEAD_NODE=localhost
 
 # 非流式  
 curl --request POST \
@@ -287,12 +316,13 @@ curl --request POST \
   --data '{"messages":[{"role":"user","content":"给我推荐中国适合旅游的地方"}],"stream":true,"model":"Qwen2.5-32B-Instruct-GPTQ-Int4"}'
 ```
 
-测试结果：
+测试结果（非流式）
 
-![](/images/2025-01-19-inference-serve/4.png)
+![](/images/2025-01-19-inference-serve-k8s/7.png)
 
-![](/images/2025-01-19-inference-serve/5.png)
+测试结果（流式）
 
+![](/images/2025-01-19-inference-serve-k8s/8.png)
 
 # 附录
 
