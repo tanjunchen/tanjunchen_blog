@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "LLM 教程（3）- DeepSeek R1 论文精读"
-subtitle:   "LLM 教程（3）- 精读 DeepSeek-R1 的论文 [《DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning》](https://arxiv.org/abs/2501.12948) 了解现象级 R1 模型是怎么做出来的。"
+title:      "LLM 教程（3）- 《DeepSeek R1 论文精读 - 通过强化学习推动大语言模型推理能力的突破与创新》"
+subtitle:   "LLM 教程（3）- 精读 DeepSeek-R1 的论文，了解现象级 R1 模型是怎么做出来的；"
 description: ""
 author: "陈谭军"
 date: 2025-03-09
@@ -59,7 +59,7 @@ DeepSeek 推出了他们的第一代推理模型，DeepSeek-R1-Zero和DeepSeek-R
 
 现在，post-training已成为完整 training pipeline 的一个重要组成部分。
 
-#### 作用
+#### 2.2.1.1 作用
 
 Post-Training 的好处：
 1. 提高推理任务的准确性；
@@ -67,7 +67,7 @@ Post-Training 的好处：
 3. 能适应用户偏好；
 4. 相对于预训练，所需的计算资源极少；
 
-#### 提高推理能力：与 OpenAI-o1 的思路区别
+#### 2.2.1.2 提高推理能力：与 OpenAI-o1 的思路区别
 
 具体到提高推理能力方面：
 * OpenAI 的 o1系列模型首次通过增加推理过程中的思维链长度（Chain-of-Thought, CoT） 来引入inference-time scaling。 这种方法在数学、编码和科学推理等推理任务上取得了显著的效果。
@@ -89,7 +89,7 @@ deepseek 发现后者（蒸馏）的性能优于前者（直接 RL）。 这表�
 
 ### 2.2.2 贡献
 
-#### post-training：在基础模型上进行大规模强化学习
+#### 2.2.2.1 post-training：在基础模型上进行大规模强化学习
 
 deepseek 跳过监督微调（SFT）步骤，直接在基础模型（base model）上应用 RL。 这会使模型去探索解决复杂问题时的思维链（CoT），用这种方式训练得到的就是 DeepSeek-R1-Zero。
 * DeepSeek-R1-Zero 展现出自我验证、反思和生成长 CoT等能力，为社区研究树立了一个重要的里程碑。
@@ -101,7 +101,7 @@ deepseek 跳过监督微调（SFT）步骤，直接在基础模型（base model�
   * 一个用于与人类偏好对齐（stage 4）
 2. 两个 SFT stage：用于激发出模型的 reasoning and non-reasoning 能力。
 
-#### 蒸馏：小型模型也可以很强大
+#### 2.2.2.2 蒸馏：小型模型也可以很强大
 
 deepseek 证明了大型模型的推理模式可以被蒸馏到小型模型中，
 * 与在小型模型上进行 RL 发现的推理模式相比，蒸馏可以取得更好的性能。
@@ -175,13 +175,13 @@ GRPO 去掉了 Value Model，对每个输入(q)输出多个结果o1 o2 o3 …，
 
 奖励是 training signal 的来源，它决定了强化学习的优化方向。 训练 DeepSeek-R1-Zero 时，deepseek 采用了一个基于规则的奖励系统（rule-based reward system）， 该系统主要由两种类型的奖励组成。
 
-类型一：准确性奖励（Accuracy rewards）
+<span style="color:red">类型一：准确性奖励（Accuracy rewards）</span>
 
 准确性奖励模型评估响应是否正确（whether the response is correct）。例如：
 1. 对于具有确定性结果的数学问题，要求模型以指定格式提供最终答案，从而能可靠地基于规则验证正确性。
 2. 对于LeetCode问题，可以使用编译器对生成的程序进行编译，然后运行预定义的测试用例。
 
-类型二：格式奖励（Format rewards）
+<span style="color:red">类型二：格式奖励（Format rewards）</span>
 
 deepseek 还采用了一个格式奖励模型，强制推理模型将其思考过程放在<think>和</think>tag 内。
 这里没有使用结果或过程神经奖励模型（outcome or process neural reward model）， 因为 deepseek 发现神经奖励模型可能会在大规模强化学习过程中出现 reward hacking 行为， 并且重新训练奖励模型需要额外的训练资源，也会使整个训练流程变得更加复杂。
@@ -300,7 +300,7 @@ deepseek 收集了几千个冷启动数据，拿来微调 DeepSeek-V3-Base，得
 
 初始冷启动数据主要关注推理，而这一阶段则纳入了来自其他领域的数据， 以增强模型在写作、角色扮演和其他通用任务中的能力。具体来说，deepseek 按照以下方式生成数据并微调模型。
 
-推理数据（Reasoning data）：600k：
+<span style="color:red">推理数据（Reasoning data）：600k</span>
 
 人工整理一批推理提示词，从上述 RL 训练的 checkpoint 进行拒绝采样来生成推理轨迹。在第二阶段，deepseek 只纳入了可以使用基于规则的奖励进行评估的数据。
 
@@ -311,7 +311,7 @@ deepseek 收集了几千个冷启动数据，拿来微调 DeepSeek-V3-Base，得
 
 总共，deepseek 收集了大约600k个与推理相关的训练样本。
 
-非推理数据（Non-Reasoning data）：200k：
+<span style="color:red">非推理数据（Non-Reasoning data）：200k</span>
 
 对于非推理数据，如写作、事实问答、自我认知和翻译，deepseek 采用 DeepSeek-V3 pipeline， 并复用 DeepSeek-V3 的一部分 SFT 数据集。
 
@@ -377,7 +377,7 @@ deepseek 使用的基础模型包括：
 
 在开发 DeepSeek-R1 早期，deepseek 也遇到了一些失败和挫折。 这里分享一些失败经验，提供一些见解，但这并不意味着这些方法无法开发出有效的推理模型。
 
-#### Process Reward Model (PRM)
+#### 2.4.2.1 Process Reward Model (PRM)
 
 PRM 是一种合理的方法，可以引导模型采用更好的方式来解决推理任务。然而，在实践中，PRM 存在三个主要限制，可能会阻碍其最终的成功。
 * 首先，在一般推理任务中，明确定义细粒度的推理步骤是具有挑战性的。
@@ -386,7 +386,7 @@ PRM 是一种合理的方法，可以引导模型采用更好的方式来解决�
 
 总之，尽管 PRM 在重新排序模型生成的前 N 个候选答案或辅助引导搜索方面表现良好，但在 deepseek 的实验中，相较于其在大规模强化学习过程中引入的额外计算开销，其优势仍然有限。
 
-#### Monte Carlo Tree Search (MCTS)
+#### 2.4.2.2 Monte Carlo Tree Search (MCTS)
 
 受到 AlphaGo 和 AlphaZero 的启发，deepseek 探索了使用蒙特卡洛树搜索（MCTS）来增强测试阶段的计算可扩展性。这种方法将答案拆分为更小的部分，使模型能够系统地探索解空间。为此，deepseek 提示模型生成多个标签，这些标签对应于搜索过程中所需的特定推理步骤。
 * 在训练阶段，deepseek 首先使用收集的提示，通过 MCTS 结合预训练的价值模型来寻找答案。随后，deepseek 利用生成的问答对来训练演员模型（actor model）和价值模型（value model），并通过迭代优化整个过程。
@@ -406,19 +406,20 @@ deepseek 通过强化学习（RL）增强模型推理能力的探索过程。Dee
 * 提示工程：在评估 DeepSeek-R1 时，deepseek 发现其对提示（prompt）较为敏感，少样本（few-shot）提示往往会降低其性能。因此，deepseek 建议用户采用零样本（zero-shot）设置，直接描述问题并指定输出格式，以获得最佳效果。
 * 软件工程任务：由于评估时间较长，影响了 RL 过程的效率，目前大规模 RL 尚未广泛应用于软件工程任务。因此，在软件工程基准测试上，DeepSeek-R1 并未表现出相较于 DeepSeek-V3 的巨大提升。未来版本将通过在软件工程数据上引入拒绝采样（rejection sampling）或在 RL 过程中结合异步评估，以提升训练效率。
 
-# 3. 思考 
+# 3. 思考
+
 这篇论文介绍了 R1 整个算法、训练流程和结果，但最核心的应该是数据，包括用于 R1-Zero 的数据是什么，数据量有多大，生成的 60w 数据具体是什么样的，标注的 20w 文科数据是什么，这是决定模型效果的另一个核心因素，DeepSeek 的中文效果出圈，应该很大程度还是标注的 20w 文科数据质量高，不确定 RL 带来的推理能力提升在文科这块上的帮助有多大。这些数据没有公开，友商要复刻出 DeepSeek 的效果没那么容易。
 
 网上有不少开始复现 R1 和 R1-Zero 的开源项目研究，最大的是 huggingface 的 open-r1，也有学生在 3B 模型上小规模复现 R1-Zero 的开源项目 TinyZero。
 
 # 4. 总结
 
-* DeepSeek APP 上线 20天 DAU 超过 2000w，成为历史用户增长最快的 APP，搜索是有技术积累的壁垒，社交有关系链，内容平台有内容壁垒，基于 chatbot 形态的产品，没看到有什么壁垒，用户数据没有作用，曾以为模型领先就是壁垒，OpenAI 可以凭借领先收高额费用和大部分用户的忠诚，DeepSeek 这波又打破了这种壁垒，领先者无法保证自己一直领先。
-* DeepSeek 带来中国自信，曾经认为，类似 AICoding 这种全球无差异竞争的产品，国内同学们怎么搞得过海外那些清一色 MIT 天才搞的产品？DeepSeek 的成功给了这些直面竞争产品很大的信心，中国科技在未来还是很期待的！！！
+DeepSeek APP 上线 20天 DAU 超过 2000w，成为历史用户增长最快的 APP，搜索是有技术积累的壁垒，社交有关系链，内容平台有内容壁垒，基于 chatbot 形态的产品，没看到有什么壁垒，用户数据没有作用，曾以为模型领先就是壁垒，OpenAI 可以凭借领先收高额费用和大部分用户的忠诚，DeepSeek 这波又打破了这种壁垒，领先者无法保证自己一直领先。
+
+DeepSeek 带来中国自信，曾经认为，类似 AICoding 这种全球无差异竞争的产品，国内同学们怎么搞得过海外那些清一色 MIT 天才搞的产品？DeepSeek 的成功给了这些直面竞争产品很大的信心，中国科技在未来还是很期待的！！！
 
 # 5. 附录
 
-论文文献：
 * https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf
 * https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf
 * https://github.com/deepseek-ai/DeepSeek-V2/blob/main/deepseek-v2-tech-report.pdf
