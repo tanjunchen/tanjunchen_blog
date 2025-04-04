@@ -95,7 +95,7 @@ nohup python3 -m vllm.entrypoints.openai.api_server --model /mnt/models/DeepSeek
 
 出现如下文字表示启动成功：
 ```bash
-api_server.py:1028] Starting vLLM API server on http://0.0.0.0:8000
+[api_server.py:1028] Starting vLLM API server on http://0.0.0.0:8000
 ```
 
 ## 性能测试
