@@ -4,7 +4,7 @@ title:      "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程"
 subtitle:   "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程、vllm 与 sglang 双机测试与性能对比"
 description: ""
 author: "陈谭军"
-date: 2025-04-05
+date: 2025-04-06
 published: true
 tags:
     - AI
@@ -15,6 +15,7 @@ categories:
     - TECHNOLOGY
 showtoc: true
 ---
+
 
 # 环境信息
 
@@ -241,6 +242,7 @@ nohup bash run_cluster.sh  vllm/vllm-openai:v0.7.2 $IP_OF_HEAD_NODE --worker $MO
 ## 启动 deepseek r1 模型
 
 <span style="color:red">注：如果机器开启ipv6双栈网络，强烈建议配置该参数；</span>
+
 ```bash
 export VLLM_HOST_IP=$(hostname -I | awk '{print $1}')
 export HOST_IP=$(hostname -I | awk '{print $1}')
@@ -351,6 +353,7 @@ export NCCL_IB_DISABLE=0
 ```
 
 <span style="color:red">注：如果机器开启ipv6双栈网络，并且 ipv6 网络不通，强烈建议配置该参数；</span>
+
 ```bash
 export SGLANG_HOST_IP=$(hostname -I | awk '{print $1}')
 export HOST_IP=$(hostname -I | awk '{print $1}')
@@ -358,7 +361,7 @@ export HOST_IP=$(hostname -I | awk '{print $1}')
 
 这个地方非常非常非常非常有点坑，详见代码 https://github.com/sgl-project/sglang/blob/main/python/sglang/srt/utils.py#L1601。
 
-![](/images/2025-04-05-2h20-deepseek-r1-sglang-vllm/1.png)
+![](/images/2025-04-06-2h20-deepseek-r1-sglang-vllm/1.png)
 
 ```bash
 docker exec -it sglang_node1 bash
