@@ -4,7 +4,7 @@ title:      "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程"
 subtitle:   "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程、vllm 与 sglang 双机测试与性能对比"
 description: ""
 author: "陈谭军"
-date: 2025-04-06
+date: 2025-04-05
 published: true
 tags:
     - AI
@@ -289,9 +289,9 @@ root@node01 curl http://localhost:8000/v1/models -H "Content-Type: application/j
 
 ## 参考
 
-1、https://docs.vllm.ai/en/latest/serving/distributed_serving.html
-2、https://github.com/vllm-project/vllm/blob/main/examples/online_serving/run_cluster.sh 
-3、https://github.com/vllm-project/vllm/issues/1363
+* https://docs.vllm.ai/en/latest/serving/distributed_serving.html
+* https://github.com/vllm-project/vllm/blob/main/examples/online_serving/run_cluster.sh 
+* https://github.com/vllm-project/vllm/issues/1363
 
 # sglang 双机测试
 
@@ -361,7 +361,7 @@ export HOST_IP=$(hostname -I | awk '{print $1}')
 
 这个地方非常非常非常非常有点坑，详见代码 https://github.com/sgl-project/sglang/blob/main/python/sglang/srt/utils.py#L1601。
 
-![](/images/2025-04-06-2h20-deepseek-r1-sglang-vllm/1.png)
+![](/images/2025-04-05-2h20-deepseek-r1-sglang-vllm/1.png)
 
 ```bash
 docker exec -it sglang_node1 bash
@@ -479,7 +479,7 @@ root@node01 curl http://localhost:8000/v1/models -H "Content-Type: application/j
 
 ## 参考
 
-1、https://github.com/sgl-project/sglang/tree/main/benchmark/deepseek_v3#example-serving-with-2-h208 
+* https://github.com/sgl-project/sglang/tree/main/benchmark/deepseek_v3#example-serving-with-2-h208 
 
 # 构建 sglang 双机环境（默认参数）
 
@@ -726,5 +726,5 @@ if __name__ == "__main__":
 
 # 总结
 
-1、vllm 单机相比 vllm 双机性能存在下降，推测双机通信存在瓶颈。
-1、sglang 单机相比 1、sglang 双机性能存在下降，推测双机通信存在瓶颈。
+* 与 vllm 单机相比，vllm 双机性能存在下降，推测双机通信存在瓶颈，双机之间的通讯开销较大。
+* 与 sglang 单机相比，sglang 双机性能存在下降，推测双机通信存在瓶颈，双机之间的通讯开销较大。
