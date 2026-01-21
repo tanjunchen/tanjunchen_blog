@@ -92,8 +92,8 @@ home = ["HTML", "RSS", "Algolia"]
   #git           = "full profile url for git user"
   
   [[params.friend_link]]
-  title = "赵化冰的博客"
-  href =  "https://zhaohuabing.com"
+  title = "陈谭军的博客"
+  href =  "https://tanjunchen.github.io/"
 
   [[params.bookmark_link]]
   title =  "Martin Fowler"
