@@ -16,8 +16,8 @@ home = ["HTML", "RSS", "Algolia"]
 [params]
   header_image = "img/home.webp"
   SEOTitle = "陈谭军的博客 | tanjunchen Blog"
-  description = "陈谭军，软件工程师, 开源爱好者, 互联网, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
-  keyword = "陈谭军, 互联网, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
+  description = "陈谭军，软件工程师, 开源爱好者, 互联网, 大模型, AI, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
+  keyword = "陈谭军, 互联网, 大模型, AI, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
   slogan = ""
 
   image_404 = "img/404.jpg"
