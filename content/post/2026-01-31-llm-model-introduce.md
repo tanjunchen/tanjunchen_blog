@@ -70,7 +70,7 @@ showtoc: true
     * 标准的多头注意力 MHA 的复杂度是，每个 Query Token 需要和历史的所有 Token 计算 Attention；而 DSA 意味着 Attention 层的计算不再是全量的，而是稀疏的，只需要与Indexr选择出来的Top-K个 key-value tokens计算Attention。
 
 * 在训练阶段，DeepSeek 采用了 **"Dense Warm-up" -> "Sparse Training"** 的两阶段策略：
-    * **Warm-up**：冻结主模型，只训练 Indexer。利用 KL 散度损失，让 Indexer 的输出分布去逼近全量 Attention 的分布 8888。
+    * **Warm-up**：冻结主模型，只训练 Indexer。利用 KL 散度损失，让 Indexer 的输出分布去逼近全量 Attention 的分布。
     * **Sparse Training**：解冻主模型，利用 Indexer 选出的稀疏 KV 进行端到端训练 。
 
 官方文档显示在 H800 GPU 集群上测试显示，无论是在 prefilling 还是 decoding 阶段，单位 token 成本都有大幅下降。在 128K 长上下文下，单位 token 成本最高下降达 **60%~70%**。
