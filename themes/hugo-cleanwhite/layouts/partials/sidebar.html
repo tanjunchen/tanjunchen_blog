@@ -9,12 +9,11 @@
 ">
     <!-- Short About -->
 	{{ if .Site.Params.about_me }}
-    <section class="visible-md visible-lg">
-	<!--<hr><h5><a href="{{ "/about" | relLangURL }}">ABOUT ME</a></h5>-->
+    <section>
         <div class="short-about">
             {{ with .Site.Params.sidebar_avatar }}
             <a href="{{ "/about" | relLangURL }}">
-               <img src="{{ . | absURL }}" alt="avatar" style="cursor: pointer" />
+               <img src="{{ . | relURL }}" alt="avatar" style="cursor: pointer" />
             </a>
             {{ end }}
             {{ with .Site.Params.sidebar_about_description }}

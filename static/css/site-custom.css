@@ -31,9 +31,9 @@ body {
     }
 }
 
-/* --- 2. 顶栏 Header 高度压缩：解决“上面的高度有点大” --- */
+/* --- 2. 顶栏 Header 高度压缩与文章详情页 Header 润色 --- */
 .intro-header {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .intro-header .site-heading,
@@ -42,7 +42,40 @@ body {
 }
 
 .intro-header .post-heading {
-    padding: 55px 0 35px !important;
+    padding: 50px 0 40px !important;
+}
+
+.intro-header .post-heading h1 {
+    font-size: 30px !important;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-top: 0;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+}
+
+.intro-header .post-heading .subheading {
+    font-size: 17px !important;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-top: 0;
+    margin-bottom: 20px;
+    opacity: 0.92;
+    display: block;
+}
+
+.intro-header .post-heading .meta {
+    font-family: inherit !important;
+    font-style: normal !important;
+    font-size: 14px !important;
+    font-weight: 400;
+    opacity: 0.88;
+    line-height: 1.6;
+}
+
+.intro-header .post-heading .meta a {
+    font-weight: 600;
+    text-decoration: underline;
 }
 
 @media only screen and (min-width: 768px) {
@@ -54,9 +87,11 @@ body {
     }
     
     .intro-header .post-heading h1 {
-        font-size: 32px !important;
-        font-weight: 700;
-        line-height: 1.3;
+        font-size: 34px !important;
+    }
+
+    .intro-header .post-heading .subheading {
+        font-size: 18px !important;
     }
 }
 
