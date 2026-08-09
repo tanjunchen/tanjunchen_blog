@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "AI-Infra：构建支撑大规模训练与推理基础设施平台"
-subtitle:   ""
-description: "**为什么需要 AI-Infra**：从模型能力的竞争，走向算力、系统与平台的综合竞争；**AI-Infra 架构全景**：解析支撑大规模训推的关键技术栈与分层架构；**平台实践案例**：结合工程与平台视角，探讨 AI-Infra 如何真正落地并持续演进；**AI-Infra 发展趋势和总结**：探索 AI Infra 的技术趋势，洞察 AI Infra 未来演进方向"
+subtitle:   "解析支撑大规模训练与推理的基础设施平台架构、算力调度与工程落地实践"
+description: "深入解析 AI-Infra 基础设施平台架构：从 GPU 异构算力管理、高性能网络存储，到训练框架与 vLLM/SGLang 推理引擎集成，系统探讨支撑大模型训推工程落地与持续演进的系统工程实践。"
 author: "tanjunchen"
 date: 2026-02-21
 published: true

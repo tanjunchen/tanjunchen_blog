@@ -2,7 +2,7 @@
 layout:     post
 title:      "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程"
 subtitle:   "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程、vllm 与 sglang 双机测试与性能对比"
-description: ""
+description: "实战记录双机 2*H20 (16x96GB GPU) 部署 671B 满血 DeepSeek-R1 (FP8) 模型的完整压测过程，深入对比 vLLM 与 SGLang 推理引擎在 TP/PP 张量与管道并行配置下的吞吐率、首字延迟（TTFT）与 Token 生成速度。"
 author: "tanjunchen"
 date: 2025-04-05
 published: true

@@ -2,7 +2,7 @@
 layout:     post
 title:      "A800 单机8卡体验 DeepSeek-R1-AWQ 量化满血版之旅"
 subtitle:   "A800 单机8卡体验 DeepSeek-R1-AWQ 量化满血版之旅"
-description: ""
+description: "探索在单节点 NVIDIA A800 8卡服务器上使用 vLLM 部署 DeepSeek-R1 AWQ (W4A16) 4bit 量化满血版的坑点与性能表现，包含显存占用分析与量化损耗评测。"
 author: "tanjunchen"
 date: 2025-02-23
 published: true

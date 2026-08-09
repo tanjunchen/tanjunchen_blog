@@ -2,7 +2,7 @@
 layout:     post
 title:      "单机H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程"
 subtitle:   "单机H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程、vllm 验证过程、sglang 验证过程"
-description: ""
+description: "详细评测单节点 H20 8卡环境利用 vLLM 与 SGLang 部署满血 DeepSeek-R1 (FP8) 的技术细节，涵盖 MLA 注意力机制优化、EETQ/Quantization 参数踩坑及多并发下推理性能对比。"
 author: "tanjunchen"
 date: 2025-04-04
 published: true

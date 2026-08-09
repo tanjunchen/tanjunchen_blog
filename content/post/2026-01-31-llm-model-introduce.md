@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "国内近期开源大模型调研与核心技术解析"
-subtitle:   ""
-description: ""
+subtitle:   "盘点 DeepSeek-R1、Qwen、GLM 等主流开源大模型架构演进与能力对比"
+description: "调研分析国内开源大模型生态发展现状：系统梳理 DeepSeek-R1、Qwen2.5、GLM-4 等代表性模型的架构设计、强化学习 RL 方案、推理效率与国产 GPU 适配实践。"
 author: "tanjunchen"
 date: 2026-01-31
 published: true

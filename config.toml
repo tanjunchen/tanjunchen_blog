@@ -9,6 +9,7 @@ googleAnalytics = ""
 preserveTaxonomyNames = true
 paginate = 5 #frontpage pagination
 hasCJKLanguage = true
+summaryLength = 240
 
 [outputs]
 home = ["HTML", "RSS", "Algolia"]
