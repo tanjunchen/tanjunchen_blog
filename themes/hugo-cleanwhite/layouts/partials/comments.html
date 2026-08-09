@@ -29,6 +29,7 @@ var disq = new iDisqus('disqus-comment', {
 </script>
 {{ end }}
 {{ if .Site.Params.giscus }}
+<div class="giscus-comments-container" style="margin-top: 35px; padding-top: 25px; border-top: 1px solid #f0f3f6;">
 <script src="https://giscus.app/client.js"
         data-repo="{{ .Site.Params.giscus.data_repo}}"
         data-repo-id="{{ .Site.Params.giscus.data_repo_id}}"
@@ -42,4 +43,5 @@ var disq = new iDisqus('disqus-comment', {
         crossorigin="{{ .Site.Params.giscus.crossorigin}}"
         async>
 </script>
+</div>
 {{ end }}
