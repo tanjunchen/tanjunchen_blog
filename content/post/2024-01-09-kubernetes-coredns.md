@@ -1,8 +1,8 @@
 ---
 layout:     post
 title:      "Kubernetes CoreDNS 核心原理和源码解析"
-subtitle:   ""
-description: ""
+subtitle:   "深入解析 K8S DNS SPEC 规范、Corefile 插件链机制与 kubernetes 插件源码实现"
+description: "本文深入分析 Kubernetes CoreDNS 核心工作原理：从 Pod 内 /etc/resolv.conf 配置（ndots/search 域解析规则）、K8S DNS SPEC 规范，到 CoreDNS 插件链架构（Corefile 配置、kubernetes 插件源码分析），全面解密集群 Service 域名与 Headless Service 的 DNS 注册与解析流程。"
 author: "tanjunchen"
 date: 2024-01-07
 published: true
