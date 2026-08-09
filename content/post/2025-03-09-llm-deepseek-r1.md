@@ -3,7 +3,7 @@ layout:     post
 title:      "LLM 教程（3）- 《DeepSeek R1 论文精读 - 通过强化学习推动大语言模型推理能力的突破与创新》"
 subtitle:   "LLM 教程（3）- 精读 DeepSeek-R1 的论文，了解现象级 R1 模型是怎么做出来的；"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-03-09
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "说道说道 Istio，重新扬帆加入 CNCF"
 subtitle:   "Istio 发展历史与简介"
 description: "2022年9月底，CNCF TOC（技术监督委员会，Technical Oversight Committee ）已经投票接受了 Istio 作为 CNCF 的孵化项目，Istio 扬帆加入 CNCF"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-10-28
 published: true
 tags:

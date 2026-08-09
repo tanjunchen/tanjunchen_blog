@@ -3,7 +3,7 @@ layout:     post
 title:      "译文：Cilium Mesh - Mesh 连接所有应用"
 subtitle:   "简单介绍 Cilium Mesh，什么是 Cilium Mesh、为什么使用 Cilium Mesh、如何配置 Cilium Mesh？"
 description: "我们有令人兴奋的消息要和大家分享。由于其先进的安全性、性能和卓越的可扩展性，Cilium 已迅速成为 Kubernetes 容器网络的标准。随着 Cilium 的使用率不断提高，越来越多的客户要求提供 Cilium 功能。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-04-20
 #image: "/img"
 published: true

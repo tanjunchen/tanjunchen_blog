@@ -1,6 +1,6 @@
 baseurl = "https://tanjunchen.github.io"
 title = "漫步远方，心荡神往"
-copyright = "陈谭军"
+copyright = "tanjunchen"
 theme = "hugo-cleanwhite"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
@@ -15,14 +15,14 @@ home = ["HTML", "RSS", "Algolia"]
 
 [params]
   header_image = "img/home.webp"
-  SEOTitle = "陈谭军的博客 | tanjunchen Blog"
-  description = "陈谭军，软件工程师, 开源爱好者, 互联网, 大模型, AI, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
-  keyword = "陈谭军, 互联网, 大模型, AI, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
+  SEOTitle = "tanjunchen Blog | tanjunchen的博客"
+  description = "tanjunchen，软件工程师, 开源爱好者, 互联网, 大模型, AI, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
+  keyword = "tanjunchen, 互联网, 大模型, AI, 云原生, 容器, 微服务, Web, PaaS, Istio, Kubernetes, Microservice"
   slogan = ""
 
   image_404 = "img/404.jpg"
   title_404 = "没有知识的荒原 :("
-  omit_categories = false
+  omit_categories = true
 
   # leancloud storage for page view counter (未使用，保留兼容)
   leancloud_app_id = ""
@@ -91,7 +91,7 @@ home = ["HTML", "RSS", "Algolia"]
   #git           = "full profile url for git user"
   
   [[params.friend_link]]
-  title = "陈谭军的博客"
+  title = "tanjunchen的博客"
   href =  "https://tanjunchen.github.io/"
 
   [[params.bookmark_link]]

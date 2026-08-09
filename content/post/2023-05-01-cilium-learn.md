@@ -3,7 +3,7 @@ layout:     post
 title:      "深入理解 Cilium 核心原理"
 subtitle:   "通过 Pod 请求生命周期理解 Cilium 数据路径"
 description: "Cilium 是一个用于容器和微服务网络安全的开源软件项目。它提供了一种基于 Linux 内核的数据平面和一个高级的控制平面，用于实现网络和安全策略的管理。Cilium 的设计理念是通过深度集成到容器和 Kubernetes 中，提供全面的安全和网络功能，同时保持高性能和可扩展性。它使用 Linux 内核的 eBPF (extended Berkeley Packet Filter) 技术来实现高效的数据平面，并使用 Kubernetes API 来管理网络和安全策略。Cilium 还支持多种网络和安全功能，例如应用层负载均衡、服务发现、网络加密和网络策略等。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-05-01
 #image: "/img"
 published: true

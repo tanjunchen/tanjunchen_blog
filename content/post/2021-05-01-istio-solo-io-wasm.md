@@ -3,7 +3,7 @@ layout:     post
 title:      "使用 wasm 拓展 istio-proxy 数据面"
 subtitle:   ""
 description: "Solo.io 团队发布了 WebAssembly Hub，这是一套为 Envoy 和 Istio 准备的，用于构建、部署、共享和发现 Envoy Proxy WASM 扩展的工具和仓库。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-05-01
 published: true
 tags:

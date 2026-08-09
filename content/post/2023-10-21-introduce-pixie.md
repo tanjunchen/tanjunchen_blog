@@ -3,7 +3,7 @@ layout:     post
 title:      "使用 Pixie 实现 Kubernetes 服务可观测性（4）"
 subtitle:   "Pixie 是一个开源的观测和调试平台，旨在实时捕获、查询和可视化云原生应用程序的数据。它提供了一种轻量级的方式来收集和分析 Kubernetes 集群中的数据，以便进行实时观察、调试和监控。"
 description: "Pixie 是一个用于 Kubernetes 应用程序的开源可观察性平台。Pixie 使用 eBPF 自动捕获遥测数据，可以使用 Pixie 查看集群的状态（服务映射、集群资源、应用程序流量），还可以深入查看更详细的视图（pod 状态、火焰图、应用程序单个请求生命周期）。Pixie 由 New Relic 公司于 2021 年 6 月捐赠给 [CNCF](https://www.cncf.io/) 作为孵化项目。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-10-21
 published: true
 tags:

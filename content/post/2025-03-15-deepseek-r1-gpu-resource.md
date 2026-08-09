@@ -3,7 +3,7 @@ layout:     post
 title:      "DeepSeek R1 推理 GPU 资源配置"
 subtitle:   "普及 NVIDIA 基础知识，如硬件类型/厂家、NVIDIA 显卡系列、SXM 与 PCIe、DeepSeek R1 资源需求示例"
 description: "介绍 NVIDIA 基础知识，如硬件类型/厂家、NVIDIA 显卡系列、SXM 与 PCIe、DeepSeek R1 资源需求示例"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-03-15
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "初识 Spring Boot"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2018-08-19
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "vLLM 多机多卡推理测试与验证（Docker）"
 subtitle:   "vLLM 多机多卡推理 docker 验证"
 description: "vLLM 采用多机多卡推理，是为了解决超大规模模型的显存限制、算力瓶颈、高并发吞吐需求以及长序列处理等挑战。通过模型并行、数据并行和高效的内存管理技术，vLLM 能将模型参数和计算任务分布到多块 GPU 和多台机器上，充分利用硬件资源，实现快速、高效的推理能力，满足工业级场景中对性能和扩展性的要求。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-01-19
 published: true
 tags:

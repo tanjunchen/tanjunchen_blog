@@ -3,7 +3,7 @@ layout:     post
 title:      "单机H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程"
 subtitle:   "单机H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程、vllm 验证过程、sglang 验证过程"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-04-04
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "Python 抓取 Flex (Flash) 技术数据传输"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2018-09-21
 published: true
 tags:

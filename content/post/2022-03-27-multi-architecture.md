@@ -3,7 +3,7 @@ layout:     post
 title:      "如何构建多架构多平台 Docker 镜像？"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-03-27
 published: true
 tags:

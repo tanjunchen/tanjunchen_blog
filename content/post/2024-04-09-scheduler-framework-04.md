@@ -3,7 +3,7 @@ layout:     post
 title:      "深入理解 Kubernetes Scheduler Framework 调度框架（Part 4）"
 subtitle:   "Scheduler Framework 内置调度算法与 out-of-tree 插件示例调度算法"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-04-09
 published: true
 tags:

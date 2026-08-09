@@ -3,7 +3,7 @@ layout:     post
 title:      "配置 Istio 核心指标监控告警"
 subtitle:   ""
 description: "Istio 是一个开源的服务网格平台，它通过控制平面和数据平面来管理微服务架构中的流量、安全性和监控等方面。控制平面和数据平面有一些关键的指标，这些指标是 Istio 核心指标，本文介绍如何对 Istio 核心指标配置监控告警。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-11-10
 published: true
 tags:

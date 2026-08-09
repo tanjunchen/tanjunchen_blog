@@ -3,7 +3,7 @@ layout:     post
 title:      "Istio 中数据包的生命周期 - 下篇"
 subtitle:   "在这篇文章中，我们将深入了解 Envoy 配置，探讨组成 Envoy 配置文件的不同组件，以及它们如何协同工作。我们还将演示如何为不同用例配置 Envoy 以实现服务发现、路由、Tracing、UDP 等功能。"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-06-11
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "探索 Transformer 理论与本质"
 subtitle:   "介绍 Transformer 架构和原理，以及大语言模型（LLM）的运作机制。"
 description: "大语言模型（LLM）的核心是通过自回归方式逐词预测（next token prediction）。文本首先被 tokenizer 拆分为词或子词（如 BPE、BBPE 技术），每个 token 对应一个嵌入向量，并加入位置编码（如 RoPE）以保留顺序信息。模型基于 Transformer 结构，训练时通过注意力机制学习上下文关系，输出每个 token 的下一个词概率分布（softmax 归一化）。推理时采用自回归生成，通过采样策略（如 Top-k）和温度系数控制随机性。ALiBi 技术解决了长文本位置编码的外推问题，使模型能处理超越训练长度的输入。整个过程本质是序列条件概率建模，通过海量数据学习语言的统计规律。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-06-01
 published: true
 tags:

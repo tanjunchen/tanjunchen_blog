@@ -3,7 +3,7 @@ layout:     post
 title:      "Kubernetes CoreDNS 核心原理和源码解析"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-01-07
 published: true
 tags:

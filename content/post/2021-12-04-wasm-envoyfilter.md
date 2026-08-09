@@ -3,7 +3,7 @@ layout:     post
 title:      "Wasm C++ Filter 拓展 Envoy"
 subtitle:   ""
 description: "这篇博客演示了一个用 C++ 编写的入门 Envoy Wasm Filter，它将返回值注入到 HTTP 响应的 body 中，并且更新与添加 header。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-12-04
 published: true
 tags:

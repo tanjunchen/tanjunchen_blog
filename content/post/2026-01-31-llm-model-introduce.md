@@ -3,7 +3,7 @@ layout:     post
 title:      "国内近期开源大模型调研与核心技术解析"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2026-01-31
 published: true
 tags:

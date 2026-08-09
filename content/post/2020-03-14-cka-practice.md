@@ -3,7 +3,7 @@ layout:     post
 title:      "高效通过 Kubernetes CKAD 考试"
 subtitle:   ""
 description: "为 Kubernetes 应用程序开发人员认证考试做好准备的练习题，高效通过 CKAD 考试"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2020-03-14
 published: true
 tags:

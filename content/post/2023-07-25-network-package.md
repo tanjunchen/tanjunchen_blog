@@ -3,7 +3,7 @@ layout:     post
 title:      "Linux 是如何处理网络数据包？"
 subtitle:   "当网络数据包到达网卡时，数据包从网卡是如何到 Linux（以内核4.19举例） 网络协议栈？"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-07-25
 published: true
 tags:

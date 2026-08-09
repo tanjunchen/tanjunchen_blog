@@ -3,7 +3,7 @@ layout:     post
 title:      "简单了解与学习 eBPF"
 subtitle:   "eBPF 是一项革命性的技术，起源于 Linux 内核，可以在操作系统内核等特权上下文中运行沙盒程序。它用于安全有效地扩展内核的功能，而无需更改内核源代码或加载内核模块。"
 description: "本文主要介绍什么是 eBPF？、介绍 eBPF、为什么使用 eBPF？、开发工具链等内容"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-04-01
 #image: "/img"
 published: true

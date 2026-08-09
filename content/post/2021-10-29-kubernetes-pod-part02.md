@@ -3,7 +3,7 @@ layout:     post
 title:      "Kubernetes 中数据包的生命周期 CNI Calico（Part2）"
 subtitle:   "本文我们将讨论 Kubernetes CNI Calico 核心组件 CNI 的基础知识，如核心模块、路由模式、demo 示例、要求等"
 description: "本文我们将讨论 Kubernetes CNI Calico 核心组件 CNI 的基础知识，如核心模块、路由模式、demo 示例、要求等"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-10-29
 published: true
 tags:

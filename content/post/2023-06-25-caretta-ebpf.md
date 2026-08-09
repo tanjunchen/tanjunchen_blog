@@ -3,7 +3,7 @@ layout:     post
 title:      "使用 caretta 实现 Kubernetes 服务可观测性（1）"
 subtitle:   "eBPF 探测 Kubernetes 网络的世界"
 description: "Caretta 是一种轻量级的独立工具，快速展示集群中运行的服务可视化网络图。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-06-25
 #image: "/img"
 published: true

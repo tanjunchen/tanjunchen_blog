@@ -3,7 +3,7 @@ layout:     post
 title:      "Kubernetes 中数据包的生命周期 网络基础知识（Part1）"
 subtitle:   "本文我们将讨论 Kubernetes 的 Linux 网络、Namespace 与容器网络 CNI 基础知识"
 description: "本文我们将讨论 Kubernetes 的 Linux 网络、Namespace 与容器网络 CNI 等基础知识。如 Linux 命名空间、容器网络基础知识、Pod 网络命令空间、什么是 CNI？等"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-10-22
 published: true
 tags:

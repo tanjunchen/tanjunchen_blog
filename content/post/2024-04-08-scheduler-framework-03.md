@@ -3,7 +3,7 @@ layout:     post
 title:      "深入理解 Kubernetes Scheduler Framework 调度框架（Part 3）"
 subtitle:   "基于 Scheduler Framework 进行插件拓展的案例"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-04-08
 published: true
 tags:

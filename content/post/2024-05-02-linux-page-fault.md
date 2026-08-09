@@ -3,7 +3,7 @@ layout:     post
 title:      "监测 Linux 内存缺页中断事件"
 subtitle:   "监测 Linux 内存缺页中断事件"
 description: "监测 Linux 内存缺页中断事件"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-05-02
 published: true
 tags:

@@ -5,7 +5,7 @@ subtitle:   "Istio Sidecar Scope 性能测试"
 description: "Istio XDS 全量下发在大规模场景下存在性能问题
 * Istio 全量下发配置会导致数据面/控制面出现性能瓶颈；
 * 全量下发造成数据面 Envoy 配置庞大，Envoy 内存使用率较大；"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-03-09
 published: true
 tags:

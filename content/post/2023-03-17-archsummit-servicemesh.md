@@ -3,7 +3,7 @@ layout:     post
 title:      "演讲：Service Mesh 在百度大规模生产落地与实践"
 subtitle:   "主要给大家介绍 Service Mesh、百度在 Service Mesh 大规模落地实践之旅、对 Service Mesh 的未来期待。"
 description: "自 Service Mesh 横空出世，通过 Sidecar 将微服务通信下沉到基础设施层，屏蔽微服务处理各种通信问题的复杂度，深受工程师的喜爱。Service Mesh 是如何在百度大规模落地与实践的，我跟大家简单介绍与分享。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-03-17
 published: true
 tags:

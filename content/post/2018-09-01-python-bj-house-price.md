@@ -3,7 +3,7 @@ layout:     post
 title:      "Python 揭秘北京房租"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2018-09-01
 published: true
 tags:

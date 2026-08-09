@@ -3,7 +3,7 @@ layout:     post
 title:      "使用 Golang 扩展 Envoy 代理 - WASM 过滤器"
 subtitle:   ""
 description: "Envoy 是一个开源的服务代理，Envoy 专为云原生应用而设计。 Envoy具有很多的特性，如连接池、重试机制、TLS 管理、压缩、健康检查、故障注入、速率限制、授权等。而这些功能都是通过内置的 http 过滤器 实现的。现在，我们我们介绍一个特殊的过滤器 - WASM 过滤器。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-11-28
 published: true
 tags:

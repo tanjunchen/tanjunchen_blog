@@ -3,7 +3,7 @@ layout:     post
 title:      "2019 新年快乐（Happy New Year）"
 subtitle:   ""
 description: "2019 年了，新的一年，祝大家身体健康，平平安安，万事如意，红红火火，财运滚滚。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2019-02-05
 published: true
 tags:

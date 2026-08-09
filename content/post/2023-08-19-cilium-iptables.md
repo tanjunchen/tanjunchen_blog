@@ -3,7 +3,7 @@ layout:     post
 title:      "浅析 Cilium 与 iptables"
 subtitle:   "浅析 Cilium 为什么仍然使用 iptables。"
 description: "似乎大家都不太喜欢 iptables，Cilium 好像也是一样的。使用了 Cilium 一段时间，对于 Cilium 使用 eBPF 构建高性能、可扩展的容器网络印象深刻，并且还具备 L7 策略和可观测性能力。如果你之前还没有听说过 Cilium，可以去了解与试用一下！"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-08-19
 published: true
 tags:

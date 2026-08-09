@@ -3,7 +3,7 @@ layout:     post
 title:      "NVIDIA GPU 系统诊断与运维排查手册：常用命令与一键脚本指南"
 subtitle:   "全面掌握 GPU 系统诊断：从硬件到驱动的一站式排查指南"
 description: "本文系统整理了在使用 NVIDIA GPU 及其他加速卡时常见的系统诊断工具与命令，覆盖硬件信息、操作系统状态、内核日志、网络互联（OFED/Fabric）、IPMI 管理以及 NVIDIA 专属监控工具（如 nvidia-smi、nvidia-bug-report.sh） 等关键维度，为 GPU 用户提供全面的系统诊断工具箱。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-10-26
 published: true
 tags:

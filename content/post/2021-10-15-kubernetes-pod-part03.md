@@ -3,7 +3,7 @@ layout:     post
 title:      "Kubernetes 中数据包的生命周期 Kube-Proxy（Part3）"
 subtitle:   "本文我们将讨论 Kubernetes 的 kube-proxy 角色以及它如何使用 iptables 来控制流量。"
 description: "主要内容如下所示：iptables 规则、Pod 到 Pod、Pod 到 External、Pod 到 Service、External Traffic Policy、Kube-Proxy等"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-10-15
 published: true
 tags:

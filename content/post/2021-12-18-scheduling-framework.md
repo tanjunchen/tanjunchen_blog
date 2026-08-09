@@ -3,7 +3,7 @@ layout:     post
 title:      "调度框架 Scheduling Framework"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-12-18
 published: true
 tags:

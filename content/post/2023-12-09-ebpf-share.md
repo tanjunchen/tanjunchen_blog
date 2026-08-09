@@ -3,7 +3,7 @@ layout:     post
 title:      "eBPF 探索 Linux 可观测性、网络、安全、性能"
 subtitle:   "eBPF 在云厂商可观测性落地与实践，实现高效定位与诊断棘手问题，本文主要介 eBPF 基础知识、pwru 示例、eBPF 实现原理、eBPF 核心实现流程与常见问题、云厂商 eBPF 产品落地实践等。"
 description: "eBPF 在 Linux 操作系统中，可以用于安全、网络和性能监控。AWS、Azure 和 Google Cloud 等云厂商 eBPF 相关云产品相继被推出，国内云厂商也有很多的落地与实践，如阿里云、华为云、字节火山引擎、百度智能云等。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-12-09
 published: true
 tags:

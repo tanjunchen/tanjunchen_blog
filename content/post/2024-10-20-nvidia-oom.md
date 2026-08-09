@@ -3,7 +3,7 @@ layout:     post
 title:      "记一次 NVIDIA 卡训练任务出现 OOM 排查过程和解决思路"
 subtitle:   "要求机器配置、驱动、CUDA、PyTorch、大模型、OOM、GPU、容器、虚拟化、内核、存储网络、兼容性、初始化、共享模式等配置相辅相成，排查过程复杂，需综合分析"
 description: "本次OOM问题表现为GPU显存充足但PyTorch无法申请，具有概率性、偶发性特征。排查覆盖资源限制、容器运行时、GPU插件、CUDA环境、驱动、内核、存储网络等多个层面，排除了主存限制、存储I/O、网络及runtime实现问题。关键线索包括：nvidia-smi显示初始化显存异常（仅4M）、旧内核（3.10）与新驱动（535+）兼容性存疑、GPU共享模式干扰、前后脚本连续执行可能导致CUDA上下文污染。综合判断，问题核心并非真实显存不足，而是CUDA上下文初始化失败或状态异常，由前置脚本隐式加载CUDA、GPU虚拟化干扰、旧内核兼容性不足等多重因素叠加导致，属于“伪OOM”。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-10-20
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "使用 Hubble 实现 Kubernetes 服务可观测性（3）"
 subtitle:   "Hubble 是一个用于云原生工作负载的完全分布式网络和安全可观察性平台。它建立在 Cilium 和 eBPF 之上，以完全透明的方式深入了解服务的通信和行为以及网络基础设施"
 description: "Hubble - 使用 eBPF 的 Kubernetes 的网络、服务和安全可观测性。Hubble 则是 Cilium 的一个子项目，专注于提供网络可观察性。Hubble 可以收集和可视化 Cilium 网络的流量信息，帮助用户理解网络流量的模式，检测网络问题，理解应用的行为。Hubble 提供了一个丰富的可视化界面，可以显示网络流量的详细信息，包括源 IP、目标 IP、端口号、协议类型、数据包数量、字节数量等。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-10-14
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "Linux 常见故障定位与性能分析操作命令"
 subtitle:   ""
 description: "Linux 命令主要用于系统故障定位和性能分析，包括监控系统运行状态、报告虚拟内存、CPU、网络、磁盘 IO 等各类资源的使用情况，以及查看进程状态、系统调用、网络流量、文件系统空间使用等信息，有助于及时发现并解决系统问题"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-10-02
 published: true
 tags:

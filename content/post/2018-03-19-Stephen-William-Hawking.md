@@ -3,7 +3,7 @@ layout:     post
 title:      "史蒂芬·霍金的生平"
 subtitle:   ""
 description: "根据英国天空新闻等多家媒体的报道，史蒂芬霍金去世，享年76岁。霍金毕业于牛津大学（University of Oxford）和剑桥大学（University of Cambridge），并获剑桥大学博士学位。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2018-03-19
 published: true
 tags:

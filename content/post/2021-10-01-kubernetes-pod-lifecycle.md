@@ -3,7 +3,7 @@ layout:     post
 title:      "Kubernetes 中 Pod 生命周期"
 subtitle:   ""
 description: "Pod 是 Kubernetes 集群中可以调度的最小工作单位。Pod 封装了应用程序容器、存储资源、唯一的网络 IP 和决定容器应如何运行的选项。理想情况下，Pod 并不直接在集群上部署，而是使用更高级的抽象资源，比如 DeployMent、StatefulSet 等。深入理解 Pod 对于排查问题是很重要的。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-10-01
 published: true
 tags:

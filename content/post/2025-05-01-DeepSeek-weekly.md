@@ -3,7 +3,7 @@ layout:     post
 title:      "DeepSeek 开源周活动"
 subtitle:   "在2025年2月24日至28日的DeepSeek开源周期间，DeepSeek集中发布了五大核心开源项目，全面覆盖AI基础设施中的计算优化、通信效率与存储加速等关键领域，构建起一套面向大规模人工智能的高性能技术底座。"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-05-01
 published: true
 tags:

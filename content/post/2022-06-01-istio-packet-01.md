@@ -3,7 +3,7 @@ layout:     post
 title:      "Istio 中数据包的生命周期 - 上篇"
 subtitle:   "在本篇博客中，我们尝试跟踪 Istio 服务网格中的 HTTP 请求，深入理解 Istio Proxy 如何通过拦截流量来处理入站和出站流量。"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-06-01
 published: true
 tags:

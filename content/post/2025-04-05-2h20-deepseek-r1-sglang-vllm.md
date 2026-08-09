@@ -3,7 +3,7 @@ layout:     post
 title:      "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程"
 subtitle:   "双机2*H20(8*96GiB)部署满血DeepSeek-R1(fp8)验证过程、vllm 与 sglang 双机测试与性能对比"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-04-05
 published: true
 tags:

@@ -1,0 +1,317 @@
+/* ==========================================================================
+   tanjunchen.io 极简精致 UI 定制覆盖 (Site Custom UI Overrides)
+   ========================================================================== */
+
+/* --- 1. 全局宽屏布局优化：减少左右多余空白 --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background-color: #ffffff;
+    color: #2c3e50;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 顶部导航栏拉宽：在大屏下扩大左右 padding，扩展品牌名与菜单距离 */
+.navbar-custom .container-fluid {
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+}
+
+@media (max-width: 768px) {
+    .navbar-custom .container-fluid {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+/* 在 1200px+ 大屏上扩容主容器宽度，彻底压紧左右无效留白 */
+@media (min-width: 1200px) {
+    .container {
+        width: 1280px;
+        max-width: 96%;
+    }
+}
+
+/* --- 2. 顶栏 Header 高度压缩：解决“上面的高度有点大” --- */
+.intro-header {
+    margin-bottom: 15px;
+}
+
+.intro-header .site-heading,
+.intro-header .page-heading {
+    padding: 60px 0 40px !important;
+}
+
+.intro-header .post-heading {
+    padding: 55px 0 35px !important;
+}
+
+@media only screen and (min-width: 768px) {
+    .intro-header .site-heading h1,
+    .intro-header .page-heading h1 {
+        font-size: 42px !important;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+    }
+    
+    .intro-header .post-heading h1 {
+        font-size: 32px !important;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+}
+
+/* --- 3. 文章列表间距调紧：解决“文章之间的空白处减少点” --- */
+.post-preview {
+    background: #ffffff;
+    border-bottom: 1px solid #f0f3f6;
+    padding: 16px 0 20px 0;
+    margin-bottom: 8px;
+    transition: all 0.2s ease;
+}
+
+.post-preview:hover {
+    background: transparent;
+}
+
+.post-preview > a {
+    text-decoration: none !important;
+}
+
+.post-preview > a > .post-title {
+    font-size: 21px;
+    font-weight: 600;
+    color: #1a252f;
+    margin-top: 0;
+    margin-bottom: 8px;
+    transition: color 0.2s ease;
+}
+
+.post-preview > a:hover > .post-title {
+    color: #0085a1;
+}
+
+.post-preview > a > .post-subtitle {
+    font-size: 15px;
+    color: #596573;
+    margin-bottom: 10px;
+}
+
+.post-content-preview {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #637282;
+    font-style: normal !important;
+    margin-bottom: 10px;
+}
+
+.post-preview > .post-meta {
+    font-family: inherit;
+    font-style: normal;
+    font-size: 13px;
+    color: #95a5a6;
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+.post-preview > .post-meta a,
+.post-heading .meta a {
+    color: #0085a1 !important;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease, text-decoration 0.15s ease;
+}
+
+.post-preview > .post-meta a:hover,
+.post-heading .meta a:hover {
+    color: #00657b !important;
+    text-decoration: underline !important;
+}
+
+/* 隐藏所有分割直线 hr */
+.post-preview + hr,
+article + hr,
+hr {
+    display: none !important;
+}
+
+/* 极大缩减分页按钮 (ul.pager) 下方的空白 */
+ul.pager {
+    margin: 10px 0 0 0 !important;
+}
+
+/* --- 4. 右侧 Catalog 目录调优：解除 195px 宽度硬编码，消除右侧大空白 --- */
+.catalog-container {
+    padding-left: 15px !important;
+    padding-right: 0 !important;
+}
+
+.side-catalog {
+    width: 100% !important; /* 解除 195px 限制，填满 3 栏容器 */
+    max-width: 100% !important;
+    padding-left: 5px;
+}
+
+.side-catalog .catalog-body {
+    padding-right: 0 !important;
+    width: 100% !important;
+}
+
+.side-catalog .catalog-body li a,
+.side-catalog .catalog-body .h1_nav a,
+.side-catalog .catalog-body .h2_nav a,
+.side-catalog .catalog-body .h3_nav a,
+.side-catalog .catalog-body .h4_nav a {
+    max-width: 100% !important; /* 解除 180px / 170px 文本截断限制 */
+    width: calc(100% - 10px) !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #718096;
+    transition: color 0.15s ease, font-weight 0.15s ease;
+}
+
+.side-catalog .catalog-body li a:hover,
+.side-catalog .catalog-body .active a {
+    color: #0085a1 !important;
+    font-weight: 600;
+}
+
+.side-catalog h5 {
+    font-size: 12px;
+    font-weight: 700;
+    color: #a0aec0;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+/* --- 5. 右侧 SideBar 调优：“Software Developer 不用空白框框包含” --- */
+.sidebar-container section {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 24px;
+    box-shadow: none;
+}
+
+.sidebar-container .short-about {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.sidebar-container .short-about img {
+    border-radius: 12px !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eef2f5;
+    transition: transform 0.25s ease;
+    max-width: 130px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.sidebar-container .short-about img:hover {
+    transform: scale(1.03);
+}
+
+.sidebar-container .short-about p {
+    font-size: 13px;
+    color: #7f8c8d;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.sidebar-container .short-about .list-inline {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.sidebar-container .short-about .list-inline > li {
+    padding: 0 3px;
+}
+
+.sidebar-container h5 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #2c3e50;
+    letter-spacing: 0.8px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eef2f5;
+}
+
+.sidebar-container .tags a,
+.tags a {
+    display: inline-block;
+    border: 1px solid #e2e8f0 !important;
+    background: #f8fafc;
+    color: #475569 !important;
+    border-radius: 5px;
+    padding: 3px 9px;
+    margin: 2px 3px 4px 0;
+    font-size: 12px !important;
+    text-decoration: none !important;
+    transition: all 0.15s ease;
+}
+
+.sidebar-container .tags a:hover,
+.tags a:hover {
+    background: #0085a1;
+    border-color: #0085a1 !important;
+    color: #ffffff !important;
+}
+
+/* --- 6. 页脚与不蒜子访问统计：居中、放大与醒目美化 --- */
+article {
+    margin-bottom: 0 !important;
+}
+
+.post-container {
+    padding-bottom: 0 !important;
+}
+
+footer {
+    padding: 16px 0 20px !important;
+    background: transparent;
+    margin-top: 5px !important;
+    border-top: none !important;
+}
+
+footer .copyright {
+    font-size: 15px !important; /* 字体调大 */
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+footer .copyright a {
+    color: #1e293b;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+footer .copyright a:hover {
+    color: #0085a1;
+}
+
+/* 不蒜子计数器居中并醒目展示 */
+.site-busuanzi-counter {
+    display: block;
+    text-align: center;
+    margin-top: 6px;
+    font-size: 14px; /* 字体调大 */
+    color: #64748b;
+    font-weight: 500;
+}
+
+.site-busuanzi-counter .busuanzi-number {
+    font-size: 15px; /* 数字特意调大加粗 */
+    font-weight: 700;
+    color: #0085a1; /* 主题经典蓝色醒目突显 */
+    padding: 0 2px;
+}
+
+.site-busuanzi-counter .busuanzi-divider {
+    color: #cbd5e1;
+    margin: 0 4px;
+}

@@ -3,7 +3,7 @@ layout:     post
 title:      "Kubernetes 中数据包的生命周期 Ingress 等处理七层流量（Part4）"
 subtitle:   "本文我们将讨论 Kubernetes 的 Ingress 资源和 Ingress 控制器。Ingress 控制器是一个控制器，它监视 Kubernetes API 服务器上 Ingress 资源的更新，并相应地重新配置 Ingress 负载均衡器。"
 description: "本文我们将讨论 Kubernetes 的 Ingress 资源和 Ingress 控制器。Ingress 控制器是一个控制器，它监视 Kubernetes API 服务器上 Ingress 资源的更新，并相应地重新配置 Ingress 负载均衡器。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2021-11-05
 published: true
 tags:

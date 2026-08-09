@@ -3,7 +3,7 @@ layout:     post
 title:      "深入理解 Kubernetes Scheduler Framework 调度框架（Part 1）"
 subtitle:   "Scheduler Framework 框架整体架构与 Pod 调度到 Node 流程插件拓展点"
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2024-04-06
 published: true
 tags:

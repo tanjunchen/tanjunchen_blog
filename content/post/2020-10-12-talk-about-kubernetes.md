@@ -3,7 +3,7 @@ layout:     post
 title:      "浅谈 Kubernetes"
 subtitle:   "为什么 Kubernetes 是软件产品研发中迈出的跨越性的一步？"
 description: "为什么 Kubernetes 是软件产品研发中迈出的跨越性的一步?"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2020-10-12
 published: true
 tags:

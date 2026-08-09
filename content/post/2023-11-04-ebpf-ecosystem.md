@@ -3,7 +3,7 @@ layout:     post
 title:      "eBPF 周边生态圈明星产品"
 subtitle:   "主要介绍基础项目如BCC、Cilium等，新兴项目如Pyroscope、eCapture等，同时介绍基础设施如Linux Kernel、bpftool和常见的eBPF工具链如cilium/ebpf、libbpfgo、libbpf等。"
 description: "主要介绍基础项目如BCC、Cilium等，新兴项目如Pyroscope、eCapture等，同时介绍基础设施如Linux Kernel、bpftool和常见的eBPF工具链如cilium/ebpf、libbpfgo、libbpf等。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-11-04
 published: true
 tags:

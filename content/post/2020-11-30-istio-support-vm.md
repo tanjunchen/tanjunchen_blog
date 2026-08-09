@@ -3,7 +3,7 @@ layout:     post
 title:      "istio 1.8.0 支持 VM 虚拟机验证"
 subtitle:   ""
 description: "Istio 集群通过 workloadentry 将虚拟机中的服务集成到网格中，从而使虚拟机中的服务可以享受 Mesh 的红利。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2020-11-30
 published: true
 tags:

@@ -3,7 +3,7 @@ layout:     post
 title:      "istio-system 命名空间下的 envoyfilter 有什么作用？"
 subtitle:   ""
 description: "Istio 在自己的定制版本 Envoy 中，加入了 stats-filter 插件，用于计算 Istio 指标。可参见 https://github.com/istio/proxy/blob/release-1.14/extensions/stats/plugin.cc"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-12-20
 published: true
 tags:

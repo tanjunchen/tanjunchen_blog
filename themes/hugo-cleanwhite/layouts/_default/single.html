@@ -12,7 +12,7 @@
 {{ end }}
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-12 col-md-12">
                 <div class="post-heading">
                     <div class="tags">
                         {{ range .Params.tags }}
@@ -34,11 +34,7 @@
                             {{ end }}
                         {{ else }}
                             Posted by 
-                            {{ if .Params.author }}
-                                {{ .Params.author }}
-                            {{ else }}
-                                    {{ .Site.Title }}
-                            {{ end }} 
+                            <a href="{{ $.Site.Params.social.github | default "https://github.com/tanjunchen" }}" target="_blank" rel="noopener">{{ if .Params.author }}{{ .Params.author }}{{ else }}{{ .Site.Title }}{{ end }}</a> 
                             on 
                             {{ .Date.Format "Monday, January 2, 2006" }}
                             {{ if .Site.Params.busuanzi.page_pv }}
@@ -66,8 +62,8 @@
 
             <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
+                col-lg-9
+                col-md-9
                 post-container">
 
                 <!--
@@ -108,7 +104,7 @@
             <!-- Side Catalog Container -->
             {{ if not (eq (.Param "showtoc") false) }}
             <div class="
-                col-lg-2 col-lg-offset-0
+                col-lg-3 col-lg-offset-0
                 visible-lg-block
                 sidebar-container
                 catalog-container">
@@ -124,8 +120,8 @@
 
             <!-- Sidebar Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
+                col-lg-9
+                col-md-9
                 sidebar-container">
 
                 <!-- Featured Tags -->

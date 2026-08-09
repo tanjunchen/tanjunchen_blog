@@ -3,7 +3,7 @@ layout:     post
 title:      "2026 新年快乐（Happy New Year）"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2026-01-01
 published: true
 tags:

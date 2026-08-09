@@ -3,7 +3,7 @@ layout:     post
 title:      "Istio 服务网格如何处理安全问题"
 subtitle:   ""
 description: ""
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-02-19
 published: true
 tags:

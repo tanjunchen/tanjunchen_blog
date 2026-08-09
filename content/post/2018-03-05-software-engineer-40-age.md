@@ -3,7 +3,7 @@ layout:     post
 title:      "40 岁之后，程序员真的就穷途末路了吗？"
 subtitle:   ""
 description: "年龄歧视是软件开发行业中会面临的职业问题吗?"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2018-03-05
 published: true
 tags:

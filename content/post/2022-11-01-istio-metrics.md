@@ -3,7 +3,7 @@ layout:     post
 title:      "Istio 控制平面与数据平面核心指标"
 subtitle:   ""
 description: "Istio 是一个开源的服务网格平台，它通过控制平面和数据平面来管理微服务架构中的流量、安全性和监控等方面。控制平面和数据平面有一些关键的指标可以用来评估它们的性能和有效性。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2022-11-01
 published: true
 tags:

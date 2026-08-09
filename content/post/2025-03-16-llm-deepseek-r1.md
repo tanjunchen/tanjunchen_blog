@@ -3,7 +3,7 @@ layout:     post
 title:      "深度剖析 DeepSeek R1 论文"
 subtitle:   "深度剖析 DeepSeek R1 论文，从论文中提炼出关键信息，并分享自己的理解与思考"
 description: "论文介绍了 R1 整个算法、训练流程和结果，但最核心的应该是数据，包括用于 R1-Zero 的数据是什么，数据量有多大，生成的 60w 数据具体是什么样的，标注的 20w 文科数据是什么，这是决定模型效果比较核心的因素。DeepSeek 的中文效果出圈，猜测很大程度还是标注的 20w 文科数据质量高，这些数据没有公开，要复刻出 DeepSeek 的效果没那么容易。开源社区有很多想要去复现 R1 和 R1-Zero 的研究，比较出名的是 huggingface 的 open-r1、R1-Zero 的开源项目 TinyZero"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2025-03-16
 published: true
 tags:

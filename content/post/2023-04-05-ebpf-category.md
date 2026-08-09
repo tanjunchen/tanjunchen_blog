@@ -3,7 +3,7 @@ layout:     post
 title:      "简介 eBPF 常见跟踪点类型"
 subtitle:   ""
 description: "通过 eBPF 可以对多种类型的事件进行跟踪，例如 kprobe、kretprobe、tracepoint、uprobe、uretprobe、socket filter、tc filter、perf events 等，本文主要介绍上述事件 Hook 跟踪点。"
-author: "陈谭军"
+author: "tanjunchen"
 date: 2023-04-05
 published: true
 tags:
