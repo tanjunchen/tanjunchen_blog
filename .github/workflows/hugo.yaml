@@ -22,8 +22,16 @@ jobs:
           hugo-version: '0.101.0'
           # extended: true
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Build
         run: hugo --minify
+
+      - name: Build search index
+        run: npx pagefind --site public --output-subdir _pagefind
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

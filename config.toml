@@ -28,8 +28,8 @@ home = ["HTML", "RSS", "Algolia"]
   leancloud_app_id = ""
   leancloud_app_key = ""
 
-  # algolia site search
-  algolia_search = true
+  # algolia site search (未启用，走 pagefind 静态全文搜索)
+  algolia_search = false
   algolia_appId = ""
   algolia_indexName = ""
   algolia_apiKey = ""
