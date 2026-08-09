@@ -223,13 +223,22 @@
     </div>
 </footer>
 
-<!-- <span id="busuanzi_container_site_pv">
-    本站访问量 <span id="busuanzi_value_site_pv"></span> 次
-</span>
-&nbsp;
-<span id="busuanzi_container_site_uv">
-    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-</span> -->
+{{ if .Site.Params.busuanzi.enable }}
+<div class="text-center" style="margin-top: -10px; margin-bottom: 20px; color: #999; font-size: 12px;">
+    {{ if .Site.Params.busuanzi.site_pv }}
+    <span id="busuanzi_container_site_pv">
+        {{ .Site.Params.busuanzi.site_pv_pre | safeHTML }} 本站访问量 <span id="busuanzi_value_site_pv"></span> 次 {{ .Site.Params.busuanzi.site_pv_post | safeHTML }}
+    </span>
+    {{ end }}
+    {{ if and .Site.Params.busuanzi.site_pv .Site.Params.busuanzi.site_uv }}&nbsp;|&nbsp;{{ end }}
+    {{ if .Site.Params.busuanzi.site_uv }}
+    <span id="busuanzi_container_site_uv">
+        {{ .Site.Params.busuanzi.site_uv_pre | safeHTML }} 您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者 {{ .Site.Params.busuanzi.site_uv_post | safeHTML }}
+    </span>
+    {{ end }}
+</div>
+{{ partial "busuanzi.html" . }}
+{{ end }}
 
 
 <!-- async load function -->
