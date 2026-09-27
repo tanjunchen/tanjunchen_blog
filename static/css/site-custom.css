@@ -304,6 +304,26 @@ ul.pager {
     color: #ffffff !important;
 }
 
+/* 文章详情页 Header 内的标签：不要沿用侧栏的浅色底框高亮，
+   在深色 Header 背景图上改为素雅的透明描边样式（覆盖上面的 .tags a 全局规则） */
+.intro-header .tags a,
+.intro-header .tags .tag {
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.55) !important;
+    color: #ffffff !important;
+    border-radius: 999em;
+    padding: 2px 12px;
+    font-size: 13px !important;
+    opacity: 0.95;
+}
+
+.intro-header .tags a:hover,
+.intro-header .tags .tag:hover {
+    background: rgba(255, 255, 255, 0.18) !important;
+    border-color: #ffffff !important;
+    color: #ffffff !important;
+}
+
 /* --- 6. 页脚与不蒜子访问统计：居中、放大与醒目美化 --- */
 article {
     margin-bottom: 0 !important;
