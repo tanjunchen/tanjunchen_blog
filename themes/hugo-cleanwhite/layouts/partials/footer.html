@@ -7,22 +7,23 @@
                     Copyright &copy; {{ now.Year }}
                     {{ with .Site.Params.social.github }}<a href="{{ . }}" target="_blank">{{ . | replaceRE "https?://github.com/" "" }}</a>{{ else }}{{ .Site.Copyright }}{{ end }}
                     {{- if .Site.Params.icp }} | {{ with .Site.Params.icp }}{{ . | markdownify }}{{ end }}{{- end}}
+                    {{ if .Site.Params.busuanzi.enable }}
+                        {{ if .Site.Params.busuanzi.site_pv }}
+                        <span class="busuanzi-divider">&nbsp;|&nbsp;</span>
+                        <span id="busuanzi_container_site_pv">
+                            {{ .Site.Params.busuanzi.site_pv_pre | safeHTML }} 本站访问量 <span id="busuanzi_value_site_pv" class="busuanzi-number"></span> 次 {{ .Site.Params.busuanzi.site_pv_post | safeHTML }}
+                        </span>
+                        {{ end }}
+                        {{ if and .Site.Params.busuanzi.site_pv .Site.Params.busuanzi.site_uv }}<span class="busuanzi-divider">&nbsp;|&nbsp;</span>{{ end }}
+                        {{ if .Site.Params.busuanzi.site_uv }}
+                        <span id="busuanzi_container_site_uv">
+                            {{ .Site.Params.busuanzi.site_uv_pre | safeHTML }} 您是本站第 <span id="busuanzi_value_site_uv" class="busuanzi-number"></span> 位访问者 {{ .Site.Params.busuanzi.site_uv_post | safeHTML }}
+                        </span>
+                        {{ end }}
+                    {{ end }}
                 </p>
 
                 {{ if .Site.Params.busuanzi.enable }}
-                <div class="site-busuanzi-counter">
-                    {{ if .Site.Params.busuanzi.site_pv }}
-                    <span id="busuanzi_container_site_pv">
-                        {{ .Site.Params.busuanzi.site_pv_pre | safeHTML }} 本站访问量 <span id="busuanzi_value_site_pv" class="busuanzi-number"></span> 次 {{ .Site.Params.busuanzi.site_pv_post | safeHTML }}
-                    </span>
-                    {{ end }}
-                    {{ if and .Site.Params.busuanzi.site_pv .Site.Params.busuanzi.site_uv }}<span class="busuanzi-divider">&nbsp;|&nbsp;</span>{{ end }}
-                    {{ if .Site.Params.busuanzi.site_uv }}
-                    <span id="busuanzi_container_site_uv">
-                        {{ .Site.Params.busuanzi.site_uv_pre | safeHTML }} 您是本站第 <span id="busuanzi_value_site_uv" class="busuanzi-number"></span> 位访问者 {{ .Site.Params.busuanzi.site_uv_post | safeHTML }}
-                    </span>
-                    {{ end }}
-                </div>
                 {{ partial "busuanzi.html" . }}
                 {{ end }}
             </div>
@@ -94,7 +95,7 @@
        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
       }
       else{
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      bp.src = 'https://push.zhanzhang.baidu.com/push.js';
       }
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
@@ -241,7 +242,7 @@
   Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
     let image = document.createElement("IMG");
     image.loading = 'lazy'; // Lazy loading
-    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
+    image.src = 'https://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
     code.parentNode.parentNode.insertBefore(image, code.parentNode);
     code.parentNode.style.display = 'none';
   });
