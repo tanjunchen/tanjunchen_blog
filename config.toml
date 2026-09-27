@@ -115,10 +115,10 @@ params = ["categories", "tags"]
   busuanzi_site_offset = 1000
   enable = true
   site_uv = true
-  site_uv_pre = '<i class="fa fa-user"></i>' 
+  site_uv_pre = '<i class="fas fa-user fa-fw"></i>' 
   site_uv_post = ''
   site_pv = true
-  site_pv_pre = '<i class="fa fa-eye"></i>'
+  site_pv_pre = '<i class="fas fa-eye fa-fw"></i>'
   site_pv_post = ''
   page_pv = true
   page_pv_pre = '<i class="far fa-eye fa-fw"></i>'

@@ -47,6 +47,14 @@ jobs:
         run: |
           hugo --gc --minify
 
+      - name: Generate Pagefind search index
+        # 搜索使用 Pagefind（见 layouts/search/list.html 默认分支），
+        # 需在 Hugo 构建后对 public 目录生成 /_pagefind/ 索引，否则搜索页 404 失效。
+        # 主题引用的是 /_pagefind/ 路径（Pagefind 1.0+ 默认改为 /pagefind/），
+        # 用 --output-subdir _pagefind 保持与主题一致。
+        run: |
+          npx -y pagefind@1.5.2 --site public --output-subdir _pagefind
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

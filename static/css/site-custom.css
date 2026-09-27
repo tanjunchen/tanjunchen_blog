@@ -357,6 +357,55 @@ footer .copyright a:hover {
     color: #0085a1;
 }
 
+/* 页脚版权行：访问统计做成可视化徽章 + 数字高亮 */
+footer .copyright {
+    line-height: 2.2;
+}
+
+/* 隐藏原来的竖线分隔符，改用徽章自身间距区隔 */
+footer .copyright .busuanzi-divider {
+    display: none;
+}
+
+/* 访问量 / 访问者：胶囊徽章可视化 */
+footer .copyright #busuanzi_container_site_pv,
+footer .copyright #busuanzi_container_site_uv {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: middle;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 999em;
+    padding: 4px 14px;
+    margin: 0 3px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+footer .copyright #busuanzi_container_site_pv:hover,
+footer .copyright #busuanzi_container_site_uv:hover {
+    border-color: #0085a1;
+    background: #e6f6fa;
+}
+
+footer .copyright #busuanzi_container_site_pv i,
+footer .copyright #busuanzi_container_site_uv i {
+    color: #0085a1;
+    font-size: 14px;
+}
+
+/* 访问量 / 访问者 数字高亮突显 */
+footer .copyright .busuanzi-number {
+    font-weight: 700;
+    font-size: 16px;
+    color: #0085a1;
+    padding: 0 2px;
+    font-variant-numeric: tabular-nums;
+}
+
 /* 不蒜子计数器居中并醒目展示 */
 .site-busuanzi-counter {
     display: block;
