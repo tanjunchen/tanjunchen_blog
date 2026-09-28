@@ -29,7 +29,7 @@ showtoc: true
 - **NVLink 片间高速互联**：GPU 与 GPU 之间的高速通道，带宽远高于 PCIe，是多卡张量并行/专家并行的命脉。H100 为 900 GB/s，Blackwell 提升到 1.8 TB/s。
 - **NVSwitch 交换芯片**：把多颗 GPU 组成「全互联」域，让任意两卡都能以 NVLink 全带宽通信，是构建 NVL72 这类超节点的关键。
 - **网络 NIC（InfiniBand / 以太网）**：负责跨服务器的横向扩展（scale-out）。NVIDIA 的 ConnectX / BlueField DPU 提供 400G/800G 级别带宽，把成百上千台机器连成一个大集群。
-- **交换机**：机内用 NVLink Switch，机间用 Quantum InfiniBand 或 Spectrum 以太网交换机，决定集群的拓扑与无阻塞能力。
+- **交换机**：机内用 NVLink Switch，机间用 InfiniBand 或 Spectrum 以太网交换机，决定集群的拓扑与无阻塞能力。
 - **CPU 主机处理器（Grace / x86）**：负责调度、数据预处理与系统管理。NVIDIA 自研的 Grace（Arm 架构）通过 NVLink-C2C 与 GPU 高速相连，替代传统 x86 减少 PCIe 瓶颈。
 - **系统内存（DDR / LPDDR5X）**：CPU 侧内存，做数据缓冲与 CPU offload。Grace 用 LPDDR5X 提供大容量高带宽内存池。
 - **散热（液冷 / 风冷）**：Blackwell/Rubin 单卡功耗冲到 1000~2300W，风冷已到极限，**液冷成为高端方案的前提**。
@@ -202,7 +202,7 @@ NVIDIA 的数据中心 GPU 大致以「架构」为代际，从 2016 年的 Pasc
 | **HBM 显存容量（GB）** | 高带宽显存能装多少数据（参数 / KV Cache / 激活） | 随 HBM 代次升级，**16GB → 288GB（约 20×）** | 决定「**装得下多大模型 / 多长上下文**」；放不下就切分或 offload，代价大 |
 | **显存带宽（TB/s）** | 每秒能从 HBM 读写多少数据 | HBM2 → HBM4，**0.73 → ~20 TB/s（约 27×）** | 决定「**喂得多快**」；大模型推理解码阶段常是带宽瓶颈（memory-bound） |
 
-**三者的关系（一句话）**：它们是一个**木桶**——算力负责「算」，HBM 容量负责「装」，带宽负责「喂」，短板决定实际性能。发展趋势上**三条腿必须一起长**：算力靠架构与精度，容量与带宽靠 HBM 代次同步升级。侧重点则随场景不同——**训练**更吃算力+互联，**推理（尤其解码）**更吃带宽+容量。
+**三者的关系（一句话）**：它们是一个**木桶**——算力负责「算」，HBM 容量负责「装」，带宽负责「喂」，短板决定实际性能。发展趋势上**三条腿必须一起长**：算力靠架构与精度，容量与带宽靠 HBM 代次同步升级。侧重点则随场景不同——**训练**更吃算力+互联，推理（尤其解码）更吃带宽+容量。
 
 ---
 
@@ -252,7 +252,7 @@ HBM 几乎和 GPU 架构同步升级，每一代都在**容量与带宽上同时
 | L40 | **L20** | 显存带宽、算力受限，偏推理 |
 | H100 | **H800** | NVLink / 带宽 / 算力受限 |
 | H100 | **H20** | 算力大幅削减，但保留大显存 / 高带宽，主打推理 |
-| B200 | **B30 / B40** | 算力与互联能力下降（规划 / 报道） |
+| B200 | **B30 / B40** | 算力与互联能力下降（规划/报道） |
 
 > 特供版的规格随政策变化调整较快，具体以当期实际发售版本为准。
 
@@ -281,4 +281,4 @@ HBM 几乎和 GPU 架构同步升级，每一代都在**容量与带宽上同时
 - NVIDIA HGX 平台（含 HGX B200）：<https://www.nvidia.com/en-us/data-center/hgx/>
 - NVIDIA Grace CPU：<https://www.nvidia.com/en-us/data-center/grace-cpu/>
 - NVIDIA Vera Rubin 平台：<https://www.nvidia.com/en-us/data-center/vera-rubin/>
-- NVIDIA 网络（ConnectX / BlueField / Quantum / Spectrum）：<https://www.nvidia.com/en-us/networking/>
+- NVIDIA 网络（ConnectX / BlueField / Spectrum）：<https://www.nvidia.com/en-us/networking/>
