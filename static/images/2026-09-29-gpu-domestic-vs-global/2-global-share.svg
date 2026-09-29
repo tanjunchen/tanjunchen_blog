@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="440" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">国外 GPU / AI 加速器市场占比（两种口径）</text>
+
+  <!-- Left panel: AI accelerator by revenue -->
+  <text x="235" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#333">① AI 加速器市场（收入口径 · 2026）</text>
+  <text x="235" y="90" text-anchor="middle" font-size="11" fill="#888">来源：Silicon Analysts / IDC 估计（份额为估算，口径不完全可加）</text>
+
+  <g font-size="13" fill="#333">
+    <text x="40" y="126" font-weight="600">NVIDIA</text>
+    <rect x="120" y="114" width="300" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="120" y="114" width="288" height="20" rx="4" fill="#76b900"/>
+    <text x="418" y="129" font-size="12" fill="#5a8c00" font-weight="700">~80%</text>
+
+    <text x="40" y="166" font-weight="600">定制 ASIC</text>
+    <rect x="120" y="154" width="300" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="120" y="154" width="47" height="20" rx="4" fill="#8e44ad"/>
+    <text x="175" y="169" font-size="12" fill="#8e44ad" font-weight="700">合计快速增长</text>
+
+    <text x="40" y="206" font-weight="600">AMD</text>
+    <rect x="120" y="194" width="300" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="120" y="194" width="22" height="20" rx="4" fill="#ED1C24"/>
+    <text x="150" y="209" font-size="12" fill="#ED1C24" font-weight="700">5~7%</text>
+
+    <text x="40" y="246" font-weight="600">Intel</text>
+    <rect x="120" y="234" width="300" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="120" y="234" width="6" height="20" rx="4" fill="#0068B5"/>
+    <text x="134" y="249" font-size="12" fill="#0068B5" font-weight="700">&lt;1%</text>
+  </g>
+  <text x="120" y="290" font-size="11" fill="#666">TAM：2023 ~$55B → 2025 ~$160B → 2026 $200B+</text>
+  <text x="120" y="308" font-size="11" fill="#666">Broadcom AI ASIC 收入 FY2025 已超 $20B</text>
+
+  <line x1="470" y1="60" x2="470" y2="320" stroke="#e0e0e0" stroke-width="1.5"/>
+
+  <!-- Right panel: discrete GPU / AIB by units -->
+  <text x="690" y="70" text-anchor="middle" font-size="15" font-weight="700" fill="#333">② 独立 GPU / AIB 市场（出货口径）</text>
+  <text x="690" y="90" text-anchor="middle" font-size="11" fill="#888">来源：Jon Peddie Research · Q1 2026</text>
+
+  <g font-size="13" fill="#333">
+    <text x="500" y="126" font-weight="600">NVIDIA</text>
+    <rect x="580" y="114" width="290" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="580" y="114" width="261" height="20" rx="4" fill="#76b900"/>
+    <text x="822" y="129" font-size="12" fill="#5a8c00" font-weight="700">90%</text>
+
+    <text x="500" y="166" font-weight="600">AMD</text>
+    <rect x="580" y="154" width="290" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="580" y="154" width="23" height="20" rx="4" fill="#ED1C24"/>
+    <text x="611" y="169" font-size="12" fill="#ED1C24" font-weight="700">8%</text>
+
+    <text x="500" y="206" font-weight="600">Intel</text>
+    <rect x="580" y="194" width="290" height="20" rx="4" fill="#e9e9e9"/>
+    <rect x="580" y="194" width="6" height="20" rx="4" fill="#0068B5"/>
+    <text x="594" y="209" font-size="12" fill="#0068B5" font-weight="700">1%</text>
+  </g>
+  <text x="580" y="252" font-size="11" fill="#666">Q1 2026 市场 11.82M 张（较 Q2'25 峰值回落）</text>
+  <text x="580" y="270" font-size="11" fill="#666">NVIDIA 已连续 5 个季度维持 ≥90%</text>
+
+  <!-- footnote: latest official financials -->
+  <line x1="60" y1="345" x2="840" y2="345" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="450" y="372" text-anchor="middle" font-size="13" fill="#5a8c00" font-weight="700">NVIDIA Q2 FY2027（2026-08 财报）：单季数据中心收入 $89.0B，同比 +117%（占总营收 ~92%）</text>
+  <text x="450" y="396" text-anchor="middle" font-size="13" fill="#ED1C24" font-weight="700">AMD Q2 2026（2026-08 财报）：单季数据中心收入 $6.7B，同比 +107%（占总营收 58%）</text>
+  <text x="450" y="420" text-anchor="middle" font-size="11" fill="#888">来源：NVIDIA / AMD 官方新闻稿与 SEC 财报</text>
+</svg>

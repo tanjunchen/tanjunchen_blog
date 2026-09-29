@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 505" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="505" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">中国 AI 加速卡市场占比（出货口径 · IDC 2025）</text>
+  <text x="450" y="54" text-anchor="middle" font-size="12" fill="#888">全年出货约 400 万张 · 来源：IDC《2025 年度中国云端 AI 加速器市场报告》（2026-04）</text>
+
+  <!-- top 100% stacked bar -->
+  <text x="60" y="92" font-size="14" font-weight="700" fill="#333">整体格局</text>
+  <g>
+    <!-- NVIDIA 55% -->
+    <rect x="60" y="104" width="429" height="40" fill="#76b900"/>
+    <text x="274" y="129" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">NVIDIA 55%（约 220 万张）</text>
+    <!-- domestic 41% -->
+    <rect x="489" y="104" width="320" height="40" fill="#C7000B"/>
+    <text x="649" y="129" text-anchor="middle" font-size="14" fill="#fff" font-weight="700">国产合计 41%（约 165 万张）</text>
+    <!-- others 4% -->
+    <rect x="809" y="104" width="31" height="40" fill="#999"/>
+    <text x="824" y="160" text-anchor="middle" font-size="10" fill="#666">其他 ~4%</text>
+  </g>
+
+  <!-- domestic breakdown -->
+  <text x="60" y="200" font-size="14" font-weight="700" fill="#333">国产厂商拆解（占整体市场份额，按出货量换算的估算值）</text>
+
+  <g font-size="13" fill="#333">
+    <!-- scale: 220px = 22% => 10px per 1% -->
+    <!-- 华为 20% -->
+    <text x="60" y="232" font-weight="600">华为昇腾</text>
+    <rect x="175" y="220" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="220" width="203" height="18" rx="3" fill="#C7000B"/>
+    <text x="386" y="234" font-size="12" fill="#C7000B" font-weight="700">~20%</text>
+    <text x="640" y="234" font-size="11" fill="#888">81.2 万张 · 国产第一</text>
+
+    <!-- 平头哥 6.6% -->
+    <text x="60" y="262" font-weight="600">阿里平头哥</text>
+    <rect x="175" y="250" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="250" width="66" height="18" rx="3" fill="#ff7a00"/>
+    <text x="249" y="264" font-size="12" fill="#ff7a00" font-weight="700">6.6%</text>
+    <text x="640" y="264" font-size="11" fill="#888">26.5 万张 · 国产第二</text>
+
+    <!-- 昆仑芯 2.9% -->
+    <text x="60" y="292" font-weight="600">昆仑芯（百度）</text>
+    <rect x="175" y="280" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="280" width="29" height="18" rx="3" fill="#2e86de"/>
+    <text x="212" y="294" font-size="12" fill="#2e86de" font-weight="700">2.9%</text>
+    <text x="640" y="294" font-size="11" fill="#888">11.6 万张 · 并列第三</text>
+
+    <!-- 寒武纪 2.9% -->
+    <text x="60" y="322" font-weight="600">寒武纪</text>
+    <rect x="175" y="310" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="310" width="29" height="18" rx="3" fill="#10ac84"/>
+    <text x="212" y="324" font-size="12" fill="#10ac84" font-weight="700">2.9%</text>
+    <text x="640" y="324" font-size="11" fill="#888">11.6 万张 · 并列第三</text>
+
+    <!-- 海光 2% -->
+    <text x="60" y="352" font-weight="600">海光 DCU</text>
+    <rect x="175" y="340" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="340" width="20" height="18" rx="3" fill="#576574"/>
+    <text x="203" y="354" font-size="12" fill="#576574" font-weight="700">~2%</text>
+    <text x="640" y="354" font-size="11" fill="#888">约占国产 5%</text>
+
+    <!-- 沐曦 1.7% -->
+    <text x="60" y="382" font-weight="600">沐曦</text>
+    <rect x="175" y="370" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="370" width="17" height="18" rx="3" fill="#e056fd"/>
+    <text x="200" y="384" font-size="12" fill="#c44dd6" font-weight="700">1.7%</text>
+    <text x="640" y="384" font-size="11" fill="#888">约 6.6 万张</text>
+
+    <!-- 天数 1.3% -->
+    <text x="60" y="412" font-weight="600">天数智芯</text>
+    <rect x="175" y="400" width="220" height="18" rx="3" fill="#e9e9e9"/>
+    <rect x="175" y="400" width="13" height="18" rx="3" fill="#feca57"/>
+    <text x="196" y="414" font-size="12" fill="#d4a017" font-weight="700">1.3%</text>
+    <text x="640" y="414" font-size="11" fill="#888">约 5 万张</text>
+  </g>
+
+  <text x="60" y="448" font-size="11" fill="#666">注①：收入口径（Bernstein，2024）——NVIDIA ~66%、华为昇腾 ~23%、AMD ~5%、其余 ~1%。</text>
+  <text x="60" y="470" font-size="11" fill="#666">注②：2026 预测（TrendForce，2026-08）——中国高端 AI 芯片国产份额有望接近 90%，出货量同比 +83%。</text>
+  <text x="60" y="492" font-size="11" fill="#666">注③：Bernstein 预测 NVIDIA 在华份额或从 2025 年 ~40% 降至 2026 年 ~8%，华为或超 50%。</text>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 400" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="880" height="400" fill="#ffffff"/>
+  <text x="440" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#1a1a1a">CPU vs GPU vs GPGPU：从「串行强核」到「并行铺开」再到「通用计算」</text>
+
+  <!-- CPU card -->
+  <rect x="30" y="70" width="250" height="290" rx="12" fill="#eef4ff" stroke="#0068B5" stroke-width="2"/>
+  <text x="155" y="102" text-anchor="middle" font-size="18" font-weight="700" fill="#0068B5">CPU 中央处理器</text>
+  <text x="155" y="126" text-anchor="middle" font-size="13" fill="#555">少核 · 强单核 · 低延迟</text>
+  <!-- few big cores -->
+  <g>
+    <rect x="65" y="150" width="80" height="80" rx="8" fill="#0068B5" opacity="0.85"/>
+    <rect x="165" y="150" width="80" height="80" rx="8" fill="#0068B5" opacity="0.85"/>
+    <rect x="65" y="245" width="80" height="80" rx="8" fill="#0068B5" opacity="0.85"/>
+    <rect x="165" y="245" width="80" height="80" rx="8" fill="#0068B5" opacity="0.85"/>
+  </g>
+  <text x="155" y="352" text-anchor="middle" font-size="12" fill="#0068B5">擅长复杂逻辑 / 分支 / 串行任务</text>
+
+  <!-- GPU card -->
+  <rect x="315" y="70" width="250" height="290" rx="12" fill="#f2f9e8" stroke="#76b900" stroke-width="2"/>
+  <text x="440" y="102" text-anchor="middle" font-size="18" font-weight="700" fill="#5a8c00">GPU 图形处理器</text>
+  <text x="440" y="126" text-anchor="middle" font-size="13" fill="#555">多核 · 弱单核 · 高吞吐</text>
+  <!-- many small cores -->
+  <g fill="#76b900">
+    <!-- 8x5 grid of tiny cores -->
+    <g>
+      <rect x="345" y="150" width="18" height="18" rx="3"/><rect x="370" y="150" width="18" height="18" rx="3"/><rect x="395" y="150" width="18" height="18" rx="3"/><rect x="420" y="150" width="18" height="18" rx="3"/><rect x="445" y="150" width="18" height="18" rx="3"/><rect x="470" y="150" width="18" height="18" rx="3"/><rect x="495" y="150" width="18" height="18" rx="3"/><rect x="520" y="150" width="18" height="18" rx="3"/>
+    </g>
+    <g>
+      <rect x="345" y="175" width="18" height="18" rx="3"/><rect x="370" y="175" width="18" height="18" rx="3"/><rect x="395" y="175" width="18" height="18" rx="3"/><rect x="420" y="175" width="18" height="18" rx="3"/><rect x="445" y="175" width="18" height="18" rx="3"/><rect x="470" y="175" width="18" height="18" rx="3"/><rect x="495" y="175" width="18" height="18" rx="3"/><rect x="520" y="175" width="18" height="18" rx="3"/>
+    </g>
+    <g>
+      <rect x="345" y="200" width="18" height="18" rx="3"/><rect x="370" y="200" width="18" height="18" rx="3"/><rect x="395" y="200" width="18" height="18" rx="3"/><rect x="420" y="200" width="18" height="18" rx="3"/><rect x="445" y="200" width="18" height="18" rx="3"/><rect x="470" y="200" width="18" height="18" rx="3"/><rect x="495" y="200" width="18" height="18" rx="3"/><rect x="520" y="200" width="18" height="18" rx="3"/>
+    </g>
+    <g>
+      <rect x="345" y="225" width="18" height="18" rx="3"/><rect x="370" y="225" width="18" height="18" rx="3"/><rect x="395" y="225" width="18" height="18" rx="3"/><rect x="420" y="225" width="18" height="18" rx="3"/><rect x="445" y="225" width="18" height="18" rx="3"/><rect x="470" y="225" width="18" height="18" rx="3"/><rect x="495" y="225" width="18" height="18" rx="3"/><rect x="520" y="225" width="18" height="18" rx="3"/>
+    </g>
+    <g>
+      <rect x="345" y="250" width="18" height="18" rx="3"/><rect x="370" y="250" width="18" height="18" rx="3"/><rect x="395" y="250" width="18" height="18" rx="3"/><rect x="420" y="250" width="18" height="18" rx="3"/><rect x="445" y="250" width="18" height="18" rx="3"/><rect x="470" y="250" width="18" height="18" rx="3"/><rect x="495" y="250" width="18" height="18" rx="3"/><rect x="520" y="250" width="18" height="18" rx="3"/>
+    </g>
+    <g>
+      <rect x="345" y="275" width="18" height="18" rx="3"/><rect x="370" y="275" width="18" height="18" rx="3"/><rect x="395" y="275" width="18" height="18" rx="3"/><rect x="420" y="275" width="18" height="18" rx="3"/><rect x="445" y="275" width="18" height="18" rx="3"/><rect x="470" y="275" width="18" height="18" rx="3"/><rect x="495" y="275" width="18" height="18" rx="3"/><rect x="520" y="275" width="18" height="18" rx="3"/>
+    </g>
+  </g>
+  <text x="440" y="352" text-anchor="middle" font-size="12" fill="#5a8c00">海量数据并行 / 矩阵与张量运算</text>
+
+  <!-- GPGPU card -->
+  <rect x="600" y="70" width="250" height="290" rx="12" fill="#fdf1e8" stroke="#e67300" stroke-width="2"/>
+  <text x="725" y="102" text-anchor="middle" font-size="18" font-weight="700" fill="#c85f00">GPGPU 通用 GPU 计算</text>
+  <text x="725" y="126" text-anchor="middle" font-size="13" fill="#555">让 GPU 去干「通用计算」</text>
+  <text x="725" y="168" text-anchor="middle" font-size="14" fill="#333">GPU 从「画画」</text>
+  <text x="725" y="196" text-anchor="middle" font-size="30" fill="#e67300" font-weight="700">↓</text>
+  <text x="725" y="228" text-anchor="middle" font-size="14" fill="#333">走向「算数」</text>
+  <rect x="625" y="250" width="200" height="46" rx="8" fill="#e67300" opacity="0.12"/>
+  <text x="725" y="272" text-anchor="middle" font-size="13" fill="#c85f00">硬件：Tensor Core 张量核心</text>
+  <text x="725" y="290" text-anchor="middle" font-size="13" fill="#c85f00">软件：CUDA / cuDNN 生态</text>
+  <text x="725" y="330" text-anchor="middle" font-size="12" fill="#c85f00">AI 训练与推理的算力底座</text>
+
+  <!-- arrows between -->
+  <text x="297" y="220" text-anchor="middle" font-size="26" fill="#999">→</text>
+  <text x="582" y="220" text-anchor="middle" font-size="26" fill="#999">→</text>
+</svg>

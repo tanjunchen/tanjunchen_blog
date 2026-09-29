@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 450" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="450" fill="#ffffff"/>
+  <text x="480" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">华为昇腾芯片路线图（HC2026 更新 · 一年一代算力翻倍）</text>
+  <text x="480" y="52" text-anchor="middle" font-size="12" fill="#888">来源：华为全联接大会 2025（首发）+ 2026-09-17 汪涛 Keynote（更新提前 / 新增 980）</text>
+
+  <line x1="60" y1="250" x2="900" y2="250" stroke="#ccc" stroke-width="3"/>
+
+  <!-- 950PR box (above) -->
+  <rect x="118" y="70" width="200" height="112" rx="8" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="218" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#C7000B">昇腾 950PR（已上市）</text>
+  <text x="218" y="109" text-anchor="middle" font-size="11" fill="#555">HiBL 1.0：128GB · 1.6TB/s</text>
+  <text x="218" y="127" text-anchor="middle" font-size="11" fill="#555">FP8 1P / FP4 2P · 互联 2TB/s</text>
+  <text x="218" y="145" text-anchor="middle" font-size="11" fill="#555">推理算力 ~2.87× H20</text>
+  <text x="218" y="163" text-anchor="middle" font-size="11" fill="#555">Atlas 350 · 面向 Prefill</text>
+
+  <!-- 960 box (above) -->
+  <rect x="418" y="70" width="200" height="112" rx="8" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="518" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#C7000B">昇腾 960 系列（提前）</text>
+  <text x="518" y="109" text-anchor="middle" font-size="11" fill="#555">960DT｜2027 Q1（提前 3 季度）</text>
+  <text x="518" y="127" text-anchor="middle" font-size="11" fill="#555">FP8 2P / FP4 4P · 288GB/9.6TB/s</text>
+  <text x="518" y="145" text-anchor="middle" font-size="11" fill="#555">960PR｜2027 Q3</text>
+  <text x="518" y="163" text-anchor="middle" font-size="11" fill="#555">FP4 8P · 192GB · 互联 2.2TB/s</text>
+
+  <!-- connectors from boxes to line -->
+  <line x1="218" y1="182" x2="218" y2="250" stroke="#C7000B" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="518" y1="182" x2="518" y2="250" stroke="#C7000B" stroke-width="1" stroke-dasharray="3,3"/>
+
+  <!-- nodes on the line -->
+  <!-- 910C @80 -->
+  <circle cx="80" cy="250" r="9" fill="#999"/>
+  <text x="80" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#555">910C</text>
+  <text x="80" y="278" text-anchor="middle" font-size="11" fill="#888">2025 Q1</text>
+  <text x="80" y="295" text-anchor="middle" font-size="10" fill="#aaa">互联 784GB/s</text>
+
+  <!-- 950PR @218 -->
+  <circle cx="218" cy="250" r="11" fill="#C7000B"/>
+  <text x="218" y="278" text-anchor="middle" font-size="11" fill="#888" font-weight="700">2026 Q1</text>
+
+  <!-- 950DT @350 -->
+  <circle cx="350" cy="250" r="11" fill="#C7000B"/>
+  <text x="350" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#C7000B">昇腾 950DT</text>
+  <text x="350" y="278" text-anchor="middle" font-size="11" fill="#888" font-weight="700">2026.8 已上云</text>
+  <text x="350" y="295" text-anchor="middle" font-size="10" fill="#999">HiZQ 2.0：144GB · 4TB/s</text>
+  <text x="350" y="311" text-anchor="middle" font-size="10" fill="#999">Decode · 训练</text>
+
+  <!-- 960 @518 -->
+  <circle cx="518" cy="250" r="11" fill="#e8484f"/>
+  <text x="518" y="278" text-anchor="middle" font-size="11" fill="#888" font-weight="700">2027</text>
+
+  <!-- 970 @690 -->
+  <circle cx="690" cy="250" r="11" fill="#e8484f"/>
+  <text x="690" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#C7000B">昇腾 970</text>
+  <text x="690" y="278" text-anchor="middle" font-size="11" fill="#888" font-weight="700">2028</text>
+  <text x="690" y="295" text-anchor="middle" font-size="10" fill="#999">FP8 3.6P / FP4 14P</text>
+  <text x="690" y="311" text-anchor="middle" font-size="10" fill="#999">288GB · 互联 4.4TB/s</text>
+
+  <!-- 980 @850 -->
+  <circle cx="850" cy="250" r="11" fill="#e8484f"/>
+  <text x="850" y="226" text-anchor="middle" font-size="13" font-weight="700" fill="#C7000B">昇腾 980</text>
+  <text x="850" y="278" text-anchor="middle" font-size="11" fill="#888" font-weight="700">2029</text>
+  <text x="850" y="295" text-anchor="middle" font-size="10" fill="#999">FP8 7.2P / FP4 28P</text>
+  <text x="850" y="311" text-anchor="middle" font-size="10" fill="#999">384GB · 互联 8TB/s</text>
+
+  <!-- bottom note -->
+  <line x1="60" y1="360" x2="900" y2="360" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="480" y="388" text-anchor="middle" font-size="13" fill="#333" font-weight="600">超节点：Atlas 950 SuperPoD（8192 卡，已规模商用）/ 960 SuperPoD（15488 卡，2027Q3）/ 860 风冷（2027Q2）</text>
+  <text x="480" y="410" text-anchor="middle" font-size="11" fill="#888">基于「灵衢」UnifiedBus 互联，昇腾超节点累计部署超 1000 套；对标 NVIDIA NVL72 / NVL144</text>
+  <text x="480" y="432" text-anchor="middle" font-size="10" fill="#bbb">注：950PR/950DT 同计算核心、差异在内存子系统；960/970/980 规格为官方宣称值，未量产以实际发布为准</text>
+</svg>
