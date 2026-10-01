@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="440" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">工程落地：从「单卡显存技巧」到「集群级存算调度」</text>
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#888">SGLang（RadixAttention）与 vLLM（PagedAttention）两大主流框架 + PD 分离 + 多级缓存</text>
+
+  <!-- Two frameworks -->
+  <rect x="30" y="70" width="405" height="96" rx="10" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="50" y="94" font-size="15" font-weight="700" fill="#3a5c00">SGLang · RadixAttention</text>
+  <text x="50" y="116" font-size="11.5" fill="#555">基数树（Radix Tree）组织前缀，Prefill/Decode 产生的 KV 全缓存</text>
+  <text x="50" y="136" font-size="11.5" fill="#555">跨请求自动前缀复用；HiCache 多级缓存 + 稀疏（SWA/NSA）</text>
+  <text x="50" y="156" font-size="11.5" fill="#888">思想：最大化 KV「被复用」的概率</text>
+
+  <rect x="465" y="70" width="405" height="96" rx="10" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="485" y="94" font-size="15" font-weight="700" fill="#1a5a9c">vLLM · PagedAttention</text>
+  <text x="485" y="116" font-size="11.5" fill="#555">类比 OS 虚拟内存：KV 切成固定大小 Block，Block Table 映射</text>
+  <text x="485" y="136" font-size="11.5" fill="#555">逻辑连续、物理不连续 → 消除显存碎片；Prefix Caching</text>
+  <text x="485" y="156" font-size="11.5" fill="#888">思想：最大化显存「装得下」的效率</text>
+
+  <!-- PD separation + tiered cache -->
+  <text x="30" y="200" font-size="15" font-weight="700" fill="#333">PD 分离 + 多级缓存（HBM → DRAM → SSD → 分布式存储）</text>
+
+  <!-- Prefill node -->
+  <rect x="30" y="216" width="180" height="70" rx="8" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="120" y="244" text-anchor="middle" font-size="13" font-weight="700" fill="#1a5a9c">Prefill 节点</text>
+  <text x="120" y="266" text-anchor="middle" font-size="11" fill="#666">计算密集 · 算 KV</text>
+
+  <!-- KV transfer -->
+  <path d="M212 251 L280 251" stroke="#8e44ad" stroke-width="2.5" marker-end="url(#a2)"/>
+  <text x="246" y="242" text-anchor="middle" font-size="10" fill="#8e44ad">KV 传输</text>
+  <text x="246" y="278" text-anchor="middle" font-size="9" fill="#999">Mooncake/NIXL/LMCache</text>
+
+  <!-- Decode node -->
+  <rect x="282" y="216" width="180" height="70" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="372" y="244" text-anchor="middle" font-size="13" font-weight="700" fill="#3a5c00">Decode 节点</text>
+  <text x="372" y="266" text-anchor="middle" font-size="11" fill="#666">访存密集 · 读 KV</text>
+
+  <!-- tiered storage -->
+  <g font-size="11" fill="#fff" font-weight="700">
+    <rect x="500" y="212" width="90" height="30" rx="5" fill="#76b900"/><text x="545" y="232" text-anchor="middle">HBM 显存</text>
+    <rect x="500" y="248" width="90" height="30" rx="5" fill="#2e86de"/><text x="545" y="268" text-anchor="middle">DRAM 内存</text>
+    <rect x="500" y="284" width="90" height="30" rx="5" fill="#8e9aa6"/><text x="545" y="304" text-anchor="middle">本地 SSD</text>
+    <rect x="500" y="320" width="90" height="30" rx="5" fill="#576574"/><text x="545" y="340" text-anchor="middle">分布式存储</text>
+  </g>
+  <text x="605" y="232" font-size="10" fill="#666">最快 / 最贵 / 最小</text>
+  <text x="605" y="304" font-size="10" fill="#666">较慢 / 较便宜 / 很大</text>
+  <text x="605" y="340" font-size="10" fill="#666">3FS 等，TiB/s 级聚合带宽</text>
+  <path d="M470 251 L498 240" stroke="#999" stroke-width="1.5" marker-end="url(#a2)"/>
+
+  <!-- bottom takeaways -->
+  <rect x="30" y="366" width="840" height="60" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="50" y="390" font-size="12.5" font-weight="700" fill="#333">三条工程主线：</text>
+  <text x="50" y="412" font-size="12" fill="#555">① 复用（前缀缓存 / 多轮对话）　② 分页（消碎片 / 高利用率）　③ 分层 + 传输（Offload + PD 分离，把「装不下 / 传不快」解决掉）</text>
+
+  <defs>
+    <marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#8e44ad"/></marker>
+  </defs>
+</svg>

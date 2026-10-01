@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 430" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="430" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">自回归生成：为什么需要 KV Cache</text>
+  <text x="450" y="54" text-anchor="middle" font-size="12" fill="#888">核心思想：用「空间」换「时间」——缓存已算过的 Key/Value，避免重复计算</text>
+
+  <!-- No cache row -->
+  <text x="30" y="96" font-size="15" font-weight="700" fill="#C7000B">❌ 无 KV Cache：每生成 1 个 token，重算全部历史</text>
+  <g font-size="12" fill="#333">
+    <!-- step boxes -->
+    <rect x="40" y="110" width="150" height="40" rx="6" fill="#fdeeee" stroke="#e8484f"/>
+    <text x="115" y="128" text-anchor="middle" font-size="11">生成 t3</text>
+    <text x="115" y="143" text-anchor="middle" font-size="10" fill="#c0392b">重算 K/V(t1,t2,t3)</text>
+
+    <rect x="210" y="110" width="200" height="40" rx="6" fill="#fdeeee" stroke="#e8484f"/>
+    <text x="310" y="128" text-anchor="middle" font-size="11">生成 t4</text>
+    <text x="310" y="143" text-anchor="middle" font-size="10" fill="#c0392b">重算 K/V(t1,t2,t3,t4)</text>
+
+    <rect x="430" y="110" width="250" height="40" rx="6" fill="#fdeeee" stroke="#e8484f"/>
+    <text x="555" y="128" text-anchor="middle" font-size="11">生成 t5</text>
+    <text x="555" y="143" text-anchor="middle" font-size="10" fill="#c0392b">重算 K/V(t1,t2,t3,t4,t5)</text>
+  </g>
+  <text x="700" y="134" font-size="13" fill="#C7000B" font-weight="700">复杂度 O(n²·d)</text>
+
+  <!-- With cache row -->
+  <text x="30" y="200" font-size="15" font-weight="700" fill="#5a8c00">✅ 有 KV Cache：历史 K/V 只算一次并缓存，每步只算「新 token」</text>
+  <g font-size="12" fill="#333">
+    <!-- cache pool -->
+    <rect x="40" y="216" width="360" height="44" rx="6" fill="#eef7e0" stroke="#5a8c00"/>
+    <text x="220" y="234" text-anchor="middle" font-size="11" font-weight="600" fill="#3a5c00">KV Cache 池（已缓存 t1…t4 的 Key / Value）</text>
+    <text x="220" y="251" text-anchor="middle" font-size="10" fill="#666">Prefill 阶段一次性算好，Decode 逐步追加</text>
+
+    <rect x="430" y="216" width="150" height="44" rx="6" fill="#f2f9e8" stroke="#76b900"/>
+    <text x="505" y="234" text-anchor="middle" font-size="11">生成 t5</text>
+    <text x="505" y="251" text-anchor="middle" font-size="10" fill="#5a8c00">QKᵀ 退化为 qKᵀ</text>
+
+    <path d="M400 238 L428 238" stroke="#5a8c00" stroke-width="2" marker-end="url(#ar)"/>
+    <rect x="600" y="216" width="150" height="44" rx="6" fill="#eef7e0" stroke="#5a8c00" stroke-dasharray="4,3"/>
+    <text x="675" y="240" text-anchor="middle" font-size="10" fill="#3a5c00">t5 的 K/V 追加回缓存</text>
+  </g>
+  <text x="762" y="242" font-size="13" fill="#5a8c00" font-weight="700">≈ O(n·d)</text>
+
+  <!-- causal note -->
+  <rect x="40" y="286" width="820" height="134" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="60" y="310" font-size="14" font-weight="700" fill="#333">为什么可以缓存？——因果注意力（Causal Mask）</text>
+  <text x="60" y="334" font-size="12" fill="#555">· 生成是单向的：前面的 token「看不到」后面的 token，所以已生成 token 的 Key/Value 不受后续影响。</text>
+  <text x="60" y="356" font-size="12" fill="#555">· 因此 i=3 时算出的 k₂ 与 i=4 时的 k₂ 完全相同 —— 每一层的历史 Key/Value 都无需重复计算。</text>
+  <text x="60" y="378" font-size="12" fill="#8a6200">· 冗余点：Embedding、K/V 生成、QKᵀ、softmax·V 全都存在重复 —— KV Cache 把这些一次性算好存起来。</text>
+  <text x="60" y="402" font-size="12" fill="#1a5a9c">· 适用前提：仅「因果性」模型可用 —— GPT 类 decoder（causal mask）满足；BERT 类 encoder（双向）不满足。</text>
+
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#5a8c00"/></marker>
+  </defs>
+</svg>

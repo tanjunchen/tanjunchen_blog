@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="420" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">SGLang · RadixAttention：用「基数树」共享前缀 KV</text>
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#888">相同前缀的请求复用同一份 KV —— 命中就不必重算 Prefill</text>
+
+  <!-- requests -->
+  <g font-size="11" fill="#555">
+    <rect x="30" y="78" width="250" height="26" rx="5" fill="#eef4ff" stroke="#2e86de"/>
+    <text x="42" y="96">R1：你是一个助手。请介绍北京</text>
+    <rect x="30" y="112" width="250" height="26" rx="5" fill="#eef4ff" stroke="#2e86de"/>
+    <text x="42" y="130">R2：你是一个助手。请介绍上海</text>
+    <rect x="30" y="146" width="250" height="26" rx="5" fill="#eef4ff" stroke="#2e86de"/>
+    <text x="42" y="164">R3：你是一个助手。写一首诗</text>
+  </g>
+  <text x="155" y="196" text-anchor="middle" font-size="11" fill="#8e44ad" font-weight="700">三条请求共享同一段 system prompt</text>
+  <path d="M285 125 L330 125" stroke="#8e44ad" stroke-width="2" marker-end="url(#ra)"/>
+
+  <!-- radix tree -->
+  <text x="620" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="#333">基数树（Radix Tree）</text>
+
+  <!-- root (shared prefix) -->
+  <rect x="360" y="104" width="180" height="44" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="450" y="126" text-anchor="middle" font-size="12" font-weight="700" fill="#3a5c00">「你是一个助手。」</text>
+  <text x="450" y="142" text-anchor="middle" font-size="10" fill="#5a8c00">共享前缀 KV（只算一次）</text>
+
+  <!-- children -->
+  <path d="M470 148 L420 184" stroke="#5a8c00" stroke-width="1.8" marker-end="url(#ra2)"/>
+  <path d="M510 148 L600 184" stroke="#5a8c00" stroke-width="1.8" marker-end="url(#ra2)"/>
+  <path d="M540 130 L720 184" stroke="#5a8c00" stroke-width="1.8" marker-end="url(#ra2)"/>
+
+  <rect x="340" y="188" width="150" height="40" rx="7" fill="#eef7e0" stroke="#5a8c00"/>
+  <text x="415" y="212" text-anchor="middle" font-size="11" fill="#3a5c00">「请介绍」→ 北京 / 上海</text>
+  <rect x="540" y="188" width="150" height="40" rx="7" fill="#eef7e0" stroke="#5a8c00"/>
+  <text x="615" y="212" text-anchor="middle" font-size="11" fill="#3a5c00">R1/R2 各自续写分支</text>
+  <rect x="700" y="188" width="150" height="40" rx="7" fill="#eef7e0" stroke="#5a8c00"/>
+  <text x="775" y="212" text-anchor="middle" font-size="11" fill="#3a5c00">「写一首诗」R3 分支</text>
+
+  <!-- HiCache tiered -->
+  <text x="30" y="262" font-size="14" font-weight="700" fill="#333">HiCache 多级缓存：GPU ↔ CPU ↔ 远端存储</text>
+  <g font-size="11" fill="#fff" font-weight="700">
+    <rect x="30" y="276" width="150" height="34" rx="6" fill="#76b900"/><text x="105" y="298" text-anchor="middle">GPU HBM</text>
+    <rect x="210" y="276" width="150" height="34" rx="6" fill="#2e86de"/><text x="285" y="298" text-anchor="middle">CPU DRAM</text>
+    <rect x="390" y="276" width="180" height="34" rx="6" fill="#576574"/><text x="480" y="298" text-anchor="middle">远端存储 3FS/Mooncake</text>
+  </g>
+  <path d="M182 293 L208 293" stroke="#999" stroke-width="1.6" marker-end="url(#ra)"/>
+  <path d="M362 293 L388 293" stroke="#999" stroke-width="1.6" marker-end="url(#ra)"/>
+  <text x="600" y="290" font-size="10.5" fill="#666">· 请求入队即 prefetch，排队时异步加载</text>
+  <text x="600" y="306" font-size="10.5" fill="#666">· KV 逐层加载，与计算 Overlap，降 TTFT</text>
+
+  <!-- takeaway -->
+  <rect x="30" y="326" width="840" height="76" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="50" y="352" font-size="13" font-weight="700" fill="#333">关键点：</text>
+  <text x="50" y="374" font-size="11.5" fill="#555">· 与「请求结束就丢弃 KV」不同，RadixAttention 把 <tspan font-weight="700" fill="#3a5c00">Prefill + Generate 的 KV 全缓存</tspan>，最大化复用概率</text>
+  <text x="50" y="394" font-size="11.5" fill="#555">· 稀疏化：SWA（滑窗即时释放 + tombstone 保前缀）、DeepSeek NSA（KV 全存、attention 只读 Top-K 页）</text>
+
+  <defs>
+    <marker id="ra" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#8e44ad"/></marker>
+    <marker id="ra2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#5a8c00"/></marker>
+  </defs>
+</svg>
