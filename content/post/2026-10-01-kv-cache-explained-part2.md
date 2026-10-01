@@ -44,7 +44,7 @@ SGLang 的 KV Cache 管理贯穿在 Scheduler 的各个流程里，核心是 **R
   - **加载与计算 Overlap**：KV 逐层加载（独立 CUDA Stream），第 i 层 KV 就绪即可开始该层前向，无需等全部层加载完，从而把 I/O 开销隐藏在计算里，显著降低 TTFT。
 - **稀疏化**：
   - **SWA（滑动窗口注意力）**：用"双池（full/swa）+ 滑窗即时释放 + tombstone 保留前缀命中"的组合，让窗口外的 KV 真正被回收，同时前缀仍可共享——这是稀疏里少数**真正缩小 KV 占用**的方案。
-  - **DeepSeek NSA（原生稀疏注意力）**：KV 全存、attention 只读一部分。Indexer 给每个 page 打分，融合 **Compressed（历史摘要页）+ Selected（Top-K 页）+ Sliding（近期窗口）**三路，把注意力从 `O(seq)` 降到 `O(K·page + W)`，长序列下算力和带宽都大幅下降。
+  - **DeepSeek NSA（原生稀疏注意力）**：KV 全存、attention 只读一部分。Indexer 给每个 page 打分，融合 Compressed(历史摘要页)+ Selected(Top-K 页)+ Sliding(近期窗口) 三路，把注意力从 `O(seq)` 降到 `O(K·page + W)`，长序列下算力和带宽都大幅下降。
 
 ## 3.2 vLLM：PagedAttention
 
@@ -54,7 +54,7 @@ vLLM 的 KV Cache 管理以 **PagedAttention** 为基石，思想**类比操作�
 
 - **分页管理**：把每个序列的 KV Cache 切成**固定大小的物理 Block**，每个 Block 存若干 token 的 KV。用一张 **Block Table**（类比 OS 页表）记录逻辑 KV 分布在哪些物理 Block 上。**逻辑连续、物理不连续**，从而消除显存碎片、大幅提升利用率。
 - **初始化预分配**：启动时用 dummy 数据跑一次前向，度量激活显存，**估算能分配多少 KV Block**，然后一次性预分配 GPU 显存池（避免运行时频繁申请）。
-- **Block 管理机制**：`KVCacheBlock` 数据结构 + `BlockPool` 统一管理，空闲块用 **FreeKVCacheBlockQueue（LRU 双向链表）**组织，方便驱逐最久未用的块。
+- **Block 管理机制**：`KVCacheBlock` 数据结构 + `BlockPool` 统一管理，空闲块用 **FreeKVCacheBlockQueue**（LRU 双向链表）组织，方便驱逐最久未用的块。
 - **Prefix Caching（自动前缀缓存）**：给 Block 算 hash，相同前缀的 Block 直接命中复用，跨请求共享 system prompt / 公共上下文。
 - **KV Connector**：把 KV 的跨节点传输抽象出来，支撑 **PD 分离**（Prefill / Decode 分别部署）下的 KV 搬运。
 
@@ -75,7 +75,7 @@ KV Cache 的管理离不开**调度**——怎么把多个请求高效地塞进 
 当上下文越来越长、并发越来越大，KV Cache 早已装不下单卡显存，工程上出现两条关键主线：
 
 - **PD 分离**：Prefill（compute-bound）与 Decode（memory-bound）分开部署、各自扩缩容，中间通过 **KV 传输**（Mooncake、NIXL、LMCache 等）把 Prefill 产出的 KV 送到 Decode 节点。
-- **多级缓存 / KV Offload**：把历史 KV 从昂贵的 HBM，逐级下沉到 **DRAM → 本地 SSD → 分布式存储**（如 3FS，提供 TiB/s 级聚合带宽），会话延续时按需加载复用。理论基础可参考公开论文 CachedAttention（*Cost-Efficient LLM Serving for Multi-turn Conversations*）。
+- **多级缓存 / KV Offload**：把历史 KV 从昂贵的 HBM，逐级下沉到 **DRAM → 本地 SSD → 分布式存储**（如 3FS，提供 TiB/s 级聚合带宽），会话延续时按需加载复用。理论基础可参考公开论文 [CachedAttention（*Cost-Efficient LLM Serving for Multi-turn Conversations*）](https://arxiv.org/abs/2403.19708)。
 
 两个代表性的公开系统，把这套思路讲得很透：
 
@@ -90,7 +90,7 @@ KV Cache 的管理离不开**调度**——怎么把多个请求高效地塞进 
 
 把上面的脉络往前延伸，可以看到几条正在发生的趋势：
 
-- **模型级"原生优化"成为标配**：**MLA**（DeepSeek）已证明低秩压缩能在几乎不损精度的前提下大砍 KV，正被越来越多模型采纳；**NSA（原生稀疏注意力）**把稀疏从"推理期补丁"变成"训练即内建"，长上下文下的算力/带宽收益更稳。GQA 早已是默认选择。
+- **模型级"原生优化"成为标配**：**MLA**（DeepSeek）已证明低秩压缩能在几乎不损精度的前提下大砍 KV，正被越来越多模型采纳；**NSA**（原生稀疏注意力）把稀疏从"推理期补丁"变成"训练即内建"，长上下文下的算力/带宽收益更稳。GQA 早已是默认选择。
 - **低比特 KV 常态化**：FP8 KV 逐步落地，INT4/更激进的量化在探索中；量化 + 稀疏 + 低秩「组合拳」会成为标准配置。
 - **PD 分离与 KV 传输标准化**：Prefill/Decode 解耦已是大规模服务的主流架构，围绕 KV 传输的生态（Mooncake、NIXL、LMCache、框架内置 KV Connector）正在快速成熟，KV 逐渐变成一种**可在集群里自由流动的"数据"**。
 - **分层缓存 / 存算分离**：HBM–DRAM–SSD–分布式存储的多级 KV 池，配合高性能存储（3FS 等）与 RDMA 网络，把"显存装不下"的长上下文问题，转化为"存储 + 调度"问题。
@@ -106,26 +106,31 @@ KV Cache 的管理离不开**调度**——怎么把多个请求高效地塞进 
 
 **综述与系列博客**
 
-- A Survey on Large Language Model Acceleration based on KV Cache Management（KV Cache 管理综述）
-- rossiXYZ《探秘 Transformer 系列之（20）—— KV Cache》及后续篇：<https://www.cnblogs.com/rossiXYZ/p/18799503>　·　<https://www.cnblogs.com/rossiXYZ/p/18811723>　·　<https://www.cnblogs.com/rossiXYZ/p/18811785>　·　<https://www.cnblogs.com/rossiXYZ/p/18815541>
-- A Survey on Efficient Inference for Large Language Models：<https://arxiv.org/abs/2404.14294>
+- [A Survey on Large Language Model Acceleration based on KV Cache Management](https://arxiv.org/abs/2412.19442)（KV Cache 管理综述）
+- rossiXYZ《探秘 Transformer 系列之（20）—— KV Cache》及后续篇：
+  - <https://www.cnblogs.com/rossiXYZ/p/18799503>
+  - <https://www.cnblogs.com/rossiXYZ/p/18811723>
+  - <https://www.cnblogs.com/rossiXYZ/p/18811785>
+  - <https://www.cnblogs.com/rossiXYZ/p/18815541>
+- [A Survey on Efficient Inference for Large Language Models](https://arxiv.org/abs/2404.14294)
 
 **模型级 / 稀疏 / 量化**
 
-- GQA: Training Generalized Multi-Query Transformer Models：<https://arxiv.org/abs/2305.13245>
-- H2O: Heavy-Hitter Oracle for Efficient Generative Inference：<https://arxiv.org/abs/2306.14048>
-- StreamingLLM: Efficient Streaming Language Models with Attention Sinks：<https://arxiv.org/abs/2309.17453>
-- SnapKV / PyramidKV / Double Sparsity / InfiniGen 等（见综述与系列博客中的引用）
-- YOCO: You Only Cache Once：<https://arxiv.org/abs/2405.05254>
+- [GQA: Training Generalized Multi-Query Transformer Models](https://arxiv.org/abs/2305.13245)
+- [H2O: Heavy-Hitter Oracle for Efficient Generative Inference](https://arxiv.org/abs/2306.14048)
+- [StreamingLLM: Efficient Streaming Language Models with Attention Sinks](https://arxiv.org/abs/2309.17453)
+- [YOCO: You Only Cache Once](https://arxiv.org/abs/2405.05254)
 
 **系统 / 调度 / 分离式**
 
-- Orca: A Distributed Serving System for Transformer-Based Generative Models（迭代级调度 / Continuous Batching）
-- SARATHI: Efficient LLM Inference by Piggybacking Decodes with Chunked Prefills
-- Efficient Memory Management for LLM Serving with PagedAttention（vLLM）：<https://arxiv.org/abs/2309.06180>
-- Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving
-- MemServe: Context Caching for Disaggregated LLM Serving with Elastic Memory Pool
-- CachedAttention（多轮对话 KV 复用）：<https://arxiv.org/abs/2403.19708>
-- vLLM：<https://github.com/vllm-project/vllm>　·　SGLang：<https://github.com/sgl-project/sglang>　·　LMCache：<https://github.com/LMCache/LMCache>
+- [Orca: A Distributed Serving System for Transformer-Based Generative Models](https://www.usenix.org/conference/osdi22/presentation/yu)（迭代级调度 / Continuous Batching）
+- [SARATHI: Efficient LLM Inference by Piggybacking Decodes with Chunked Prefills](https://arxiv.org/abs/2308.16369)
+- [Efficient Memory Management for LLM Serving with PagedAttention（vLLM）](https://arxiv.org/abs/2309.06180)
+- [Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving](https://arxiv.org/abs/2407.00079)
+- [MemServe: Context Caching for Disaggregated LLM Serving with Elastic Memory Pool](https://arxiv.org/abs/2406.17565)
+- [CachedAttention（多轮对话 KV 复用）](https://arxiv.org/abs/2403.19708)
+  - vLLM：<https://github.com/vllm-project/vllm>　
+  - SGLang：<https://github.com/sgl-project/sglang>
+  - LMCache：<https://github.com/LMCache/LMCache>
 
 > 本文为学习性科普，理论与框架细节以各论文与开源项目官方文档为准；实现随版本迭代较快，请以最新源码为准。

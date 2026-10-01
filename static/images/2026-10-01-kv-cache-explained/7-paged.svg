@@ -38,7 +38,7 @@
     <rect x="744" y="134" width="44" height="30" rx="4" fill="#f2f9e8" stroke="#5a8c00"/><text x="766" y="154" text-anchor="middle">#9</text>
     <rect x="792" y="134" width="44" height="30" rx="4" fill="#f0f0f0" stroke="#bbb"/><text x="814" y="154" text-anchor="middle">#10</text>
   </g>
-  <text x="718" y="190" text-anchor="middle" font-size="10" fill="#5a8c00">绿色=已占用　灰色=空闲（FreeQueue / LRU 管理）</text>
+  <text x="718" y="190" text-anchor="middle" font-size="9.5" fill="#5a8c00">绿=已占用 / 灰=空闲，由 FreeKVCacheBlockQueue（LRU 双向链表）管理</text>
   <path d="M532 160 L598 150" stroke="#5a8c00" stroke-width="1.8" marker-end="url(#pa2)"/>
 
   <!-- features -->
