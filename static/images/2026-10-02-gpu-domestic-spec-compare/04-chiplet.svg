@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 1400" font-family="'PingFang SC','Microsoft YaHei','Hiragino Sans GB','Helvetica Neue',Arial,sans-serif">
+  <rect width="1180" height="1400" fill="#ffffff"/>
+
+  <!-- ===== Header ===== -->
+  <text x="590" y="58" text-anchor="middle" font-size="32" font-weight="800" fill="#1f2d3d">Chiplet 技术：突破制程限制的国产方案</text>
+  <text x="590" y="92" text-anchor="middle" font-size="15" fill="#8a94a6">以壁仞 BR100 为例的 2.5D CoWoS 封装 · 资料据各厂商公开技术白皮书整理（截至 2026 年 10 月）</text>
+
+  <!-- ===== Section 1: Architecture ===== -->
+  <text x="50" y="152" font-size="21" font-weight="700" fill="#1f2d3d">2.5D CoWoS 封装架构示意</text>
+
+  <!-- interposer -->
+  <rect x="50" y="172" width="1080" height="250" rx="18" fill="#eceef2" stroke="#dfe3ea" stroke-width="1"/>
+  <rect x="78" y="196" width="1024" height="180" rx="14" fill="#e3e6ec"/>
+
+  <!-- left HBM -->
+  <rect x="98" y="216" width="130" height="64" rx="10" fill="#f8826e"/>
+  <text x="163" y="244" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">HBM</text>
+  <text x="163" y="264" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.95">16GB</text>
+  <rect x="98" y="292" width="130" height="64" rx="10" fill="#f8826e"/>
+  <text x="163" y="320" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">HBM</text>
+  <text x="163" y="340" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.95">16GB</text>
+
+  <!-- compute cores -->
+  <rect x="258" y="216" width="317" height="140" rx="10" fill="#0fa697"/>
+  <text x="417" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">计算核心 1</text>
+  <text x="417" y="308" text-anchor="middle" font-size="15" fill="#ffffff" opacity="0.95">7nm</text>
+  <rect x="605" y="216" width="317" height="140" rx="10" fill="#0fa697"/>
+  <text x="763" y="282" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">计算核心 2</text>
+  <text x="763" y="308" text-anchor="middle" font-size="15" fill="#ffffff" opacity="0.95">7nm</text>
+
+  <!-- die-to-die interconnect bridge -->
+  <rect x="556" y="268" width="68" height="36" rx="8" fill="#0b7d70" stroke="#ffffff" stroke-width="2"/>
+  <text x="590" y="291" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">D2D</text>
+  <text x="590" y="384" text-anchor="middle" font-size="12.5" fill="#6b7488">片间高速互联（Die-to-Die）</text>
+
+  <!-- right HBM -->
+  <rect x="952" y="216" width="130" height="64" rx="10" fill="#f8826e"/>
+  <text x="1017" y="244" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">HBM</text>
+  <text x="1017" y="264" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.95">16GB</text>
+  <rect x="952" y="292" width="130" height="64" rx="10" fill="#f8826e"/>
+  <text x="1017" y="320" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">HBM</text>
+  <text x="1017" y="340" text-anchor="middle" font-size="13" fill="#ffffff" opacity="0.95">16GB</text>
+
+  <text x="590" y="404" text-anchor="middle" font-size="14" fill="#6b7488">硅中介层 Silicon Interposer</text>
+  <text x="50" y="446" font-size="13.5" fill="#9aa3b2">壁仞 BR100：7nm · 770 亿晶体管 · Chiplet + 2.5D CoWoS · 64GB HBM2e · 芯片面积约 1000 平方毫米</text>
+
+  <!-- ===== Section 2: Tags ===== -->
+  <text x="50" y="494" font-size="21" font-weight="700" fill="#1f2d3d">采用 Chiplet / 多 die 的国产芯片</text>
+
+  <rect x="50" y="514" width="258" height="56" rx="12" fill="#0fa697"/>
+  <text x="179" y="548" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">壁仞 BR100</text>
+
+  <rect x="324" y="514" width="258" height="56" rx="12" fill="#16a34a"/>
+  <text x="453" y="540" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">寒武纪 思元690</text>
+  <text x="453" y="559" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.9">研报估算 · 官方未披露</text>
+
+  <rect x="598" y="514" width="258" height="56" rx="12" fill="#7b5cf6"/>
+  <text x="727" y="548" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">沐曦 C600（2.5D）</text>
+
+  <rect x="872" y="514" width="258" height="56" rx="12" fill="#f2634f"/>
+  <text x="1001" y="548" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">华为 昇腾910C（双 die）</text>
+
+  <!-- ===== Section 3: Table ===== -->
+  <text x="50" y="612" font-size="21" font-weight="700" fill="#1f2d3d">传统单片 vs Chiplet 架构</text>
+
+  <defs>
+    <clipPath id="tbl"><rect x="50" y="630" width="1080" height="312" rx="12"/></clipPath>
+  </defs>
+  <g clip-path="url(#tbl)">
+    <rect x="50" y="630" width="1080" height="312" fill="#ffffff"/>
+    <rect x="50" y="630" width="1080" height="52" fill="#f1f3f7"/>
+    <rect x="50" y="682" width="280" height="260" fill="#f7f8fa"/>
+    <rect x="730" y="682" width="400" height="260" fill="#fff6ed"/>
+    <!-- row separators -->
+    <line x1="50" y1="682" x2="1130" y2="682" stroke="#e7eaf0" stroke-width="1"/>
+    <line x1="50" y1="734" x2="1130" y2="734" stroke="#eef0f4" stroke-width="1"/>
+    <line x1="50" y1="786" x2="1130" y2="786" stroke="#eef0f4" stroke-width="1"/>
+    <line x1="50" y1="838" x2="1130" y2="838" stroke="#eef0f4" stroke-width="1"/>
+    <line x1="50" y1="890" x2="1130" y2="890" stroke="#eef0f4" stroke-width="1"/>
+  </g>
+  <rect x="50" y="630" width="1080" height="312" rx="12" fill="none" stroke="#eef0f4" stroke-width="1.5"/>
+
+  <!-- header text -->
+  <text x="190" y="661" text-anchor="middle" font-size="15" font-weight="700" fill="#3a4253">对比维度</text>
+  <text x="530" y="661" text-anchor="middle" font-size="15" font-weight="700" fill="#3a4253">传统单片架构</text>
+  <text x="930" y="661" text-anchor="middle" font-size="15" font-weight="700" fill="#3a4253">Chiplet 架构</text>
+
+  <!-- row 1 -->
+  <text x="190" y="713" text-anchor="middle" font-size="15" font-weight="600" fill="#3a4253">制程依赖</text>
+  <text x="530" y="713" text-anchor="middle" font-size="15" fill="#6b7488">高度依赖最先进制程</text>
+  <text x="930" y="713" text-anchor="middle" font-size="15" font-weight="600" fill="#e07a35">可混合多种制程</text>
+  <!-- row 2 -->
+  <text x="190" y="765" text-anchor="middle" font-size="15" font-weight="600" fill="#3a4253">芯片面积</text>
+  <text x="530" y="765" text-anchor="middle" font-size="15" fill="#6b7488">单一大芯片</text>
+  <text x="930" y="765" text-anchor="middle" font-size="15" font-weight="600" fill="#e07a35">多小芯片组合</text>
+  <!-- row 3 -->
+  <text x="190" y="817" text-anchor="middle" font-size="15" font-weight="600" fill="#3a4253">制造良率</text>
+  <text x="530" y="817" text-anchor="middle" font-size="15" fill="#6b7488">面积越大良率骤降</text>
+  <text x="930" y="817" text-anchor="middle" font-size="15" font-weight="600" fill="#e07a35">小芯片良率更高</text>
+  <!-- row 4 -->
+  <text x="190" y="869" text-anchor="middle" font-size="15" font-weight="600" fill="#3a4253">互联带宽</text>
+  <text x="530" y="869" text-anchor="middle" font-size="15" fill="#6b7488">片上互联</text>
+  <text x="930" y="869" text-anchor="middle" font-size="15" font-weight="600" fill="#e07a35">硅中介层高速互联</text>
+  <!-- row 5 -->
+  <text x="190" y="921" text-anchor="middle" font-size="15" font-weight="600" fill="#3a4253">成本结构</text>
+  <text x="530" y="921" text-anchor="middle" font-size="15" fill="#6b7488">流片成本高</text>
+  <text x="930" y="921" text-anchor="middle" font-size="15" font-weight="600" fill="#e07a35">封装成本占比提升</text>
+
+  <!-- ===== Section 4: Advantages / Challenges ===== -->
+  <text x="50" y="986" font-size="21" font-weight="700" fill="#1f2d3d">核心优势</text>
+  <text x="610" y="986" font-size="21" font-weight="700" fill="#1f2d3d">技术挑战</text>
+
+  <!-- advantage cards (left) -->
+  <g>
+    <rect x="50" y="1004" width="520" height="76" rx="12" fill="#eef1fe"/>
+    <rect x="50" y="1004" width="6" height="76" rx="3" fill="#4f6ef7"/>
+    <text x="76" y="1036" font-size="16" font-weight="700" fill="#3b5bdb">突破制程限制</text>
+    <text x="76" y="1060" font-size="13.5" fill="#68718c">混合封装不同工艺节点芯片，以成熟工艺逼近先进制程性能</text>
+
+    <rect x="50" y="1096" width="520" height="76" rx="12" fill="#eef1fe"/>
+    <rect x="50" y="1096" width="6" height="76" rx="3" fill="#4f6ef7"/>
+    <text x="76" y="1128" font-size="16" font-weight="700" fill="#3b5bdb">提升良率</text>
+    <text x="76" y="1152" font-size="13.5" fill="#68718c">大芯片拆分为多个小芯片，降低单颗缺陷率，提升整体良率</text>
+
+    <rect x="50" y="1188" width="520" height="76" rx="12" fill="#eef1fe"/>
+    <rect x="50" y="1188" width="6" height="76" rx="3" fill="#4f6ef7"/>
+    <text x="76" y="1220" font-size="16" font-weight="700" fill="#3b5bdb">灵活组合</text>
+    <text x="76" y="1244" font-size="13.5" fill="#68718c">按需搭配计算核心、HBM 显存、I/O 芯片等模块</text>
+
+    <rect x="50" y="1280" width="520" height="76" rx="12" fill="#eef1fe"/>
+    <rect x="50" y="1280" width="6" height="76" rx="3" fill="#4f6ef7"/>
+    <text x="76" y="1312" font-size="16" font-weight="700" fill="#3b5bdb">成本优化</text>
+    <text x="76" y="1336" font-size="13.5" fill="#68718c">在先进制程受限背景下，以更低成本实现高算力</text>
+  </g>
+
+  <!-- challenge cards (right) -->
+  <g>
+    <rect x="610" y="1004" width="520" height="76" rx="12" fill="#fdecec"/>
+    <rect x="610" y="1004" width="6" height="76" rx="3" fill="#ef4444"/>
+    <text x="636" y="1036" font-size="16" font-weight="700" fill="#dc2626">封装成本高</text>
+    <text x="636" y="1060" font-size="13.5" fill="#9a6a6a">2.5D CoWoS 成本高，需与性能提升权衡</text>
+
+    <rect x="610" y="1096" width="520" height="76" rx="12" fill="#fdecec"/>
+    <rect x="610" y="1096" width="6" height="76" rx="3" fill="#ef4444"/>
+    <text x="636" y="1128" font-size="16" font-weight="700" fill="#dc2626">散热设计</text>
+    <text x="636" y="1152" font-size="13.5" fill="#9a6a6a">多芯片集成热密度更高，散热要求更高</text>
+
+    <rect x="610" y="1188" width="520" height="76" rx="12" fill="#fdecec"/>
+    <rect x="610" y="1188" width="6" height="76" rx="3" fill="#ef4444"/>
+    <text x="636" y="1220" font-size="16" font-weight="700" fill="#dc2626">设计复杂度</text>
+    <text x="636" y="1244" font-size="13.5" fill="#9a6a6a">Chiplet 间高速互联需要更强系统级设计能力</text>
+
+    <rect x="610" y="1280" width="520" height="76" rx="12" fill="#fdecec"/>
+    <rect x="610" y="1280" width="6" height="76" rx="3" fill="#ef4444"/>
+    <text x="636" y="1312" font-size="16" font-weight="700" fill="#dc2626">供应链依赖</text>
+    <text x="636" y="1336" font-size="13.5" fill="#9a6a6a">先进封装产能仍集中于台积电等海外厂商</text>
+  </g>
+</svg>
