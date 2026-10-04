@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#555"/>
+    </marker>
+  </defs>
+  <rect width="900" height="500" fill="#ffffff"/>
+  <text x="450" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">通信原语全景：点对点是积木，拼成集合通信，服务于并行策略</text>
+
+  <!-- Layer 1: Point-to-Point -->
+  <rect x="30" y="56" width="840" height="92" rx="10" fill="#eef4fb" stroke="#2b6cb0"/>
+  <text x="48" y="80" font-size="15" font-weight="700" fill="#2b6cb0">第一层 · 点对点原语（一切通信的积木）</text>
+  <g font-size="13" fill="#1a3a5c">
+    <rect x="48" y="94" width="150" height="40" rx="6" fill="#ffffff" stroke="#2b6cb0"/>
+    <text x="123" y="112" text-anchor="middle" font-weight="600">Send / Recv</text>
+    <text x="123" y="127" text-anchor="middle" font-size="10" fill="#5a7899">阻塞收发</text>
+    <rect x="214" y="94" width="160" height="40" rx="6" fill="#ffffff" stroke="#2b6cb0"/>
+    <text x="294" y="112" text-anchor="middle" font-weight="600">ISend / IRecv</text>
+    <text x="294" y="127" text-anchor="middle" font-size="10" fill="#5a7899">非阻塞·计算通信 overlap</text>
+    <rect x="390" y="94" width="150" height="40" rx="6" fill="#ffffff" stroke="#2b6cb0"/>
+    <text x="465" y="112" text-anchor="middle" font-weight="600">SendRecv</text>
+    <text x="465" y="127" text-anchor="middle" font-size="10" fill="#5a7899">环形·不死锁</text>
+    <rect x="556" y="94" width="150" height="40" rx="6" fill="#ffffff" stroke="#2b6cb0"/>
+    <text x="631" y="112" text-anchor="middle" font-weight="600">Barrier</text>
+    <text x="631" y="127" text-anchor="middle" font-size="10" fill="#5a7899">不传数据·对齐时序</text>
+  </g>
+
+  <!-- arrow 1 -->
+  <path d="M450 148 L450 176" stroke="#555" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="462" y="168" font-size="12" fill="#777">组合（环 Ring / 树 Tree / 蝶形 Butterfly）</text>
+
+  <!-- Layer 2: Collective -->
+  <rect x="30" y="184" width="840" height="118" rx="10" fill="#eef7e0" stroke="#5a8c00"/>
+  <text x="48" y="208" font-size="15" font-weight="700" fill="#5a8c00">第二层 · 集合通信（由点对点拼装而成）</text>
+  <g font-size="12.5" fill="#2f4a00">
+    <rect x="48" y="222" width="130" height="34" rx="6" fill="#ffffff" stroke="#76b900"/>
+    <text x="113" y="243" text-anchor="middle">Broadcast</text>
+    <rect x="190" y="222" width="150" height="34" rx="6" fill="#ffffff" stroke="#76b900"/>
+    <text x="265" y="243" text-anchor="middle">Scatter / Gather</text>
+    <rect x="352" y="222" width="120" height="34" rx="6" fill="#ffffff" stroke="#76b900"/>
+    <text x="412" y="243" text-anchor="middle">AllGather</text>
+    <rect x="484" y="222" width="170" height="34" rx="6" fill="#ffffff" stroke="#76b900"/>
+    <text x="569" y="243" text-anchor="middle">Reduce / AllReduce</text>
+    <rect x="666" y="222" width="150" height="34" rx="6" fill="#ffffff" stroke="#76b900"/>
+    <text x="741" y="243" text-anchor="middle">ReduceScatter</text>
+    <rect x="48" y="262" width="200" height="34" rx="6" fill="#ffffff" stroke="#76b900"/>
+    <text x="148" y="283" text-anchor="middle">All2All / AllToAllv</text>
+    <text x="268" y="283" font-size="12.5" fill="#3a5c00">核心等式：AllReduce = ReduceScatter + AllGather ；Ring 每一步 = 一次 SendRecv</text>
+  </g>
+
+  <!-- arrow 2 -->
+  <path d="M450 302 L450 330" stroke="#555" stroke-width="2" marker-end="url(#ar)"/>
+  <text x="462" y="322" font-size="12" fill="#777">服务于</text>
+
+  <!-- Layer 3: Parallel strategy -->
+  <rect x="30" y="338" width="840" height="140" rx="10" fill="#fbf0e6" stroke="#c05621"/>
+  <text x="48" y="362" font-size="15" font-weight="700" fill="#c05621">第三层 · 并行策略里的角色</text>
+  <g font-size="13" fill="#5c2e00">
+    <text x="60" y="388" font-weight="700">PP</text>
+    <text x="150" y="388">Send / Recv 传激活、梯度</text>
+    <text x="60" y="412" font-weight="700">DP</text>
+    <text x="150" y="412">AllReduce(AVG) 同步梯度</text>
+    <text x="60" y="436" font-weight="700">TP</text>
+    <text x="150" y="436">AllReduce(SUM) 层内同步（仅机内）</text>
+    <text x="60" y="460" font-weight="700">FSDP</text>
+    <text x="150" y="460">AllGather 取参数 ＋ ReduceScatter 切梯度</text>
+    <text x="560" y="388" font-weight="700">MoE</text>
+    <text x="620" y="388">变长 AllToAllv 路由 token</text>
+    <text x="560" y="412" font-weight="700">Init</text>
+    <text x="620" y="412">Broadcast 同步初始权重</text>
+    <text x="560" y="436" font-weight="700">Debug</text>
+    <text x="620" y="436">Barrier 对齐 / 计时 / 调试</text>
+  </g>
+</svg>

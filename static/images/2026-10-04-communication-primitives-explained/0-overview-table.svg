@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 520" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="940" height="520" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">通信原语全局对比：类别 · 单 rank 通信量 · 典型场景</text>
+  <!-- legend -->
+  <rect x="640" y="18" width="12" height="12" rx="3" fill="#2b6cb0"/><text x="658" y="29" font-size="12" fill="#555">点对点</text>
+  <rect x="720" y="18" width="12" height="12" rx="3" fill="#76b900"/><text x="738" y="29" font-size="12" fill="#555">集合通信</text>
+  <text x="800" y="29" font-size="12" fill="#d4a017">★ 最常用</text>
+
+  <!-- header -->
+  <rect x="20" y="46" width="900" height="30" rx="5" fill="#f2f4f7"/>
+  <text x="40" y="66" font-size="13" font-weight="700" fill="#555">原语</text>
+  <text x="230" y="66" font-size="13" font-weight="700" fill="#555">单 rank 通信量</text>
+  <text x="470" y="66" font-size="13" font-weight="700" fill="#555">典型场景</text>
+
+  <g font-size="13">
+    <!-- P2P rows (blue stripe) -->
+    <g>
+      <rect x="20" y="82" width="900" height="30" fill="#f7fafd"/>
+      <rect x="20" y="82" width="5" height="30" fill="#2b6cb0"/>
+      <text x="40" y="102" font-weight="700" fill="#1a3a5c">Send / Recv</text>
+      <text x="230" y="102" fill="#444">S（单向）</text>
+      <text x="470" y="102" fill="#444">PP：stage 间传激活 / 梯度</text>
+    </g>
+    <g>
+      <rect x="20" y="112" width="900" height="30" fill="#ffffff"/>
+      <rect x="20" y="112" width="5" height="30" fill="#2b6cb0"/>
+      <text x="40" y="132" font-weight="700" fill="#1a3a5c">ISend / IRecv</text>
+      <text x="230" y="132" fill="#444">S（异步）</text>
+      <text x="470" y="132" fill="#444">计算-通信 overlap</text>
+    </g>
+    <g>
+      <rect x="20" y="142" width="900" height="30" fill="#f7fafd"/>
+      <rect x="20" y="142" width="5" height="30" fill="#2b6cb0"/>
+      <text x="40" y="162" font-weight="700" fill="#1a3a5c">SendRecv</text>
+      <text x="230" y="162" fill="#444">S（双向各 S）</text>
+      <text x="470" y="162" fill="#444">Ring 算法的基本步、环形移位</text>
+    </g>
+    <g>
+      <rect x="20" y="172" width="900" height="30" fill="#ffffff"/>
+      <rect x="20" y="172" width="5" height="30" fill="#2b6cb0"/>
+      <text x="40" y="192" font-weight="700" fill="#1a3a5c">Barrier</text>
+      <text x="230" y="192" fill="#444">~0（仅信令）</text>
+      <text x="470" y="192" fill="#444">阶段对齐、计时、调试</text>
+    </g>
+
+    <!-- Collective rows (green stripe) -->
+    <g>
+      <rect x="20" y="202" width="900" height="30" fill="#f8fcf2"/>
+      <rect x="20" y="202" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="222" font-weight="700" fill="#2f4a00">Broadcast</text>
+      <text x="230" y="222" fill="#444">S（树状 ~S·logN）</text>
+      <text x="470" y="222" fill="#444">参数初始化、权重同步</text>
+    </g>
+    <g>
+      <rect x="20" y="232" width="900" height="30" fill="#ffffff"/>
+      <rect x="20" y="232" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="252" font-weight="700" fill="#2f4a00">Scatter</text>
+      <text x="230" y="252" fill="#444">(N-1)/N·S</text>
+      <text x="470" y="252" fill="#444">把数据分片下发</text>
+    </g>
+    <g>
+      <rect x="20" y="262" width="900" height="30" fill="#f8fcf2"/>
+      <rect x="20" y="262" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="282" font-weight="700" fill="#2f4a00">Gather</text>
+      <text x="230" y="282" fill="#444">(N-1)/N·S</text>
+      <text x="470" y="282" fill="#444">结果汇总到主 rank</text>
+    </g>
+    <g>
+      <rect x="20" y="292" width="900" height="30" fill="#ffffff"/>
+      <rect x="20" y="292" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="312" font-weight="700" fill="#2f4a00">AllGather</text>
+      <text x="230" y="312" fill="#444">(N-1)/N·S</text>
+      <text x="470" y="312" fill="#444">ZeRO / FSDP 参数聚合</text>
+    </g>
+    <g>
+      <rect x="20" y="322" width="900" height="30" fill="#f8fcf2"/>
+      <rect x="20" y="322" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="342" font-weight="700" fill="#2f4a00">Reduce</text>
+      <text x="230" y="342" fill="#444">(N-1)/N·S</text>
+      <text x="470" y="342" fill="#444">汇总 loss / 统计量到主 rank</text>
+    </g>
+    <g>
+      <rect x="20" y="352" width="900" height="30" fill="#fffdf2"/>
+      <rect x="20" y="352" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="372" font-weight="700" fill="#2f4a00">AllReduce</text>
+      <text x="230" y="372" fill="#444">2(N-1)/N·S</text>
+      <text x="470" y="372" fill="#1a1a1a" font-weight="700">★ 数据并行（DP）梯度同步</text>
+    </g>
+    <g>
+      <rect x="20" y="382" width="900" height="30" fill="#ffffff"/>
+      <rect x="20" y="382" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="402" font-weight="700" fill="#2f4a00">ReduceScatter</text>
+      <text x="230" y="402" fill="#444">(N-1)/N·S</text>
+      <text x="470" y="402" fill="#444">ZeRO / FSDP 梯度切分</text>
+    </g>
+    <g>
+      <rect x="20" y="412" width="900" height="30" fill="#fffdf2"/>
+      <rect x="20" y="412" width="5" height="30" fill="#76b900"/>
+      <text x="40" y="432" font-weight="700" fill="#2f4a00">All2All / AllToAllv</text>
+      <text x="230" y="432" fill="#444">(N-1)/N·S（最重）</text>
+      <text x="470" y="432" fill="#1a1a1a" font-weight="700">★ MoE 专家并行 token 路由</text>
+    </g>
+  </g>
+
+  <rect x="20" y="82" width="900" height="360" rx="6" fill="none" stroke="#e3e6ea"/>
+  <text x="24" y="466" font-size="12" fill="#888">S = 单份数据字节数，N = rank 数；AllReduce = ReduceScatter + AllGather，单卡量 2(N-1)/N·S → 2S（几乎与 N 无关）</text>
+</svg>

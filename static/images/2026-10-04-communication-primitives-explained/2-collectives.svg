@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 580" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#888"/>
+    </marker>
+  </defs>
+  <rect width="940" height="580" fill="#ffffff"/>
+  <text x="470" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#1a1a1a">集合通信一图速览：操作前 → 操作后（4 个 rank：r0 r1 r2 r3）</text>
+  <text x="470" y="52" text-anchor="middle" font-size="12" fill="#888">字母=不同内容的数据块；数字=数值；★10=归约和（1+2+3+4）；[A B C D]=一个 rank 拿到全部</text>
+
+  <text x="343" y="74" text-anchor="middle" font-size="13" font-weight="700" fill="#555">操作前</text>
+  <text x="713" y="74" text-anchor="middle" font-size="13" font-weight="700" fill="#555">操作后</text>
+  <!-- rank labels -->
+  <g font-size="10" fill="#aaa">
+    <text x="226" y="88" text-anchor="middle">r0</text><text x="304" y="88" text-anchor="middle">r1</text><text x="382" y="88" text-anchor="middle">r2</text><text x="460" y="88" text-anchor="middle">r3</text>
+    <text x="596" y="88" text-anchor="middle">r0</text><text x="674" y="88" text-anchor="middle">r1</text><text x="752" y="88" text-anchor="middle">r2</text><text x="830" y="88" text-anchor="middle">r3</text>
+  </g>
+
+  <!-- ========== Row 1: Broadcast ========== -->
+  <text x="20" y="118" font-size="14" font-weight="700" fill="#1a1a1a">Broadcast</text>
+  <text x="20" y="133" font-size="10" fill="#888">一份→人手一份</text>
+  <!-- before -->
+  <rect x="217" y="112" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="226" y="125" text-anchor="middle" font-size="11">A</text>
+  <rect x="295" y="112" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <rect x="373" y="112" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <rect x="451" y="112" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <path d="M478 121 L548 121" stroke="#888" stroke-width="1.6" marker-end="url(#arr)"/>
+  <!-- after -->
+  <g><rect x="587" y="112" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="596" y="125" text-anchor="middle" font-size="11">A</text>
+     <rect x="665" y="112" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="674" y="125" text-anchor="middle" font-size="11">A</text>
+     <rect x="743" y="112" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="752" y="125" text-anchor="middle" font-size="11">A</text>
+     <rect x="821" y="112" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="830" y="125" text-anchor="middle" font-size="11">A</text></g>
+
+  <!-- ========== Row 2: Scatter ========== -->
+  <text x="20" y="190" font-size="14" font-weight="700" fill="#1a1a1a">Scatter</text>
+  <text x="20" y="205" font-size="10" fill="#888">N 份→一人一片</text>
+  <rect x="190" y="183" width="92" height="20" rx="4" fill="#f5f7fa" stroke="#8895a5"/><text x="236" y="197" text-anchor="middle" font-size="11">A B C D</text>
+  <rect x="295" y="184" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <rect x="373" y="184" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <rect x="451" y="184" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <path d="M478 193 L548 193" stroke="#888" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="587" y="184" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="596" y="197" text-anchor="middle" font-size="11">A</text>
+  <rect x="665" y="184" width="18" height="18" rx="4" fill="#fde9e9" stroke="#d64550"/><text x="674" y="197" text-anchor="middle" font-size="11">B</text>
+  <rect x="743" y="184" width="18" height="18" rx="4" fill="#eef7e0" stroke="#76b900"/><text x="752" y="197" text-anchor="middle" font-size="11">C</text>
+  <rect x="821" y="184" width="18" height="18" rx="4" fill="#fff3e0" stroke="#e08e0b"/><text x="830" y="197" text-anchor="middle" font-size="11">D</text>
+
+  <!-- ========== Row 3: Gather ========== -->
+  <text x="20" y="262" font-size="14" font-weight="700" fill="#1a1a1a">Gather</text>
+  <text x="20" y="277" font-size="10" fill="#888">各 1 片→只 root 齐</text>
+  <rect x="217" y="256" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="226" y="269" text-anchor="middle" font-size="11">A</text>
+  <rect x="295" y="256" width="18" height="18" rx="4" fill="#fde9e9" stroke="#d64550"/><text x="304" y="269" text-anchor="middle" font-size="11">B</text>
+  <rect x="373" y="256" width="18" height="18" rx="4" fill="#eef7e0" stroke="#76b900"/><text x="382" y="269" text-anchor="middle" font-size="11">C</text>
+  <rect x="451" y="256" width="18" height="18" rx="4" fill="#fff3e0" stroke="#e08e0b"/><text x="460" y="269" text-anchor="middle" font-size="11">D</text>
+  <path d="M478 265 L548 265" stroke="#888" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="560" y="255" width="92" height="20" rx="4" fill="#f5f7fa" stroke="#8895a5"/><text x="606" y="269" text-anchor="middle" font-size="11">A B C D</text>
+  <rect x="665" y="256" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <rect x="743" y="256" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+  <rect x="821" y="256" width="18" height="18" rx="4" fill="#fafafa" stroke="#ccc" stroke-dasharray="3,2"/>
+
+  <!-- ========== Row 4: AllGather ========== -->
+  <text x="20" y="334" font-size="14" font-weight="700" fill="#1a1a1a">AllGather</text>
+  <text x="20" y="349" font-size="10" fill="#888">各 1 片→人手全部</text>
+  <rect x="217" y="328" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="226" y="341" text-anchor="middle" font-size="11">A</text>
+  <rect x="295" y="328" width="18" height="18" rx="4" fill="#fde9e9" stroke="#d64550"/><text x="304" y="341" text-anchor="middle" font-size="11">B</text>
+  <rect x="373" y="328" width="18" height="18" rx="4" fill="#eef7e0" stroke="#76b900"/><text x="382" y="341" text-anchor="middle" font-size="11">C</text>
+  <rect x="451" y="328" width="18" height="18" rx="4" fill="#fff3e0" stroke="#e08e0b"/><text x="460" y="341" text-anchor="middle" font-size="11">D</text>
+  <path d="M478 337 L548 337" stroke="#888" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="560" y="327" width="72" height="20" rx="4" fill="#eef2f8" stroke="#8895a5"/><text x="596" y="341" text-anchor="middle" font-size="10">A B C D</text>
+  <rect x="638" y="327" width="72" height="20" rx="4" fill="#eef2f8" stroke="#8895a5"/><text x="674" y="341" text-anchor="middle" font-size="10">A B C D</text>
+  <rect x="716" y="327" width="72" height="20" rx="4" fill="#eef2f8" stroke="#8895a5"/><text x="752" y="341" text-anchor="middle" font-size="10">A B C D</text>
+  <rect x="794" y="327" width="72" height="20" rx="4" fill="#eef2f8" stroke="#8895a5"/><text x="830" y="341" text-anchor="middle" font-size="10">A B C D</text>
+
+  <!-- ========== Row 5: AllReduce ========== -->
+  <text x="20" y="406" font-size="14" font-weight="700" fill="#1a1a1a">AllReduce</text>
+  <text x="20" y="421" font-size="10" fill="#888">各 1 份→人手归约和</text>
+  <rect x="217" y="400" width="18" height="18" rx="4" fill="#e8f0fe" stroke="#2b6cb0"/><text x="226" y="413" text-anchor="middle" font-size="11">1</text>
+  <rect x="295" y="400" width="18" height="18" rx="4" fill="#fde9e9" stroke="#d64550"/><text x="304" y="413" text-anchor="middle" font-size="11">2</text>
+  <rect x="373" y="400" width="18" height="18" rx="4" fill="#eef7e0" stroke="#76b900"/><text x="382" y="413" text-anchor="middle" font-size="11">3</text>
+  <rect x="451" y="400" width="18" height="18" rx="4" fill="#fff3e0" stroke="#e08e0b"/><text x="460" y="413" text-anchor="middle" font-size="11">4</text>
+  <path d="M478 409 L548 409" stroke="#888" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="585" y="400" width="22" height="18" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="596" y="413" text-anchor="middle" font-size="10">10</text>
+  <rect x="663" y="400" width="22" height="18" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="674" y="413" text-anchor="middle" font-size="10">10</text>
+  <rect x="741" y="400" width="22" height="18" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="752" y="413" text-anchor="middle" font-size="10">10</text>
+  <rect x="819" y="400" width="22" height="18" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="830" y="413" text-anchor="middle" font-size="10">10</text>
+
+  <!-- ========== Row 6: ReduceScatter ========== -->
+  <text x="20" y="478" font-size="14" font-weight="700" fill="#1a1a1a">ReduceScatter</text>
+  <text x="20" y="493" font-size="10" fill="#888">归约后按块分</text>
+  <rect x="196" y="472" width="80" height="20" rx="4" fill="#f5f7fa" stroke="#8895a5"/><text x="236" y="486" text-anchor="middle" font-size="9.5">各持 N 块</text>
+  <rect x="289" y="472" width="30" height="20" rx="4" fill="#f5f7fa" stroke="#8895a5"/><text x="304" y="486" text-anchor="middle" font-size="9.5">…</text>
+  <rect x="367" y="472" width="30" height="20" rx="4" fill="#f5f7fa" stroke="#8895a5"/><text x="382" y="486" text-anchor="middle" font-size="9.5">…</text>
+  <rect x="445" y="472" width="30" height="20" rx="4" fill="#f5f7fa" stroke="#8895a5"/><text x="460" y="486" text-anchor="middle" font-size="9.5">…</text>
+  <path d="M478 482 L548 482" stroke="#888" stroke-width="1.6" marker-end="url(#arr)"/>
+  <rect x="578" y="472" width="36" height="20" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="596" y="486" text-anchor="middle" font-size="9.5">Σ块0</text>
+  <rect x="656" y="472" width="36" height="20" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="674" y="486" text-anchor="middle" font-size="9.5">Σ块1</text>
+  <rect x="734" y="472" width="36" height="20" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="752" y="486" text-anchor="middle" font-size="9.5">Σ块2</text>
+  <rect x="812" y="472" width="36" height="20" rx="4" fill="#fff6d6" stroke="#d4a017"/><text x="830" y="486" text-anchor="middle" font-size="9.5">Σ块3</text>
+
+  <text x="470" y="536" text-anchor="middle" font-size="12.5" fill="#5a8c00" font-weight="700">AllReduce = ReduceScatter（上图第 6 行）+ AllGather（上图第 4 行）</text>
+  <text x="470" y="558" text-anchor="middle" font-size="11.5" fill="#888">All2All / AllToAllv：人人互发「不同」数据，相当于一次分布式转置（见正文 2.6）</text>
+</svg>
