@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 214" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="760" height="214" rx="12" fill="#1e2430"/>
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/><circle cx="48" cy="26" r="6" fill="#ffbd2e"/><circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="380" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">llm_int8_demo.py — 输出（需 GPU）</text>
+  <line x1="0" y1="48" x2="760" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="78" font-size="14" fill="#6b7280">$ python llm_int8_demo.py</text>
+  <text x="30" y="108" font-size="15" fill="#8a93a2">FP16 显存:</text>
+  <text x="230" y="108" font-size="15" fill="#9cdcfe">2.63 GB</text>
+  <text x="30" y="136" font-size="15" fill="#8a93a2">INT8 显存:</text>
+  <text x="230" y="136" font-size="15" fill="#b5cea8">1.46 GB</text>
+  <text x="330" y="136" font-size="14" fill="#6b7280">(约 1/2)</text>
+  <text x="30" y="164" font-size="15" fill="#dcdcaa">The future of AI is </text>
+  <text x="265" y="164" font-size="14" fill="#6b7280">…（连贯英文续写，略）</text>
+
+  <line x1="0" y1="182" x2="760" y2="182" stroke="#2c3443"/>
+  <text x="30" y="202" font-size="12.5" fill="#6b7280">※ 显存为按参数量估算（opt-1.3b），随模型 / 环境 / bitsandbytes 版本略有不同</text>
+</svg>

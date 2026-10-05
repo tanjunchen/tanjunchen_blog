@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 214" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="900" height="214" rx="12" fill="#1e2430"/>
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/><circle cx="48" cy="26" r="6" fill="#ffbd2e"/><circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="450" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">7B 显存估算 — QLoRA（NF4 + 双重量化）</text>
+  <line x1="0" y1="48" x2="900" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="76" font-size="14" fill="#6b7280"># 7B 模型（70 亿参数）仅权重侧显存估算</text>
+
+  <text x="30"  y="104" font-size="15" fill="#8a93a2">权重 NF4</text>
+  <text x="300" y="104" font-size="15" fill="#6b7280">7e9 × 0.5 byte</text>
+  <text x="560" y="104" font-size="15" fill="#b5cea8">≈ 3.5 GB</text>
+
+  <text x="30"  y="130" font-size="15" fill="#8a93a2">scale（FP32，每 64 个）</text>
+  <text x="300" y="130" font-size="15" fill="#6b7280">7e9/64 × 4 byte</text>
+  <text x="560" y="130" font-size="15" fill="#b5cea8">≈ 0.44 GB</text>
+
+  <text x="30"  y="156" font-size="15" fill="#8a93a2">双重量化后 scale</text>
+  <text x="300" y="156" font-size="15" fill="#6b7280">7e9/64 × 1 byte + 二级</text>
+  <text x="560" y="156" font-size="15" fill="#b5cea8">≈ 0.11 GB</text>
+  <text x="700" y="156" font-size="14" fill="#f48771">省 ~0.33 GB</text>
+
+  <line x1="0" y1="178" x2="900" y2="178" stroke="#2c3443"/>
+  <text x="30" y="200" font-size="13.5" fill="#6b7280">→ 配合 LoRA 适配器，7B 微调可塞进单张 24GB 卡（4090 / 3090）</text>
+</svg>

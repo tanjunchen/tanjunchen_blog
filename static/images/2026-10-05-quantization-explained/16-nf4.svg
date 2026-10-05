@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="420" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">NF4 + 双重量化：QLoRA 的 4-bit NormalFloat</text>
+
+  <!-- grid comparison -->
+  <text x="24" y="60" font-size="14" font-weight="700" fill="#333">INT4（均匀格点）vs NF4（分位数格点）—— 权重近似服从正态分布</text>
+
+  <!-- INT4 uniform -->
+  <rect x="20" y="74" width="455" height="130" rx="10" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="40" y="100" font-size="13" font-weight="700" fill="#C7000B">INT4：均匀铺开 16 个格点</text>
+  <line x1="50" y1="150" x2="455" y2="150" stroke="#999"/>
+  <g fill="#C7000B">
+    <circle cx="60" cy="150" r="3.5"/><circle cx="86" cy="150" r="3.5"/><circle cx="112" cy="150" r="3.5"/><circle cx="138" cy="150" r="3.5"/><circle cx="164" cy="150" r="3.5"/><circle cx="190" cy="150" r="3.5"/><circle cx="216" cy="150" r="3.5"/><circle cx="242" cy="150" r="3.5"/><circle cx="268" cy="150" r="3.5"/><circle cx="294" cy="150" r="3.5"/><circle cx="320" cy="150" r="3.5"/><circle cx="346" cy="150" r="3.5"/><circle cx="372" cy="150" r="3.5"/><circle cx="398" cy="150" r="3.5"/><circle cx="424" cy="150" r="3.5"/><circle cx="450" cy="150" r="3.5"/>
+  </g>
+  <!-- normal curve overlay -->
+  <path d="M 50 185 Q 180 185 230 118 Q 255 150 280 118 Q 330 185 450 185" fill="none" stroke="#888" stroke-width="1.5" opacity="0.5"/>
+  <text x="40" y="196" font-size="11" fill="#555">权重大多挤在中间 → 中间分辨率不足，两边浪费</text>
+
+  <!-- NF4 nonuniform -->
+  <rect x="485" y="74" width="455" height="130" rx="10" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="505" y="100" font-size="13" font-weight="700" fill="#5a8c00">NF4：按正态分位数布点（中密两疏）</text>
+  <line x1="515" y1="150" x2="920" y2="150" stroke="#999"/>
+  <g fill="#5a8c00">
+    <circle cx="525" cy="150" r="3.5"/><circle cx="560" cy="150" r="3.5"/><circle cx="600" cy="150" r="3.5"/><circle cx="645" cy="150" r="3.5"/><circle cx="680" cy="150" r="3.5"/><circle cx="705" cy="150" r="3.5"/><circle cx="722" cy="150" r="3.5"/><circle cx="717" cy="150" r="3.5"/><circle cx="735" cy="150" r="3.5"/><circle cx="752" cy="150" r="3.5"/><circle cx="770" cy="150" r="3.5"/><circle cx="800" cy="150" r="3.5"/><circle cx="840" cy="150" r="3.5"/><circle cx="880" cy="150" r="3.5"/><circle cx="905" cy="150" r="3.5"/><circle cx="920" cy="150" r="3.5"/>
+  </g>
+  <path d="M 515 185 Q 650 185 700 112 Q 722 150 745 112 Q 790 185 920 185" fill="none" stroke="#888" stroke-width="1.5" opacity="0.5"/>
+  <text x="505" y="196" font-size="11" fill="#555">格点「用在刀刃上」，对正态数据信息论最优</text>
+
+  <!-- double quant memory -->
+  <text x="24" y="236" font-size="14" font-weight="700" fill="#333">双重量化：把每组的 FP32 scale 再量化成 8-bit —— 7B 显存估算</text>
+  <rect x="20" y="248" width="920" height="30" rx="5" fill="#f2f4f7"/>
+  <text x="40" y="268" font-size="12.5" font-weight="700" fill="#555">项目</text>
+  <text x="440" y="268" font-size="12.5" font-weight="700" fill="#555">计算</text>
+  <text x="800" y="268" font-size="12.5" font-weight="700" fill="#555">显存</text>
+  <g font-size="12.5">
+    <g><rect x="20" y="278" width="920" height="28" fill="#f7fafd"/><text x="40" y="296" fill="#444">权重 NF4</text><text x="440" y="296" fill="#444">7e9 × 0.5 byte</text><text x="800" y="296" fill="#5a8c00" font-weight="700">≈ 3.5 GB</text></g>
+    <g><rect x="20" y="306" width="920" height="28" fill="#ffffff"/><text x="40" y="324" fill="#444">scale (FP32, 每 64 个)</text><text x="440" y="324" fill="#444">7e9/64 × 4 byte</text><text x="800" y="324" fill="#444">≈ 0.44 GB</text></g>
+    <g><rect x="20" y="334" width="920" height="28" fill="#f7fafd"/><text x="40" y="352" fill="#444">双重量化后 scale</text><text x="440" y="352" fill="#444">7e9/64 × 1 byte + 二级 scale</text><text x="800" y="352" fill="#C7000B" font-weight="700">≈ 0.11 GB（省 ~0.33）</text></g>
+  </g>
+  <rect x="20" y="278" width="920" height="84" rx="6" fill="none" stroke="#e3e6ea"/>
+
+  <rect x="20" y="372" width="920" height="40" rx="8" fill="#fff7ed" stroke="#d35400"/>
+  <text x="36" y="397" font-size="12.5" fill="#333">配合 LoRA 适配器，<tspan font-weight="700" fill="#d35400">7B 微调可塞进单张 24GB 卡（4090/3090）</tspan> —— 这就是 QLoRA 的基石</text>
+</svg>

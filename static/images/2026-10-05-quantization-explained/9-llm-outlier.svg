@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">为什么 LLM 的 W8A8 比 CNN 难：系统性激活异常值</text>
+
+  <!-- activation chart -->
+  <rect x="20" y="48" width="920" height="190" rx="10" fill="#fdfbf7" stroke="#e3dcc9"/>
+  <text x="40" y="74" font-size="13.5" font-weight="700" fill="#333">LLM 某层激活的 per-channel 幅度：极少数通道暴涨</text>
+  <!-- axis -->
+  <line x1="60" y1="200" x2="900" y2="200" stroke="#999" stroke-width="1.5"/>
+  <line x1="60" y1="96" x2="60" y2="200" stroke="#999" stroke-width="1.5"/>
+  <text x="46" y="104" font-size="10.5" fill="#888" text-anchor="end">幅度</text>
+  <!-- normal channels (small bars) -->
+  <g fill="#2e86de">
+    <rect x="80" y="190" width="14" height="10"/><rect x="100" y="188" width="14" height="12"/><rect x="120" y="191" width="14" height="9"/><rect x="140" y="189" width="14" height="11"/><rect x="160" y="190" width="14" height="10"/><rect x="180" y="192" width="14" height="8"/><rect x="200" y="189" width="14" height="11"/><rect x="220" y="190" width="14" height="10"/><rect x="240" y="191" width="14" height="9"/><rect x="260" y="190" width="14" height="10"/><rect x="280" y="189" width="14" height="11"/>
+    <rect x="420" y="190" width="14" height="10"/><rect x="440" y="191" width="14" height="9"/><rect x="460" y="189" width="14" height="11"/><rect x="480" y="190" width="14" height="10"/><rect x="500" y="192" width="14" height="8"/>
+    <rect x="640" y="190" width="14" height="10"/><rect x="660" y="189" width="14" height="11"/><rect x="680" y="191" width="14" height="9"/><rect x="700" y="190" width="14" height="10"/><rect x="720" y="190" width="14" height="10"/><rect x="800" y="191" width="14" height="9"/><rect x="820" y="190" width="14" height="10"/><rect x="840" y="189" width="14" height="11"/><rect x="860" y="190" width="14" height="10"/>
+  </g>
+  <!-- outlier channels -->
+  <g fill="#C7000B">
+    <rect x="320" y="104" width="16" height="96"/><rect x="342" y="110" width="16" height="90"/><rect x="364" y="100" width="16" height="100"/>
+    <rect x="560" y="118" width="16" height="82"/><rect x="582" y="108" width="16" height="92"/>
+  </g>
+  <text x="352" y="94" font-size="11" fill="#C7000B" font-weight="700" text-anchor="middle">异常通道</text>
+  <text x="582" y="100" font-size="11" fill="#C7000B" font-weight="700" text-anchor="middle">幅度 50~100</text>
+  <text x="200" y="222" font-size="11" fill="#2e86de" text-anchor="middle">普通通道幅度 ~1</text>
+  <text x="40" y="222" font-size="10.5" fill="#888">channel →</text>
+
+  <!-- consequence -->
+  <rect x="20" y="252" width="455" height="92" rx="10" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="36" y="278" font-size="13" font-weight="700" fill="#C7000B">用 per-tensor 量化激活 → 崩</text>
+  <text x="36" y="302" font-size="12" fill="#555">scale 被异常通道撑到 ~0.6</text>
+  <text x="36" y="324" font-size="12" fill="#555">普通通道只落在 ±1~2 格点 → 信息几乎全丢</text>
+
+  <rect x="485" y="252" width="455" height="92" rx="10" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="501" y="278" font-size="13" font-weight="700" fill="#5a8c00">权重分布则温和得多</text>
+  <text x="501" y="302" font-size="12" fill="#555">近似正态、无极端离群 → weight-only</text>
+  <text x="501" y="324" font-size="12" fill="#555">量化（GPTQ/AWQ/NF4）相对容易</text>
+
+  <rect x="20" y="356" width="920" height="34" rx="8" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="36" y="378" font-size="12.5" fill="#333">要同时量化激活（<tspan font-weight="700" fill="#C7000B">W8A8</tspan>，吃满 INT8 拿高吞吐），就必须正面处理异常值 —— 这是 LLM.int8() 和 SmoothQuant 的战场</text>
+</svg>

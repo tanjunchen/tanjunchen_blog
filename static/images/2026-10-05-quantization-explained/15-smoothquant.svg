@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="400" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">SmoothQuant：把激活难度「平滑」迁移给权重，使 W8A8 可行</text>
+
+  <!-- equation -->
+  <rect x="20" y="48" width="920" height="50" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="480" y="78" text-anchor="middle" font-size="15" font-weight="700" fill="#333">Y = X·W = (X · diag(s)⁻¹) · (diag(s) · W) = X̂ · Ŵ  <tspan fill="#5a8c00">（输出严格不变）</tspan></text>
+
+  <!-- before -->
+  <text x="150" y="128" font-size="13" font-weight="700" fill="#333" text-anchor="middle">原始</text>
+  <rect x="40" y="140" width="220" height="80" rx="8" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="150" y="166" font-size="12.5" fill="#C7000B" text-anchor="middle" font-weight="700">X 激活（有大异常值）</text>
+  <!-- spiky -->
+  <g fill="#C7000B"><rect x="60" y="200" width="10" height="8"/><rect x="80" y="202" width="10" height="6"/><rect x="100" y="176" width="10" height="32"/><rect x="120" y="203" width="10" height="5"/><rect x="140" y="201" width="10" height="7"/><rect x="160" y="178" width="10" height="30"/><rect x="180" y="203" width="10" height="5"/><rect x="200" y="202" width="10" height="6"/><rect x="220" y="200" width="10" height="8"/></g>
+  <text x="150" y="238" font-size="11" fill="#555" text-anchor="middle">难量化</text>
+
+  <text x="300" y="186" font-size="18" fill="#999" text-anchor="middle">×</text>
+
+  <rect x="340" y="140" width="220" height="80" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="450" y="166" font-size="12.5" fill="#5a8c00" text-anchor="middle" font-weight="700">W 权重（温和）</text>
+  <g fill="#5a8c00"><rect x="360" y="194" width="10" height="14"/><rect x="380" y="192" width="10" height="16"/><rect x="400" y="196" width="10" height="12"/><rect x="420" y="190" width="10" height="18"/><rect x="440" y="194" width="10" height="14"/><rect x="460" y="196" width="10" height="12"/><rect x="480" y="192" width="10" height="16"/><rect x="500" y="194" width="10" height="14"/><rect x="520" y="196" width="10" height="12"/></g>
+  <text x="450" y="238" font-size="11" fill="#555" text-anchor="middle">好量化</text>
+
+  <!-- arrow down (migration) -->
+  <path d="M 150 248 Q 150 268 300 268 Q 450 268 450 248" fill="none" stroke="#d35400" stroke-width="2" marker-end="url(#e1)"/>
+  <text x="300" y="286" font-size="12" fill="#d35400" text-anchor="middle" font-weight="700">每通道 i：激活 ÷ s_i，权重 × s_i（难度迁移）</text>
+
+  <!-- after -->
+  <rect x="620" y="140" width="320" height="110" rx="10" fill="#fdfbf7" stroke="#e3dcc9"/>
+  <text x="780" y="166" font-size="13" font-weight="700" fill="#333" text-anchor="middle">平滑后：X̂ · Ŵ = X · W</text>
+  <g fill="#d35400"><rect x="650" y="196" width="9" height="14"/><rect x="668" y="194" width="9" height="16"/><rect x="686" y="190" width="9" height="20"/><rect x="704" y="195" width="9" height="15"/><rect x="722" y="193" width="9" height="17"/><rect x="740" y="191" width="9" height="19"/></g>
+  <text x="700" y="226" font-size="10.5" fill="#555" text-anchor="middle">X̂ 异常被压平</text>
+  <g fill="#8e44ad"><rect x="800" y="190" width="9" height="20"/><rect x="818" y="186" width="9" height="24"/><rect x="836" y="192" width="9" height="18"/><rect x="854" y="188" width="9" height="22"/><rect x="872" y="190" width="9" height="20"/><rect x="890" y="187" width="9" height="23"/></g>
+  <text x="850" y="226" font-size="10.5" fill="#555" text-anchor="middle">Ŵ 略陡仍可量化</text>
+
+  <!-- alpha formula -->
+  <rect x="20" y="264" width="455" height="56" rx="8" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="36" y="288" font-size="12.5" font-weight="700" fill="#2e86de">迁移强度 α 控制（典型 0.5）</text>
+  <text x="36" y="310" font-size="12" fill="#555">s_i = (max|X_i|)^α / (max|W_i|)^(1−α)，α=0.5 两边均摊</text>
+
+  <rect x="485" y="264" width="455" height="56" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="501" y="288" font-size="12.5" font-weight="700" fill="#5a8c00">结果：W8A8 全 INT8 成立</text>
+  <text x="501" y="310" font-size="12" fill="#555">激活不再崩，吃满 INT8 Tensor Core；s 融进 LayerNorm 零开销</text>
+
+  <!-- vs llm.int8 -->
+  <rect x="20" y="334" width="920" height="52" rx="10" fill="#fff7ed" stroke="#d35400"/>
+  <text x="36" y="356" font-size="12.5" fill="#333"><tspan font-weight="700" fill="#d35400">vs LLM.int8()</tspan>：LLM.int8() 用「分离+混合精度」绕开异常值（保精度但有 FP16 分支开销）；</text>
+  <text x="36" y="376" font-size="12.5" fill="#333">SmoothQuant 用「等价变换」从根上让激活可量化（纯 INT8，吞吐更高）—— 追求高吞吐的生产推理首选</text>
+
+  <defs><marker id="e1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#d35400"/></marker></defs>
+</svg>

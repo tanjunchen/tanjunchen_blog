@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="380" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">AWQ：激活感知的权重量化，保护显著通道</text>
+  <text x="24" y="52" font-size="12.5" fill="#888">权重是否重要，不看权重本身大小，而看它对应的激活幅度</text>
+
+  <!-- core idea -->
+  <rect x="20" y="68" width="920" height="150" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="40" y="94" font-size="14" font-weight="700" fill="#333">逐通道缩放（per-channel scaling）等价保护</text>
+
+  <!-- equation -->
+  <rect x="40" y="106" width="500" height="44" rx="8" fill="#fff" stroke="#dbe2ea"/>
+  <text x="290" y="134" text-anchor="middle" font-size="15" font-weight="700" fill="#333">W' = W / s ,   X' = X · s   ⟹   W'·X' = W·X</text>
+  <text x="560" y="132" font-size="12.5" fill="#5a8c00" font-weight="700">数学上输出不变</text>
+
+  <!-- flow -->
+  <text x="60" y="178" font-size="12.5" fill="#555">对显著通道（激活大的）乘一个 <tspan fill="#C7000B" font-weight="700">s&gt;1 放大</tspan>，权重相应除以 s，再做 INT4 量化：</text>
+  <rect x="60" y="190" width="400" height="22" rx="4" fill="#dbeafe"/>
+  <text x="70" y="206" font-size="11.5" fill="#1a3a5c">显著权重列被放大后再量化 → 相对量化误差变小（被保护）</text>
+  <text x="490" y="206" font-size="11.5" fill="#888">s 由「激活幅度的某次幂」网格搜索确定</text>
+
+  <!-- key -->
+  <rect x="20" y="232" width="455" height="60" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="36" y="256" font-size="12.5" font-weight="700" fill="#5a8c00">关键：缩放因子 s 离线融合</text>
+  <text x="36" y="278" font-size="12" fill="#555">可融进前一层（如 LayerNorm 权重）→ 推理零额外开销</text>
+
+  <rect x="485" y="232" width="455" height="60" rx="8" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="501" y="256" font-size="12.5" font-weight="700" fill="#2e86de">vs GPTQ</text>
+  <text x="501" y="278" font-size="12" fill="#555">不需反向传播 / Hessian 求逆，量化更快，推理更友好</text>
+
+  <!-- scene -->
+  <rect x="20" y="306" width="920" height="58" rx="10" fill="#fff7ed" stroke="#d35400"/>
+  <text x="36" y="330" font-size="13" font-weight="700" fill="#d35400">应用场景</text>
+  <text x="36" y="352" font-size="12.5" fill="#555">4-bit 部署里<tspan font-weight="700" fill="#333">精度与推理速度都想要</tspan>的首选之一；vLLM / SGLang 等推理引擎对 AWQ 支持良好</text>
+</svg>

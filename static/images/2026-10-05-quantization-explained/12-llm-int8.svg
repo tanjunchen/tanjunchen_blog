@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="360" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">LLM.int8()：异常值分离 + 混合精度分解</text>
+  <text x="24" y="52" font-size="12.5" fill="#888">普通列走 INT8（高吞吐），极少数异常列走 FP16，各算各的再相加</text>
+
+  <!-- X -->
+  <text x="130" y="86" font-size="13" font-weight="700" fill="#333" text-anchor="middle">输入激活 X</text>
+  <g>
+    <rect x="40" y="96" width="140" height="90" rx="4" fill="#dbeafe" stroke="#2e86de"/>
+    <text x="110" y="146" font-size="11.5" fill="#1a3a5c" text-anchor="middle">普通列 (INT8)</text>
+    <rect x="180" y="96" width="36" height="90" rx="4" fill="#fdd" stroke="#C7000B"/>
+    <text x="198" y="146" font-size="10" fill="#C7000B" text-anchor="middle" writing-mode="tb">异常</text>
+  </g>
+
+  <text x="285" y="140" font-size="22" fill="#999" text-anchor="middle">×</text>
+
+  <!-- W -->
+  <text x="400" y="86" font-size="13" font-weight="700" fill="#333" text-anchor="middle">权重 W</text>
+  <g>
+    <rect x="330" y="96" width="140" height="90" rx="4" fill="#dcfce7" stroke="#5a8c00"/>
+    <text x="400" y="146" font-size="11.5" fill="#2f4a00" text-anchor="middle">普通行 (INT8)</text>
+    <rect x="470" y="96" width="36" height="90" rx="4" fill="#fdd" stroke="#C7000B"/>
+    <text x="488" y="146" font-size="10" fill="#C7000B" text-anchor="middle" writing-mode="tb">异常</text>
+  </g>
+
+  <text x="560" y="140" font-size="22" fill="#999" text-anchor="middle">=</text>
+
+  <!-- decomposition -->
+  <rect x="610" y="90" width="330" height="48" rx="8" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="775" y="112" font-size="12.5" fill="#1a3a5c" text-anchor="middle" font-weight="700">X_int8 · W_int8</text>
+  <text x="775" y="130" font-size="11" fill="#555" text-anchor="middle">主体，INT8 高吞吐</text>
+
+  <text x="775" y="156" font-size="16" fill="#999" text-anchor="middle">+</text>
+
+  <rect x="610" y="162" width="330" height="48" rx="8" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="775" y="184" font-size="12.5" fill="#C7000B" text-anchor="middle" font-weight="700">X_fp16 · W_fp16</text>
+  <text x="775" y="202" font-size="11" fill="#555" text-anchor="middle">异常，少量</text>
+
+  <path d="M 775 210 L 775 232" stroke="#999" stroke-width="1.5" marker-end="url(#c1)"/>
+  <rect x="640" y="234" width="270" height="30" rx="6" fill="#333"/>
+  <text x="775" y="254" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">相加 = 最终输出（精度几乎无损）</text>
+
+  <!-- notes -->
+  <rect x="20" y="286" width="455" height="60" rx="8" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="36" y="310" font-size="12.5" font-weight="700" fill="#333">判定异常值</text>
+  <text x="36" y="332" font-size="12" fill="#555">某 channel 激活幅度 &gt; 阈值（经验 6.0）即标记</text>
+
+  <rect x="485" y="286" width="455" height="60" rx="8" fill="#fff7ed" stroke="#d35400"/>
+  <text x="501" y="310" font-size="12.5" font-weight="700" fill="#d35400">定位：混合精度，非纯 INT8</text>
+  <text x="501" y="332" font-size="12" fill="#555">优先保精度（≈0 掉点），速度不如纯 INT8 极致</text>
+
+  <defs><marker id="c1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#999"/></marker></defs>
+</svg>

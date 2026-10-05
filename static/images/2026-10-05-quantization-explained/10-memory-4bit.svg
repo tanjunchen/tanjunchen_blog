@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 300" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="300" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">4-bit 权重量化：消费级显卡跑大模型的分水岭</text>
+  <text x="24" y="52" font-size="12.5" fill="#888">7B 模型权重显存（仅权重，不含激活 / KV Cache）</text>
+
+  <!-- bars -->
+  <g font-size="13">
+    <!-- FP16 -->
+    <text x="40" y="92" font-weight="700" fill="#C7000B">FP16</text>
+    <rect x="120" y="76" width="700" height="26" rx="4" fill="#C7000B"/>
+    <text x="130" y="94" font-size="12" fill="#fff" font-weight="700">7e9 × 2 byte ≈ 14.0 GB</text>
+    <text x="830" y="94" font-size="11.5" fill="#555">需 A100 / 一张高端卡</text>
+
+    <!-- INT8 -->
+    <text x="40" y="142" font-weight="700" fill="#d35400">INT8</text>
+    <rect x="120" y="126" width="350" height="26" rx="4" fill="#d35400"/>
+    <text x="130" y="144" font-size="12" fill="#fff" font-weight="700">7e9 × 1 byte ≈ 7.0 GB</text>
+    <text x="480" y="144" font-size="11.5" fill="#555">单张 3090/4090 勉强</text>
+
+    <!-- INT4 -->
+    <text x="40" y="192" font-weight="700" fill="#5a8c00">INT4</text>
+    <rect x="120" y="176" width="175" height="26" rx="4" fill="#5a8c00"/>
+    <text x="130" y="194" font-size="12" fill="#fff" font-weight="700">≈ 3.5 GB</text>
+    <text x="305" y="194" font-size="11.5" fill="#555">单张 8GB 卡轻松跑</text>
+  </g>
+
+  <!-- scale ruler -->
+  <line x1="120" y1="216" x2="820" y2="216" stroke="#ddd"/>
+  <text x="120" y="232" font-size="10.5" fill="#aaa" text-anchor="middle">0</text>
+  <text x="470" y="232" font-size="10.5" fill="#aaa" text-anchor="middle">7 GB</text>
+  <text x="820" y="232" font-size="10.5" fill="#aaa" text-anchor="middle">14 GB</text>
+
+  <rect x="20" y="252" width="920" height="36" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="36" y="275" font-size="13" fill="#333"><tspan font-weight="700" fill="#5a8c00">4-bit 是分水岭</tspan>：这就是 GPTQ / AWQ / NF4 爆火的根本原因 —— 把 7B 从「需要专业卡」压到「消费卡随便跑」</text>
+</svg>

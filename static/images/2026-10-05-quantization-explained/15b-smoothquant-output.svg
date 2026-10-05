@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 186" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="820" height="186" rx="12" fill="#1e2430"/>
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/><circle cx="48" cy="26" r="6" fill="#ffbd2e"/><circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="410" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">smoothquant_core.py — 输出</text>
+  <line x1="0" y1="48" x2="820" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="78" font-size="14" fill="#6b7280">$ python smoothquant_core.py</text>
+
+  <text x="30" y="108" font-size="15" fill="#8a93a2">等价性检查 |X̂Ŵ − XW|:</text>
+  <text x="340" y="108" font-size="15" fill="#b5cea8">1.91e-06</text>
+  <text x="470" y="108" font-size="13" fill="#6b7280">← 数学等价，输出不变</text>
+
+  <text x="30" y="134" font-size="15" fill="#8a93a2">平滑前 W8A8 输出误差:</text>
+  <text x="340" y="134" font-size="15" fill="#f48771">0.10782</text>
+  <text x="470" y="134" font-size="13" fill="#6b7280">← 异常通道撑大激活 scale</text>
+
+  <text x="30" y="160" font-size="15" fill="#8a93a2">平滑后 W8A8 输出误差:</text>
+  <text x="340" y="160" font-size="15" fill="#b5cea8">0.05399</text>
+  <text x="470" y="160" font-size="13" fill="#6b7280">← 下降约 2×（玩具规模；真实 LLM 收益更大）</text>
+</svg>

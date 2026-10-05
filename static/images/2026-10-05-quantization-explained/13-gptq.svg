@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="380" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">GPTQ：基于 Hessian 二阶信息的逐层权重量化</text>
+
+  <!-- objective -->
+  <rect x="20" y="48" width="920" height="52" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="480" y="72" text-anchor="middle" font-size="14" fill="#333">逐层重构目标：<tspan font-weight="700" fill="#C7000B">min ‖ W·X − Ŵ·X ‖²</tspan>  （让整层输出尽量不变）</text>
+  <text x="480" y="92" text-anchor="middle" font-size="12" fill="#888">二阶信息 Hessian H = 2·X·Xᵀ 刻画「哪些权重对输出更敏感」</text>
+
+  <!-- process -->
+  <text x="24" y="130" font-size="14" font-weight="700" fill="#333">按列顺序逐个量化，用 Hessian 逆把误差「摊」给剩余列补偿</text>
+
+  <rect x="30" y="144" width="280" height="200" rx="10" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="170" y="168" font-size="13" font-weight="700" fill="#2e86de" text-anchor="middle">for 每一列 w_i:</text>
+  <rect x="46" y="180" width="248" height="40" rx="6" fill="#fff"/>
+  <text x="58" y="198" font-size="11.5" fill="#1a3a5c" font-weight="700">① 量化 w_i → ŵ_i</text>
+  <text x="58" y="214" font-size="11" fill="#555">round 到 INT4 格点</text>
+  <rect x="46" y="226" width="248" height="40" rx="6" fill="#fff"/>
+  <text x="58" y="244" font-size="11.5" fill="#1a3a5c" font-weight="700">② 计算量化误差 δ = w_i − ŵ_i</text>
+  <text x="58" y="260" font-size="11" fill="#555">这次 round 带来的偏差</text>
+  <rect x="46" y="272" width="248" height="56" rx="6" fill="#fff"/>
+  <text x="58" y="290" font-size="11.5" fill="#1a3a5c" font-weight="700">③ 把 δ 摊到剩余未量化列</text>
+  <text x="58" y="306" font-size="11" fill="#555">W_remaining += δ × (H⁻¹ 相关项)</text>
+  <text x="58" y="322" font-size="11" fill="#C7000B" font-weight="700">→ 误差被后续权重吸收</text>
+
+  <path d="M 320 244 L 360 244" stroke="#2e86de" stroke-width="2" marker-end="url(#d1)"/>
+
+  <!-- result -->
+  <rect x="375" y="144" width="565" height="95" rx="10" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="395" y="170" font-size="13" font-weight="700" fill="#5a8c00">效果</text>
+  <text x="395" y="194" font-size="12.5" fill="#555">单个权重的量化误差被后续权重吸收，整层输出误差大幅降低</text>
+  <text x="395" y="216" font-size="12.5" fill="#555">工程上用 Cholesky 分解稳定求解 H⁻¹，支持 group-wise（如每 128 列一组）</text>
+  <text x="395" y="232" font-size="11.5" fill="#888">相比朴素 PTQ 的「独立 round」，误差补偿是精度关键</text>
+
+  <!-- positioning -->
+  <rect x="375" y="251" width="565" height="93" rx="10" fill="#fff7ed" stroke="#d35400"/>
+  <text x="395" y="277" font-size="13" font-weight="700" fill="#d35400">定位与场景</text>
+  <text x="395" y="301" font-size="12.5" fill="#555">weight-only：只量化权重到 4-bit，激活仍 FP16，不碰激活异常值</text>
+  <text x="395" y="323" font-size="12.5" fill="#555">消费级 GPU 跑 4-bit 大模型主力：7B → ~3.5GB，单张 8GB 卡能跑</text>
+  <text x="395" y="339" font-size="11.5" fill="#888">需小校准集（如 128 条 C4）跑一次离线量化</text>
+
+  <defs><marker id="d1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2e86de"/></marker></defs>
+</svg>

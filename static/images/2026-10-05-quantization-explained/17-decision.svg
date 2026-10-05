@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="440" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">量化方案选型决策图</text>
+
+  <!-- root -->
+  <rect x="380" y="48" width="200" height="40" rx="8" fill="#333"/>
+  <text x="480" y="73" font-size="13" fill="#fff" text-anchor="middle" font-weight="700">需要量化吗？</text>
+
+  <!-- three branches -->
+  <path d="M 440 88 L 200 128" stroke="#999" stroke-width="1.5" marker-end="url(#f1)"/>
+  <path d="M 480 88 L 480 128" stroke="#999" stroke-width="1.5" marker-end="url(#f1)"/>
+  <path d="M 520 88 L 770 128" stroke="#999" stroke-width="1.5" marker-end="url(#f1)"/>
+
+  <!-- branch 1: weight-only -->
+  <rect x="20" y="132" width="300" height="40" rx="8" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="170" y="150" font-size="12" fill="#1a3a5c" text-anchor="middle" font-weight="700">只想省显存、跑 4-bit 推理</text>
+  <text x="170" y="166" font-size="11" fill="#555" text-anchor="middle">weight-only，激活仍 FP16</text>
+
+  <rect x="40" y="186" width="260" height="34" rx="6" fill="#fff" stroke="#9cc3f0"/>
+  <text x="52" y="207" font-size="11.5" fill="#1a3a5c">精度+速度俱佳、引擎支持好 → <tspan font-weight="700" fill="#d35400">AWQ</tspan></text>
+  <rect x="40" y="224" width="260" height="34" rx="6" fill="#fff" stroke="#9cc3f0"/>
+  <text x="52" y="245" font-size="11.5" fill="#1a3a5c">极限压缩(INT3)/已有生态 → <tspan font-weight="700" fill="#d35400">GPTQ</tspan></text>
+  <rect x="40" y="262" width="260" height="34" rx="6" fill="#fff" stroke="#9cc3f0"/>
+  <text x="52" y="283" font-size="11.5" fill="#1a3a5c">单卡微调大模型 → <tspan font-weight="700" fill="#d35400">NF4+双重量化</tspan></text>
+
+  <!-- branch 2: W8A8 -->
+  <rect x="330" y="132" width="300" height="40" rx="8" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="480" y="150" font-size="12" fill="#2f4a00" text-anchor="middle" font-weight="700">激活也量化、吃满 INT8 高吞吐</text>
+  <text x="480" y="166" font-size="11" fill="#555" text-anchor="middle">W8A8</text>
+
+  <rect x="350" y="186" width="260" height="34" rx="6" fill="#fff" stroke="#a7cf7f"/>
+  <text x="362" y="207" font-size="11.5" fill="#2f4a00">追求吞吐、接受离线平滑 → <tspan font-weight="700" fill="#d35400">SmoothQuant</tspan></text>
+  <rect x="350" y="224" width="260" height="34" rx="6" fill="#fff" stroke="#a7cf7f"/>
+  <text x="362" y="245" font-size="11.5" fill="#2f4a00">精度红线高、不想折腾 → <tspan font-weight="700" fill="#d35400">LLM.int8()</tspan></text>
+  <text x="362" y="276" font-size="10.5" fill="#888">（混合精度，几乎 0 掉点）</text>
+
+  <!-- branch 3: CNN -->
+  <rect x="640" y="132" width="300" height="40" rx="8" fill="#f6eefb" stroke="#8e44ad"/>
+  <text x="790" y="150" font-size="12" fill="#5a2d82" text-anchor="middle" font-weight="700">不是 LLM / 是 CNN / 能拿校准集</text>
+  <text x="790" y="166" font-size="11" fill="#555" text-anchor="middle"></text>
+
+  <rect x="660" y="186" width="260" height="34" rx="6" fill="#fff" stroke="#c69fe0"/>
+  <text x="672" y="207" font-size="11.5" fill="#5a2d82">回上篇：<tspan font-weight="700">PTQ 静态量化</tspan></text>
+  <rect x="660" y="224" width="260" height="34" rx="6" fill="#fff" stroke="#c69fe0"/>
+  <text x="672" y="245" font-size="11.5" fill="#5a2d82">掉点大再上 <tspan font-weight="700">QAT</tspan></text>
+
+  <!-- core logic -->
+  <rect x="20" y="316" width="920" height="110" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="36" y="342" font-size="14" font-weight="700" fill="#333">核心判断逻辑</text>
+  <text x="36" y="366" font-size="12.5" fill="#555"><tspan font-weight="700" fill="#2e86de">① weight-only 还是 W8A8</tspan>：省显存走 weight-only（GPTQ/AWQ/NF4）；要高吞吐、激活也量化走 W8A8</text>
+  <text x="36" y="390" font-size="12.5" fill="#555"><tspan font-weight="700" fill="#d35400">② 异常值怎么处理</tspan>：LLM.int8() 分离出来用 FP16 算；SmoothQuant 用等价变换把难度迁给权重</text>
+  <text x="36" y="414" font-size="12.5" fill="#555"><tspan font-weight="700" fill="#5a8c00">③ 4-bit 手段</tspan>：GPTQ 靠 Hessian 补偿、AWQ 靠激活感知保护、NF4 靠匹配正态的非均匀格点 —— 殊途同归</text>
+
+  <defs><marker id="f1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#999"/></marker></defs>
+</svg>

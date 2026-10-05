@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 280" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="280" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">LLM 专用量化方案一览</text>
+
+  <rect x="20" y="46" width="920" height="30" rx="5" fill="#f2f4f7"/>
+  <text x="36" y="66" font-size="12.5" font-weight="700" fill="#555">方法</text>
+  <text x="190" y="66" font-size="12.5" font-weight="700" fill="#555">量化对象</text>
+  <text x="330" y="66" font-size="12.5" font-weight="700" fill="#555">位宽</text>
+  <text x="430" y="66" font-size="12.5" font-weight="700" fill="#555">核心手段</text>
+  <text x="720" y="66" font-size="12.5" font-weight="700" fill="#555">典型场景</text>
+
+  <g font-size="12.5">
+    <g><rect x="20" y="82" width="920" height="34" fill="#fdf3e9"/><rect x="20" y="82" width="5" height="34" fill="#d35400"/>
+      <text x="36" y="104" font-weight="700" fill="#7a3800">LLM.int8()</text><text x="190" y="104" fill="#444">W + A</text><text x="330" y="104" fill="#444">INT8 混合</text><text x="430" y="104" fill="#444">异常值走 FP16，其余走 INT8</text><text x="720" y="104" fill="#444">保精度优先的推理</text></g>
+    <g><rect x="20" y="116" width="920" height="34" fill="#ffffff"/><rect x="20" y="116" width="5" height="34" fill="#d35400"/>
+      <text x="36" y="138" font-weight="700" fill="#7a3800">GPTQ</text><text x="190" y="138" fill="#444">W（weight-only）</text><text x="330" y="138" fill="#444">INT4/INT3</text><text x="430" y="138" fill="#444">Hessian 二阶信息逐层最优量化</text><text x="720" y="138" fill="#444">消费级 GPU 4-bit 部署</text></g>
+    <g><rect x="20" y="150" width="920" height="34" fill="#fdf3e9"/><rect x="20" y="150" width="5" height="34" fill="#d35400"/>
+      <text x="36" y="172" font-weight="700" fill="#7a3800">AWQ</text><text x="190" y="172" fill="#444">W（weight-only）</text><text x="330" y="172" fill="#444">INT4</text><text x="430" y="172" fill="#444">按激活幅度保护 1% 显著通道</text><text x="720" y="172" fill="#444">4-bit 推理，精度/速度俱佳</text></g>
+    <g><rect x="20" y="184" width="920" height="34" fill="#ffffff"/><rect x="20" y="184" width="5" height="34" fill="#d35400"/>
+      <text x="36" y="206" font-weight="700" fill="#7a3800">SmoothQuant</text><text x="190" y="206" fill="#444">W + A（W8A8）</text><text x="330" y="206" fill="#444">INT8</text><text x="430" y="206" fill="#444">把激活难度数学等价迁移给权重</text><text x="720" y="206" fill="#444">高吞吐、吃满 INT8</text></g>
+    <g><rect x="20" y="218" width="920" height="34" fill="#fdf3e9"/><rect x="20" y="218" width="5" height="34" fill="#d35400"/>
+      <text x="36" y="240" font-weight="700" fill="#7a3800">NF4 + 双重量化</text><text x="190" y="240" fill="#444">W（weight-only）</text><text x="330" y="240" fill="#444">4-bit</text><text x="430" y="240" fill="#444">适配正态分布的非均匀量化</text><text x="720" y="240" fill="#444">QLoRA 低显存微调</text></g>
+  </g>
+  <rect x="20" y="82" width="920" height="170" rx="6" fill="none" stroke="#e3e6ea"/>
+  <text x="24" y="272" font-size="11.5" fill="#888">weight-only（GPTQ/AWQ/NF4）只压权重省显存；W8A8（SmoothQuant/LLM.int8）连激活一起量化拿高吞吐</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 186" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="760" height="186" rx="12" fill="#1e2430"/>
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/><circle cx="48" cy="26" r="6" fill="#ffbd2e"/><circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="380" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">gptq_demo.py — 输出（需 GPU）</text>
+  <line x1="0" y1="48" x2="760" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="78" font-size="14" fill="#6b7280">$ python gptq_demo.py</text>
+  <text x="30" y="108" font-size="15" fill="#8a93a2">GPTQ 4-bit 显存:</text>
+  <text x="280" y="108" font-size="15" fill="#b5cea8">0.15 GB</text>
+  <text x="30" y="136" font-size="15" fill="#dcdcaa">Quantization makes LLMs </text>
+  <text x="310" y="136" font-size="14" fill="#6b7280">…（连贯英文续写，略）</text>
+
+  <line x1="0" y1="154" x2="760" y2="154" stroke="#2c3443"/>
+  <text x="30" y="174" font-size="12.5" fill="#6b7280">※ 显存为按参数量估算（opt-125m，含 FP16 词嵌入），随模型 / 环境而变</text>
+</svg>
