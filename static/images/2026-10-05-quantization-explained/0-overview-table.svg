@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="470" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">模型量化全景对比：基础 · 范式 · LLM 专用</text>
+  <rect x="640" y="18" width="12" height="12" rx="3" fill="#2b6cb0"/><text x="658" y="29" font-size="12" fill="#555">基础</text>
+  <rect x="705" y="18" width="12" height="12" rx="3" fill="#5a8c00"/><text x="723" y="29" font-size="12" fill="#555">范式</text>
+  <rect x="770" y="18" width="12" height="12" rx="3" fill="#d35400"/><text x="788" y="29" font-size="12" fill="#555">LLM 专用</text>
+
+  <!-- header -->
+  <rect x="20" y="46" width="920" height="30" rx="5" fill="#f2f4f7"/>
+  <text x="34" y="66" font-size="12.5" font-weight="700" fill="#555">方法</text>
+  <text x="250" y="66" font-size="12.5" font-weight="700" fill="#555">量化对象</text>
+  <text x="360" y="66" font-size="12.5" font-weight="700" fill="#555">位宽</text>
+  <text x="455" y="66" font-size="12.5" font-weight="700" fill="#555">需重训</text>
+  <text x="545" y="66" font-size="12.5" font-weight="700" fill="#555">典型场景</text>
+
+  <g font-size="12.5">
+    <!-- basics -->
+    <g><rect x="20" y="82" width="920" height="28" fill="#f7fafd"/><rect x="20" y="82" width="5" height="28" fill="#2b6cb0"/>
+      <text x="34" y="100" font-weight="700" fill="#1a3a5c">对称 / 非对称量化</text><text x="250" y="100" fill="#444">W / A</text><text x="360" y="100" fill="#444">INT8/INT4</text><text x="455" y="100" fill="#444">否</text><text x="545" y="100" fill="#444">一切量化的映射基础</text></g>
+    <g><rect x="20" y="110" width="920" height="28" fill="#ffffff"/><rect x="20" y="110" width="5" height="28" fill="#2b6cb0"/>
+      <text x="34" y="128" font-weight="700" fill="#1a3a5c">per-tensor / per-channel</text><text x="250" y="128" fill="#444">W / A</text><text x="360" y="128" fill="#444">INT8/INT4</text><text x="455" y="128" fill="#444">否</text><text x="545" y="128" fill="#444">精度-开销权衡</text></g>
+    <!-- paradigms -->
+    <g><rect x="20" y="138" width="920" height="28" fill="#f8fcf2"/><rect x="20" y="138" width="5" height="28" fill="#5a8c00"/>
+      <text x="34" y="156" font-weight="700" fill="#2f4a00">PTQ 后训练量化</text><text x="250" y="156" fill="#444">W / A</text><text x="360" y="156" fill="#444">INT8 为主</text><text x="455" y="156" fill="#444">否</text><text x="545" y="156" fill="#444">延迟敏感的生产推理</text></g>
+    <g><rect x="20" y="166" width="920" height="28" fill="#ffffff"/><rect x="20" y="166" width="5" height="28" fill="#5a8c00"/>
+      <text x="34" y="184" font-weight="700" fill="#2f4a00">QAT 量化感知训练</text><text x="250" y="184" fill="#444">W / A</text><text x="360" y="184" fill="#444">INT8/INT4</text><text x="455" y="184" fill="#C7000B" font-weight="700">是</text><text x="545" y="184" fill="#444">低位宽仍要保精度</text></g>
+    <g><rect x="20" y="194" width="920" height="28" fill="#f8fcf2"/><rect x="20" y="194" width="5" height="28" fill="#5a8c00"/>
+      <text x="34" y="212" font-weight="700" fill="#2f4a00">动态量化</text><text x="250" y="212" fill="#444">W静态 + A动态</text><text x="360" y="212" fill="#444">INT8</text><text x="455" y="212" fill="#444">否</text><text x="545" y="212" fill="#444">NLP/RNN，激活分布多变</text></g>
+    <g><rect x="20" y="222" width="920" height="28" fill="#ffffff"/><rect x="20" y="222" width="5" height="28" fill="#5a8c00"/>
+      <text x="34" y="240" font-weight="700" fill="#2f4a00">静态量化</text><text x="250" y="240" fill="#444">W + A（离线校准）</text><text x="360" y="240" fill="#444">INT8</text><text x="455" y="240" fill="#444">否</text><text x="545" y="240" fill="#444">CNN，吃满 INT8 Tensor Core</text></g>
+    <!-- LLM -->
+    <g><rect x="20" y="250" width="920" height="28" fill="#fdf3e9"/><rect x="20" y="250" width="5" height="28" fill="#d35400"/>
+      <text x="34" y="268" font-weight="700" fill="#7a3800">LLM.int8()</text><text x="250" y="268" fill="#444">W + A</text><text x="360" y="268" fill="#444">INT8（混合）</text><text x="455" y="268" fill="#444">否</text><text x="545" y="268" fill="#444">保精度优先的推理（下篇）</text></g>
+    <g><rect x="20" y="278" width="920" height="28" fill="#ffffff"/><rect x="20" y="278" width="5" height="28" fill="#d35400"/>
+      <text x="34" y="296" font-weight="700" fill="#7a3800">GPTQ</text><text x="250" y="296" fill="#444">W（weight-only）</text><text x="360" y="296" fill="#444">INT4/INT3</text><text x="455" y="296" fill="#444">否</text><text x="545" y="296" fill="#444">消费级 GPU 跑 4-bit（下篇）</text></g>
+    <g><rect x="20" y="306" width="920" height="28" fill="#fdf3e9"/><rect x="20" y="306" width="5" height="28" fill="#d35400"/>
+      <text x="34" y="324" font-weight="700" fill="#7a3800">AWQ</text><text x="250" y="324" fill="#444">W（weight-only）</text><text x="360" y="324" fill="#444">INT4</text><text x="455" y="324" fill="#444">否</text><text x="545" y="324" fill="#444">4-bit 推理，保护显著通道（下篇）</text></g>
+    <g><rect x="20" y="334" width="920" height="28" fill="#ffffff"/><rect x="20" y="334" width="5" height="28" fill="#d35400"/>
+      <text x="34" y="352" font-weight="700" fill="#7a3800">SmoothQuant</text><text x="250" y="352" fill="#444">W + A（W8A8）</text><text x="360" y="352" fill="#444">INT8</text><text x="455" y="352" fill="#444">否</text><text x="545" y="352" fill="#444">高吞吐、吃满 INT8（下篇）</text></g>
+    <g><rect x="20" y="362" width="920" height="28" fill="#fdf3e9"/><rect x="20" y="362" width="5" height="28" fill="#d35400"/>
+      <text x="34" y="380" font-weight="700" fill="#7a3800">NF4 + 双重量化</text><text x="250" y="380" fill="#444">W（weight-only）</text><text x="360" y="380" fill="#444">4-bit</text><text x="455" y="380" fill="#444">否</text><text x="545" y="380" fill="#444">QLoRA 低显存微调（下篇）</text></g>
+  </g>
+  <rect x="20" y="82" width="920" height="308" rx="6" fill="none" stroke="#e3e6ea"/>
+  <text x="24" y="414" font-size="12.5" fill="#333" font-weight="700">核心内核：q = round(x / scale) + zero_point —— 对称量化 zp=0，非对称量化 zp≠0</text>
+  <text x="24" y="434" font-size="11.5" fill="#888">精度损失 = 舍入误差(round) + 截断误差(clip)；校准就是在二者间找最优 scale</text>
+  <text x="24" y="454" font-size="11.5" fill="#888">W = 权重，A = 激活；W8A8 = 权重+激活都 8-bit，W4A16 = 权重 4-bit、激活 16-bit</text>
+</svg>

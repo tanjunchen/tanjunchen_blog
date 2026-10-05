@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 154" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="620" height="154" rx="12" fill="#1e2430"/>
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/>
+  <circle cx="48" cy="26" r="6" fill="#ffbd2e"/>
+  <circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="310" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">qat_demo.py — 输出</text>
+  <line x1="0" y1="48" x2="620" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="78" font-size="14" fill="#6b7280">$ python qat_demo.py</text>
+  <text x="30" y="110" font-size="15" fill="#8a93a2">QAT 微调后 loss:</text>
+  <text x="250" y="110" font-size="15" fill="#f48771">2.2648</text>
+  <text x="30" y="138" font-size="15" fill="#8a93a2">转换为 INT8 模型完成:</text>
+  <text x="280" y="138" font-size="15" fill="#b5cea8">GraphModule</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="440" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">浮点与定点表示：动态范围 vs 精度的取舍</text>
+
+  <!-- table -->
+  <rect x="20" y="46" width="920" height="28" rx="5" fill="#f2f4f7"/>
+  <text x="34" y="65" font-size="12.5" font-weight="700" fill="#555">格式</text>
+  <text x="140" y="65" font-size="12.5" font-weight="700" fill="#555">位宽</text>
+  <text x="210" y="65" font-size="12.5" font-weight="700" fill="#555">符号/指数/尾数</text>
+  <text x="400" y="65" font-size="12.5" font-weight="700" fill="#555">近似动态范围</text>
+  <text x="590" y="65" font-size="12.5" font-weight="700" fill="#555">用途</text>
+
+  <g font-size="12.5">
+    <g><rect x="20" y="74" width="920" height="26" fill="#f7fafd"/><text x="34" y="91" font-weight="700" fill="#1a3a5c">FP32</text><text x="140" y="91" fill="#444">32</text><text x="210" y="91" fill="#444">1 / 8 / 23</text><text x="400" y="91" fill="#444">±3.4e38</text><text x="590" y="91" fill="#444">训练基准、黄金参考</text></g>
+    <g><rect x="20" y="100" width="920" height="26" fill="#ffffff"/><text x="34" y="117" font-weight="700" fill="#1a3a5c">FP16</text><text x="140" y="117" fill="#444">16</text><text x="210" y="117" fill="#444">1 / 5 / 10</text><text x="400" y="117" fill="#444">±65504</text><text x="590" y="117" fill="#444">混合精度训练 / 推理</text></g>
+    <g><rect x="20" y="126" width="920" height="26" fill="#f7fafd"/><text x="34" y="143" font-weight="700" fill="#1a3a5c">BF16</text><text x="140" y="143" fill="#444">16</text><text x="210" y="143" fill="#444">1 / 8 / 7</text><text x="400" y="143" fill="#444">±3.4e38</text><text x="590" y="143" fill="#444">训练（范围同 FP32，尾数少）</text></g>
+    <g><rect x="20" y="152" width="920" height="26" fill="#ffffff"/><text x="34" y="169" font-weight="700" fill="#1a3a5c">FP8 E4M3</text><text x="140" y="169" fill="#444">8</text><text x="210" y="169" fill="#444">1 / 4 / 3</text><text x="400" y="169" fill="#444">±448</text><text x="590" y="169" fill="#444">推理 / 训练（精度优先）</text></g>
+    <g><rect x="20" y="178" width="920" height="26" fill="#f7fafd"/><text x="34" y="195" font-weight="700" fill="#1a3a5c">FP8 E5M2</text><text x="140" y="195" fill="#444">8</text><text x="210" y="195" fill="#444">1 / 5 / 2</text><text x="400" y="195" fill="#444">±57344</text><text x="590" y="195" fill="#444">训练梯度（范围优先）</text></g>
+    <g><rect x="20" y="204" width="920" height="26" fill="#fdf3e9"/><text x="34" y="221" font-weight="700" fill="#7a3800">INT8</text><text x="140" y="221" fill="#444">8</text><text x="210" y="221" fill="#444">整数</text><text x="400" y="221" fill="#444">[-128, 127]</text><text x="590" y="221" fill="#444">推理（需 scale 还原量级）</text></g>
+    <g><rect x="20" y="230" width="920" height="26" fill="#fdf3e9"/><text x="34" y="247" font-weight="700" fill="#7a3800">INT4</text><text x="140" y="247" fill="#444">4</text><text x="210" y="247" fill="#444">整数</text><text x="400" y="247" fill="#444">[-8, 7]</text><text x="590" y="247" fill="#444">LLM weight-only 推理</text></g>
+  </g>
+  <rect x="20" y="74" width="920" height="182" rx="6" fill="none" stroke="#e3e6ea"/>
+
+  <!-- bit layout -->
+  <text x="24" y="288" font-size="14" font-weight="700" fill="#333">16-bit 浮点的位分配：范围 vs 精度，就看指数/尾数怎么切</text>
+  <!-- FP16 -->
+  <text x="34" y="318" font-size="12" font-weight="700" fill="#2b6cb0">FP16</text>
+  <rect x="90" y="304" width="24" height="20" fill="#C7000B"/><text x="102" y="318" font-size="10" fill="#fff" text-anchor="middle">S</text>
+  <rect x="116" y="304" width="120" height="20" fill="#2e86de"/><text x="176" y="318" font-size="10.5" fill="#fff" text-anchor="middle">指数 5 位</text>
+  <rect x="238" y="304" width="240" height="20" fill="#5a8c00"/><text x="358" y="318" font-size="10.5" fill="#fff" text-anchor="middle">尾数 10 位（精度高）</text>
+  <text x="492" y="318" font-size="11.5" fill="#888">范围小(±65504)，尾数多→精度细</text>
+  <!-- BF16 -->
+  <text x="34" y="350" font-size="12" font-weight="700" fill="#2b6cb0">BF16</text>
+  <rect x="90" y="336" width="24" height="20" fill="#C7000B"/><text x="102" y="350" font-size="10" fill="#fff" text-anchor="middle">S</text>
+  <rect x="116" y="336" width="192" height="20" fill="#2e86de"/><text x="212" y="350" font-size="10.5" fill="#fff" text-anchor="middle">指数 8 位（范围大）</text>
+  <rect x="310" y="336" width="168" height="20" fill="#5a8c00"/><text x="394" y="350" font-size="10.5" fill="#fff" text-anchor="middle">尾数 7 位</text>
+  <text x="492" y="350" font-size="11.5" fill="#888">范围同 FP32，尾数少→训练更稳不溢出</text>
+
+  <rect x="20" y="380" width="920" height="44" rx="8" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="34" y="398" font-size="12.5" fill="#333"><tspan font-weight="700">定点/整数（INT）</tspan>没有指数位，是均匀分布的格点，必须配一个浮点 scale 才能还原真实量级：</text>
+  <text x="34" y="416" font-size="12.5" fill="#C7000B" font-weight="700">真实值 ≈ q × scale（INT8 本身只能表示 -128~127）</text>
+</svg>

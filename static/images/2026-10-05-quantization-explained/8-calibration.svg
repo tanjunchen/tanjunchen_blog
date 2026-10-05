@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="470" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">校准（Calibration）：怎么挑 scale，以及异常值为何致命</text>
+
+  <!-- methods table -->
+  <rect x="20" y="46" width="920" height="28" rx="5" fill="#f2f4f7"/>
+  <text x="40" y="65" font-size="12.5" font-weight="700" fill="#555">方法</text>
+  <text x="180" y="65" font-size="12.5" font-weight="700" fill="#555">做法</text>
+  <text x="530" y="65" font-size="12.5" font-weight="700" fill="#555">优点</text>
+  <text x="720" y="65" font-size="12.5" font-weight="700" fill="#555">缺点</text>
+  <g font-size="12">
+    <g><rect x="20" y="74" width="920" height="30" fill="#f7fafd"/><text x="40" y="93" font-weight="700" fill="#C7000B">MinMax</text><text x="180" y="93" fill="#444">取观测到的绝对最小/最大值</text><text x="530" y="93" fill="#444">简单，不丢任何值</text><text x="720" y="93" fill="#C7000B">对异常值极敏感</text></g>
+    <g><rect x="20" y="104" width="920" height="30" fill="#ffffff"/><text x="40" y="123" font-weight="700" fill="#5a8c00">Percentile</text><text x="180" y="123" fill="#444">取 99.9% 分位当边界，截掉尾部</text><text x="530" y="123" fill="#444">抗异常值</text><text x="720" y="123" fill="#444">需调分位阈值</text></g>
+    <g><rect x="20" y="134" width="920" height="30" fill="#f7fafd"/><text x="40" y="153" font-weight="700" fill="#2e86de">Entropy (KL)</text><text x="180" y="153" fill="#444">选量化前后 KL 散度最小的截断点</text><text x="530" y="153" fill="#444">精度常最好（TensorRT 默认）</text><text x="720" y="153" fill="#444">需算直方图，略慢</text></g>
+    <g><rect x="20" y="164" width="920" height="30" fill="#ffffff"/><text x="40" y="183" font-weight="700" fill="#8e44ad">MSE</text><text x="180" y="183" fill="#444">选使 (x-x̂)² 最小的 scale</text><text x="530" y="183" fill="#444">直接优化重构误差</text><text x="720" y="183" fill="#444">需搜索，慢</text></g>
+  </g>
+  <rect x="20" y="74" width="920" height="120" rx="6" fill="none" stroke="#e3e6ea"/>
+
+  <!-- outlier illustration -->
+  <text x="24" y="226" font-size="14" font-weight="700" fill="#333">异常值为什么致命：一个离群点 +50，撑大全局 scale</text>
+
+  <!-- MinMax -->
+  <rect x="20" y="240" width="455" height="120" rx="10" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="40" y="266" font-size="13" font-weight="700" fill="#C7000B">MinMax：scale = 50/127 ≈ 0.394</text>
+  <!-- histogram -->
+  <g fill="#C7000B">
+    <rect x="40" y="316" width="10" height="12"/><rect x="52" y="310" width="10" height="18"/><rect x="64" y="300" width="10" height="28"/><rect x="76" y="294" width="10" height="34"/><rect x="88" y="300" width="10" height="28"/><rect x="100" y="310" width="10" height="18"/><rect x="112" y="318" width="10" height="10"/>
+  </g>
+  <line x1="40" y1="328" x2="450" y2="328" stroke="#999"/>
+  <rect x="430" y="286" width="10" height="42" fill="#C7000B"/>
+  <text x="420" y="282" font-size="10.5" fill="#C7000B" font-weight="700">50</text>
+  <text x="40" y="352" font-size="11.5" fill="#555">[-2,2] 只用到 ±5 个格点，精度被糟蹋</text>
+
+  <!-- Percentile -->
+  <rect x="485" y="240" width="455" height="120" rx="10" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="505" y="266" font-size="13" font-weight="700" fill="#5a8c00">Percentile(99.9%)：截断到 ±3，scale ≈ 0.0236</text>
+  <g fill="#5a8c00">
+    <rect x="505" y="312" width="14" height="16"/><rect x="521" y="302" width="14" height="26"/><rect x="537" y="290" width="14" height="38"/><rect x="553" y="284" width="14" height="44"/><rect x="569" y="290" width="14" height="38"/><rect x="585" y="302" width="14" height="26"/><rect x="601" y="312" width="14" height="16"/>
+  </g>
+  <line x1="505" y1="328" x2="915" y2="328" stroke="#999"/>
+  <text x="505" y="352" font-size="11.5" fill="#555">[-2,2] 用满 ±85 格点，精度回来了（50 被 clip 成 3，仅 0.1% 点受影响）</text>
+
+  <!-- conclusion -->
+  <rect x="20" y="374" width="920" height="80" rx="10" fill="#fff7ed" stroke="#d35400"/>
+  <text x="40" y="400" font-size="13" font-weight="700" fill="#d35400">这就是 LLM 量化的核心矛盾</text>
+  <text x="40" y="424" font-size="12.5" fill="#333">Transformer 激活里存在<tspan font-weight="700" fill="#C7000B">系统性的异常值通道</tspan>，数值能比其他通道大几十上百倍，用 MinMax 直接量化激活会灾难性掉点。</text>
+  <text x="40" y="446" font-size="12.5" fill="#555">下篇的 LLM.int8()、SmoothQuant 本质都在跟这些异常值搏斗。</text>
+</svg>

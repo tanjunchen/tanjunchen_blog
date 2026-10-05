@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="960" height="420" fill="#ffffff"/>
+  <text x="24" y="30" font-size="19" font-weight="700" fill="#1a1a1a">per-tensor vs per-channel：scale 的粒度决定精度</text>
+
+  <!-- per-tensor -->
+  <rect x="20" y="48" width="455" height="250" rx="10" fill="#fdeeee" stroke="#C7000B"/>
+  <text x="40" y="76" font-size="15" font-weight="700" fill="#C7000B">per-tensor（逐张量）：整块共用 1 个 scale</text>
+  <!-- matrix 4x6 -->
+  <g>
+    <rect x="60" y="92" width="300" height="140" rx="4" fill="none" stroke="#C7000B" stroke-width="1.5"/>
+    <!-- rows -->
+    <g fill="#2e86de">
+      <rect x="70" y="100" width="40" height="26" rx="3"/><rect x="120" y="100" width="40" height="26" rx="3"/><rect x="170" y="100" width="40" height="26" rx="3"/><rect x="220" y="100" width="40" height="26" rx="3"/><rect x="270" y="100" width="40" height="26" rx="3"/><rect x="320" y="100" width="30" height="26" rx="3"/>
+      <rect x="70" y="132" width="40" height="26" rx="3"/><rect x="120" y="132" width="40" height="26" rx="3"/><rect x="170" y="132" width="40" height="26" rx="3"/><rect x="220" y="132" width="40" height="26" rx="3"/><rect x="270" y="132" width="40" height="26" rx="3"/><rect x="320" y="132" width="30" height="26" rx="3"/>
+      <rect x="70" y="164" width="40" height="26" rx="3"/><rect x="120" y="164" width="40" height="26" rx="3"/><rect x="170" y="164" width="40" height="26" rx="3"/><rect x="220" y="164" width="40" height="26" rx="3"/><rect x="270" y="164" width="40" height="26" rx="3"/><rect x="320" y="164" width="30" height="26" rx="3"/>
+    </g>
+    <!-- outlier row -->
+    <g fill="#C7000B">
+      <rect x="70" y="196" width="40" height="26" rx="3"/><rect x="120" y="196" width="40" height="26" rx="3"/><rect x="170" y="196" width="40" height="26" rx="3"/><rect x="220" y="196" width="40" height="26" rx="3"/><rect x="270" y="196" width="40" height="26" rx="3"/><rect x="320" y="196" width="30" height="26" rx="3"/>
+    </g>
+    <rect x="283" y="200" width="56" height="18" rx="3" fill="#C7000B"/>
+    <text x="311" y="213" font-size="11" fill="#fff" font-weight="700" text-anchor="middle">大值行</text>
+  </g>
+  <text x="210" y="252" font-size="12.5" fill="#C7000B" font-weight="700" text-anchor="middle">整块共用 scale = max(|W|) / 127</text>
+  <text x="40" y="274" font-size="12" fill="#555">开销最小（存 1 个 float）</text>
+  <text x="40" y="292" font-size="12" fill="#C7000B" font-weight="700">但大值行会撑大 scale，前几行精度被连累</text>
+
+  <!-- per-channel -->
+  <rect x="485" y="48" width="455" height="250" rx="10" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="505" y="76" font-size="15" font-weight="700" fill="#5a8c00">per-channel（逐通道）：每行一个 scale</text>
+  <g>
+    <g fill="#2e86de">
+      <rect x="525" y="100" width="40" height="26" rx="3"/><rect x="575" y="100" width="40" height="26" rx="3"/><rect x="625" y="100" width="40" height="26" rx="3"/><rect x="675" y="100" width="40" height="26" rx="3"/><rect x="725" y="100" width="40" height="26" rx="3"/><rect x="775" y="100" width="30" height="26" rx="3"/>
+      <rect x="525" y="132" width="40" height="26" rx="3"/><rect x="575" y="132" width="40" height="26" rx="3"/><rect x="625" y="132" width="40" height="26" rx="3"/><rect x="675" y="132" width="40" height="26" rx="3"/><rect x="725" y="132" width="40" height="26" rx="3"/><rect x="775" y="132" width="30" height="26" rx="3"/>
+      <rect x="525" y="164" width="40" height="26" rx="3"/><rect x="575" y="164" width="40" height="26" rx="3"/><rect x="625" y="164" width="40" height="26" rx="3"/><rect x="675" y="164" width="40" height="26" rx="3"/><rect x="725" y="164" width="40" height="26" rx="3"/><rect x="775" y="164" width="30" height="26" rx="3"/>
+    </g>
+    <g fill="#C7000B">
+      <rect x="525" y="196" width="40" height="26" rx="3"/><rect x="575" y="196" width="40" height="26" rx="3"/><rect x="625" y="196" width="40" height="26" rx="3"/><rect x="675" y="196" width="40" height="26" rx="3"/><rect x="725" y="196" width="40" height="26" rx="3"/><rect x="775" y="196" width="30" height="26" rx="3"/>
+    </g>
+  </g>
+  <text x="815" y="118" font-size="11" fill="#5a8c00" font-weight="700">scale_0</text>
+  <text x="815" y="150" font-size="11" fill="#5a8c00" font-weight="700">scale_1</text>
+  <text x="815" y="182" font-size="11" fill="#5a8c00" font-weight="700">scale_2</text>
+  <text x="815" y="214" font-size="11" fill="#C7000B" font-weight="700">scale_3</text>
+  <text x="505" y="274" font-size="12" fill="#555">开销 = 长度为「通道数」的 scale 向量</text>
+  <text x="505" y="292" font-size="12" fill="#5a8c00" font-weight="700">大值只影响自己这行，精度高很多</text>
+
+  <!-- conclusion -->
+  <rect x="20" y="312" width="920" height="90" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="36" y="338" font-size="13" fill="#555"><tspan font-weight="700" fill="#5a8c00">权重几乎总是 per-channel</tspan>：scale 向量相比权重本身小几个数量级，开销可忽略，精度收益显著</text>
+  <text x="36" y="364" font-size="13" fill="#555"><tspan font-weight="700" fill="#2e86de">激活通常 per-tensor</tspan>：运行时才产生，per-channel 需在线为每通道统计 scale，开销大且破坏矩阵乘规整性</text>
+  <text x="36" y="390" font-size="12" fill="#C7000B" font-weight="700">LLM 激活的 per-channel 异常值问题，正是下篇 SmoothQuant 要解决的痛点</text>
+
+  <defs><marker id="ar1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#C7000B"/></marker></defs>
+</svg>

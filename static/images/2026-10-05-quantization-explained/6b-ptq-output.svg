@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 182" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="620" height="182" rx="12" fill="#1e2430"/>
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/>
+  <circle cx="48" cy="26" r="6" fill="#ffbd2e"/>
+  <circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="310" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">ptq_static.py — 输出</text>
+  <line x1="0" y1="48" x2="620" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="78" font-size="14" fill="#6b7280">$ python ptq_static.py</text>
+  <text x="30" y="110" font-size="15" fill="#8a93a2">输出最大绝对误差:</text>
+  <text x="270" y="110" font-size="15" fill="#b5cea8">0.006680</text>
+  <text x="30" y="138" font-size="15" fill="#8a93a2">FP32 体积 (MB):</text>
+  <text x="270" y="138" font-size="15" fill="#9cdcfe">0.0407</text>
+  <text x="30" y="166" font-size="15" fill="#8a93a2">INT8 体积 (MB):</text>
+  <text x="270" y="166" font-size="15" fill="#b5cea8">0.0140</text>
+</svg>

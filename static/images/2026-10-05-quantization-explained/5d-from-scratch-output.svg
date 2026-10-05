@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" font-family="'SF Mono','Menlo','Consolas','Liberation Mono',monospace">
+  <rect width="700" height="400" rx="12" fill="#1e2430"/>
+  <!-- title bar -->
+  <circle cx="28" cy="26" r="6" fill="#ff5f56"/>
+  <circle cx="48" cy="26" r="6" fill="#ffbd2e"/>
+  <circle cx="68" cy="26" r="6" fill="#27c93f"/>
+  <text x="350" y="31" font-size="13" fill="#8a93a2" text-anchor="middle">quant_from_scratch.py — 参考输出</text>
+  <line x1="0" y1="48" x2="700" y2="48" stroke="#2c3443"/>
+
+  <text x="30" y="78" font-size="15" fill="#8a93a2">原始 FP32:</text>
+  <text x="180" y="78" font-size="15" fill="#9cdcfe">[-0.8, 0.1, 1.5, 3.0]</text>
+
+  <!-- symmetric -->
+  <text x="30" y="118" font-size="15" fill="#c586c0" font-weight="700">[对称]</text>
+  <text x="120" y="118" font-size="15" fill="#ce9178">scale = 0.023622</text>
+  <text x="50" y="144" font-size="15" fill="#8a93a2">量化后 INT8 :</text>
+  <text x="210" y="144" font-size="15" fill="#b5cea8">[-34, 4, 64, 127]</text>
+  <text x="50" y="170" font-size="15" fill="#8a93a2">反量化      :</text>
+  <text x="210" y="170" font-size="15" fill="#9cdcfe">[-0.8031, 0.0945, 1.5118, 3.0]</text>
+  <text x="50" y="196" font-size="15" fill="#8a93a2">最大误差    :</text>
+  <text x="210" y="196" font-size="15" fill="#f48771">0.011811</text>
+
+  <!-- asymmetric -->
+  <text x="30" y="236" font-size="15" fill="#c586c0" font-weight="700">[非对称]</text>
+  <text x="120" y="236" font-size="15" fill="#ce9178">scale = 0.014902, zero_point = 54</text>
+  <text x="50" y="262" font-size="15" fill="#8a93a2">量化后 INT8 :</text>
+  <text x="210" y="262" font-size="15" fill="#b5cea8">[0, 61, 155, 255]</text>
+  <text x="50" y="288" font-size="15" fill="#8a93a2">反量化      :</text>
+  <text x="210" y="288" font-size="15" fill="#9cdcfe">[-0.8047, 0.1043, 1.5051, 2.9953]</text>
+  <text x="50" y="314" font-size="15" fill="#8a93a2">最大误差    :</text>
+  <text x="210" y="314" font-size="15" fill="#f48771">0.005098</text>
+
+  <!-- per-tensor vs per-channel -->
+  <text x="30" y="354" font-size="15" fill="#dcdcaa">[per-tensor] </text>
+  <text x="190" y="354" font-size="15" fill="#8a93a2">最大误差 = </text>
+  <text x="300" y="354" font-size="15" fill="#f48771">0.0362</text>
+  <text x="30" y="380" font-size="15" fill="#dcdcaa">[per-channel]</text>
+  <text x="190" y="380" font-size="15" fill="#8a93a2">最大误差 = </text>
+  <text x="300" y="380" font-size="15" fill="#b5cea8">0.0315</text>
+  <text x="380" y="380" font-size="13" fill="#6b7280">大值行不再连累前两行</text>
+</svg>
