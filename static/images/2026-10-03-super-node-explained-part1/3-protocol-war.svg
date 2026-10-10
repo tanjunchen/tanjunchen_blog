@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="500" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">厂商协议大乱斗：Scale-up 互联这一层谁说了算</text>
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#888">私有总线各自为政 vs 开放标准试图破局（2024—2026 态势）</text>
+
+  <rect x="30" y="72" width="400" height="196" rx="12" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="230" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#3a5c00">私有总线（封闭、性能领先、绑生态）</text>
+  <text x="48" y="126" font-size="12" fill="#444"><tspan font-weight="700">NVIDIA NVLink / NVSwitch</tspan>：第 5 代每卡 1.8 TB/s</text>
+  <text x="48" y="146" font-size="11.5" fill="#666">绑 CUDA/NCCL，生态最成熟，事实标准</text>
+  <text x="48" y="172" font-size="12" fill="#444"><tspan font-weight="700">华为灵衢 UnifiedBus（UB / UBoE）</tspan></text>
+  <text x="48" y="192" font-size="11.5" fill="#666">UB 做超节点互联；UBoE 把 UB 承载到以太网</text>
+  <text x="48" y="218" font-size="12" fill="#444"><tspan font-weight="700">各国产私有互联</tspan>：阿里 ICN、清微直连等</text>
+  <text x="48" y="238" font-size="11.5" fill="#666">多为自研，域内全互联，彼此不互通</text>
+  <text x="48" y="258" font-size="11" fill="#888">特征：性能可冲顶，但下游被单一厂商锁定</text>
+
+  <rect x="470" y="72" width="400" height="196" rx="12" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="670" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#1a5a9c">开放标准（互通、生态合力、追赶中）</text>
+  <text x="488" y="126" font-size="12" fill="#444"><tspan font-weight="700">UALink（Ultra Accelerator Link）</tspan></text>
+  <text x="488" y="146" font-size="11.5" fill="#666">1.0 规格 2025 发布，目标单 pod 千卡级 Scale-up</text>
+  <text x="488" y="172" font-size="12" fill="#444"><tspan font-weight="700">Scale-up Ethernet（SUE 等）</tspan></text>
+  <text x="488" y="192" font-size="11.5" fill="#666">以太阵营把 Scale-up 搬到以太生态</text>
+  <text x="488" y="218" font-size="12" fill="#444"><tspan font-weight="700">PCIe / CXL</tspan>：通用但带宽/延迟不够打</text>
+  <text x="488" y="238" font-size="11.5" fill="#666">更多用于 CPU-设备、内存扩展，非主力 Scale-up</text>
+  <text x="488" y="258" font-size="11" fill="#888">特征：避免锁定，但成熟度与性能仍在追赶</text>
+
+  <rect x="150" y="298" width="600" height="56" rx="10" fill="#fff7e6" stroke="#e0a800"/>
+  <text x="450" y="322" text-anchor="middle" font-size="12.5" font-weight="700" fill="#7a5c00">信通院《超节点发展报告》给出的「及格线」定义（2025）</text>
+  <text x="450" y="342" text-anchor="middle" font-size="11.5" fill="#7a5c00">≥32 卡 · AI 芯片↔交换芯片带宽 ≥400 GB/s · 交换时延 &lt;500 ns · 域内统一内存编址</text>
+
+  <rect x="30" y="372" width="840" height="104" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="50" y="398" font-size="13" font-weight="700" fill="#333">为什么会「大乱斗」：</text>
+  <text x="50" y="422" font-size="11.5" fill="#555">① Scale-up 这一层直接决定性能上限，厂商都想用自家总线把客户和算力生态绑在一起；</text>
+  <text x="50" y="444" font-size="11.5" fill="#555">② 私有总线性能领先但互不兼容，下游怕被锁死 → 推动 UALink / 以太 Scale-up 等开放标准；</text>
+  <text x="50" y="466" font-size="11.5" fill="#555">③ 对追赶者而言，<tspan font-weight="700" fill="#333">开放标准能聚合生态合力</tspan>，但能否在性能与成熟度上追上私有总线，是未来几年胜负手。</text>
+</svg>

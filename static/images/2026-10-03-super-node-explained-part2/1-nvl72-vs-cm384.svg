@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="500" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">两条路线对比：NVIDIA GB200 NVL72 vs 华为 CloudMatrix 384</text>
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#888">数据来源：NVIDIA 官方规格（2024-03 发布）、华为公开发布 + SemiAnalysis 测算（2025）</text>
+
+  <rect x="30" y="72" width="405" height="396" rx="12" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="232" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#3a5c00">GB200 NVL72 · 铜缆路线</text>
+
+  <rect x="55" y="116" width="355" height="150" rx="8" fill="#ffffff" stroke="#cfe0a8"/>
+  <text x="70" y="138" font-size="11.5" fill="#444"><tspan font-weight="700">规模：</tspan>72 张 Blackwell GPU + 36 Grace CPU（1 柜）</text>
+  <text x="70" y="160" font-size="11.5" fill="#444"><tspan font-weight="700">拓扑：</tspan>18 计算托盘 + 9 NVSwitch 托盘，全互联</text>
+  <text x="70" y="182" font-size="11.5" fill="#444"><tspan font-weight="700">互联：</tspan>NVLink5，每卡 1.8 TB/s，机柜聚合 130 TB/s</text>
+  <text x="70" y="204" font-size="11.5" fill="#444"><tspan font-weight="700">显存：</tspan>约 13.4 TB HBM3e，带宽约 576 TB/s</text>
+  <text x="70" y="226" font-size="11.5" fill="#444"><tspan font-weight="700">算力：</tspan>FP4 ~1.4 EFLOPS（稀疏）/ BF16 ~180 PFLOPS</text>
+  <text x="70" y="248" font-size="11.5" fill="#444"><tspan font-weight="700">功耗：</tspan>整柜约 120 kW · 液冷</text>
+
+  <text x="232" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="#3a5c00">机柜内铜缆背板全互联（距离≤2m）</text>
+  <g>
+    <rect x="80" y="305" width="300" height="26" rx="5" fill="#76b900"/><text x="230" y="323" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">NVLink Spine（铜缆背板）</text>
+  </g>
+  <g font-size="10" fill="#fff" font-weight="700">
+    <rect x="80" y="345" width="66" height="24" rx="4" fill="#5a8c00"/><text x="113" y="361" text-anchor="middle">4 卡托盘</text>
+    <rect x="158" y="345" width="66" height="24" rx="4" fill="#5a8c00"/><text x="191" y="361" text-anchor="middle">4 卡托盘</text>
+    <rect x="236" y="345" width="66" height="24" rx="4" fill="#5a8c00"/><text x="269" y="361" text-anchor="middle">…×18</text>
+    <rect x="314" y="345" width="66" height="24" rx="4" fill="#5a8c00"/><text x="347" y="361" text-anchor="middle">4 卡托盘</text>
+  </g>
+  <text x="232" y="398" text-anchor="middle" font-size="11" fill="#666">优点：功耗/成本低、稳定；代价：距离受限 → 域难做大</text>
+  <text x="232" y="420" text-anchor="middle" font-size="11.5" fill="#3a5c00" font-weight="700">生态：CUDA/NCCL 成熟，软件迁移成本最低</text>
+  <text x="232" y="446" text-anchor="middle" font-size="11" fill="#888">定位：单卡强、能效高，用更少卡达到同等算力</text>
+
+  <rect x="465" y="72" width="405" height="396" rx="12" fill="#fdeeee" stroke="#c0392b"/>
+  <text x="667" y="98" text-anchor="middle" font-size="16" font-weight="700" fill="#9c2619">CloudMatrix 384 · 全光路线</text>
+
+  <rect x="490" y="116" width="355" height="150" rx="8" fill="#ffffff" stroke="#eac6c2"/>
+  <text x="505" y="138" font-size="11.5" fill="#444"><tspan font-weight="700">规模：</tspan>384 张昇腾 910C（16 柜：12 计算 + 4 交换）</text>
+  <text x="505" y="160" font-size="11.5" fill="#444"><tspan font-weight="700">拓扑：</tspan>灵衢(UB) 单层扁平全互联，全光链路</text>
+  <text x="505" y="182" font-size="11.5" fill="#444"><tspan font-weight="700">互联：</tspan>每卡 7×400G 光模块，卡间 2.8 Tbps</text>
+  <text x="505" y="204" font-size="11.5" fill="#444"><tspan font-weight="700">显存：</tspan>约 49.2 TB HBM，带宽约 1229 TB/s</text>
+  <text x="505" y="226" font-size="11.5" fill="#444"><tspan font-weight="700">算力：</tspan>BF16 ~300 PFLOPS（约 NVL72 的 1.7 倍）</text>
+  <text x="505" y="248" font-size="11.5" fill="#444"><tspan font-weight="700">功耗：</tspan>整系统约 559 kW（约 NVL72 的 ~4 倍）</text>
+
+  <text x="667" y="290" text-anchor="middle" font-size="12" font-weight="700" fill="#9c2619">跨 16 柜全光互联（突破 2m 距离限制）</text>
+  <g>
+    <rect x="560" y="305" width="214" height="26" rx="5" fill="#c0392b"/><text x="667" y="323" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">中央 4 柜：UB Switch</text>
+  </g>
+  <g font-size="10" fill="#fff" font-weight="700">
+    <rect x="505" y="345" width="74" height="24" rx="4" fill="#9c2619"/><text x="542" y="361" text-anchor="middle">计算柜×12</text>
+    <rect x="589" y="345" width="74" height="24" rx="4" fill="#9c2619"/><text x="626" y="361" text-anchor="middle">32 卡/柜</text>
+    <rect x="673" y="345" width="74" height="24" rx="4" fill="#9c2619"/><text x="710" y="361" text-anchor="middle">6912 光模块</text>
+  </g>
+  <text x="667" y="398" text-anchor="middle" font-size="11" fill="#666">优点：域可做大、带宽高；代价：功耗/成本/光模块可靠性</text>
+  <text x="667" y="420" text-anchor="middle" font-size="11.5" fill="#9c2619" font-weight="700">生态：CANN/MindSpore，迁移成本较高、在补齐</text>
+  <text x="667" y="446" text-anchor="middle" font-size="11" fill="#888">定位：单卡弱，用「更多卡 + 更大域」堆出系统级优势</text>
+
+  <text x="450" y="488" text-anchor="middle" font-size="12.5" fill="#555"><tspan font-weight="700" fill="#333">核心取舍：</tspan>NVIDIA「少而精 + 铜缆省电」，华为「多而广 + 全光换规模」——用系统工程弥补单芯片代差。</text>
+</svg>

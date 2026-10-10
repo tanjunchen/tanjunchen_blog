@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="540" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">国产超节点厂商图谱：三条路线（2025—2026）</text>
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#888">来源：华为 HC2025、WAIC2026 各厂商发布 / 媒体报道，卡数为满配或已展示规模，以厂商最新发布为准</text>
+
+  <rect x="30" y="72" width="275" height="300" rx="12" fill="#fdeeee" stroke="#c0392b"/>
+  <text x="167" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#9c2619">路线一 · 不断做大 domain</text>
+  <text x="167" y="116" text-anchor="middle" font-size="10.5" fill="#b56">「越大越好」，冲万亿/十万亿模型</text>
+
+  <rect x="46" y="130" width="243" height="68" rx="8" fill="#fff" stroke="#eac6c2"/>
+  <text x="58" y="150" font-size="12" font-weight="700" fill="#9c2619">华为 昇腾 Atlas / CloudMatrix</text>
+  <text x="58" y="168" font-size="10.5" fill="#555">Atlas 900=384卡(已商用750+套)</text>
+  <text x="58" y="184" font-size="10.5" fill="#555">Atlas 950=8192卡(26Q4)、960=15488卡(27Q4)</text>
+
+  <rect x="46" y="206" width="243" height="60" rx="8" fill="#fff" stroke="#eac6c2"/>
+  <text x="58" y="226" font-size="12" font-weight="700" fill="#9c2619">中科曙光 曙光8000(登峰)</text>
+  <text x="58" y="244" font-size="10.5" fill="#555">浸没液冷，单柜640卡</text>
+  <text x="58" y="260" font-size="10.5" fill="#555">构建十万卡集群，落地郑州超算节点</text>
+
+  <rect x="46" y="274" width="243" height="60" rx="8" fill="#fff" stroke="#eac6c2"/>
+  <text x="58" y="294" font-size="12" font-weight="700" fill="#9c2619">百度智能云 昆仑芯 / 天池</text>
+  <text x="58" y="312" font-size="10.5" fill="#555">天池256已落地，天池512(年底)</text>
+  <text x="58" y="328" font-size="10.5" fill="#555">全栈自研，已交付多个万卡集群</text>
+
+  <text x="167" y="356" text-anchor="middle" font-size="10.5" fill="#888">共性：全光互联、液冷、追求超大统一内存池</text>
+
+  <rect x="313" y="72" width="275" height="300" rx="12" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="450" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#1a5a9c">路线二 · 效率与经济性</text>
+  <text x="450" y="116" text-anchor="middle" font-size="10.5" fill="#5a8">「够用就好」，强调部署成本/上云</text>
+
+  <rect x="329" y="130" width="243" height="68" rx="8" fill="#fff" stroke="#bcd4f0"/>
+  <text x="341" y="150" font-size="12" font-weight="700" fill="#1a5a9c">阿里云 磐久 / 真武 M890</text>
+  <text x="341" y="168" font-size="10.5" fill="#555">磐久AL128=128-144卡/柜，350kW供电</text>
+  <text x="341" y="184" font-size="10.5" fill="#555">64卡为Scale-up单元，兼容多元GPU，上公共云</text>
+
+  <rect x="329" y="206" width="243" height="60" rx="8" fill="#fff" stroke="#bcd4f0"/>
+  <text x="341" y="226" font-size="12" font-weight="700" fill="#1a5a9c">浪潮信息 元脑 SD200</text>
+  <text x="341" y="244" font-size="10.5" fill="#555">面向万亿参数推理</text>
+  <text x="341" y="260" font-size="10.5" fill="#555">从64卡再推32卡，主打「用得起」</text>
+
+  <rect x="329" y="274" width="243" height="60" rx="8" fill="#fff" stroke="#bcd4f0"/>
+  <text x="341" y="294" font-size="12" font-weight="700" fill="#1a5a9c">沐曦 曦景S系列</text>
+  <text x="341" y="312" font-size="10.5" fill="#555">单柜64卡为基础，CUDA生态兼容</text>
+  <text x="341" y="328" font-size="10.5" fill="#555">强调向万卡横向扩展</text>
+
+  <text x="450" y="356" text-anchor="middle" font-size="10.5" fill="#888">共性：中等规模域 + Scale-out 扩展，算总体效能账</text>
+
+  <rect x="596" y="72" width="274" height="300" rx="12" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="733" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#3a5c00">路线三 · 新芯片/新互联</text>
+  <text x="733" y="116" text-anchor="middle" font-size="10.5" fill="#5a8">跳出 GPU/NPU 老路，重定义超节点</text>
+
+  <rect x="612" y="130" width="242" height="68" rx="8" fill="#fff" stroke="#cfe0a8"/>
+  <text x="624" y="150" font-size="12" font-weight="700" fill="#3a5c00">壁仞科技 NPO 光互连</text>
+  <text x="624" y="168" font-size="10.5" fill="#555">近封装光学，分布式解耦架构</text>
+  <text x="624" y="184" font-size="10.5" fill="#555">单超节点 1024 卡 Scale-up</text>
+
+  <rect x="612" y="206" width="242" height="60" rx="8" fill="#fff" stroke="#cfe0a8"/>
+  <text x="624" y="226" font-size="12" font-weight="700" fill="#3a5c00">摩尔线程 MTT C256</text>
+  <text x="624" y="244" font-size="10.5" fill="#555">一层 Scale-up 网络 256 卡全互联</text>
+  <text x="624" y="260" font-size="10.5" fill="#555">支持向十万卡集群扩展</text>
+
+  <rect x="612" y="274" width="242" height="60" rx="8" fill="#fff" stroke="#cfe0a8"/>
+  <text x="624" y="294" font-size="12" font-weight="700" fill="#3a5c00">清微智能 可重构数据流</text>
+  <text x="624" y="312" font-size="10.5" fill="#555">芯片既算又转发，无交换机直连</text>
+  <text x="624" y="328" font-size="10.5" fill="#555">已推 4096 卡、峰值 500 PFLOPS</text>
+
+  <text x="733" y="356" text-anchor="middle" font-size="10.5" fill="#888">还有：中兴 OEX、新华三 S80000、燧原等</text>
+
+  <rect x="30" y="384" width="840" height="134" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="50" y="410" font-size="13" font-weight="700" fill="#333">看图三个要点：</text>
+  <text x="50" y="434" font-size="11.5" fill="#555">① 国产普遍「单卡有代差 → 靠更大域 + 系统工程补」，华为用灵衢 UB/UBoE 把域做到千卡乃至集群级 52 万卡；</text>
+  <text x="50" y="456" font-size="11.5" fill="#555">② 并非都追「大」——阿里/浪潮/沐曦走中等域 + 上云 + 经济性，强调「总体效能账」而非卡数；</text>
+  <text x="50" y="478" font-size="11.5" fill="#555">③ 光互联（NPO/CPO）、单层全互联、无交换机直连等<tspan font-weight="700" fill="#333">新架构密集涌现</tspan>，2026 被视为国产超节点商用元年；</text>
+  <text x="50" y="500" font-size="11.5" fill="#999">共同短板：生态成熟度（CUDA 护城河）、光模块可靠性、功耗/成本，仍是国产要补的课。</text>
+</svg>

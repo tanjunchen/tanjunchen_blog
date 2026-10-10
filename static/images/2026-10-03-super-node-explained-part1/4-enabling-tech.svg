@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="480" fill="#ffffff"/>
+  <text x="450" y="30" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">三大使能技术：把上百张卡「粘」成一台机器</text>
+  <text x="450" y="52" text-anchor="middle" font-size="11" fill="#888">互联（怎么连得快）· 池化（怎么共享显存）· 散热供电（怎么喂得起电散得了热）</text>
+
+  <rect x="30" y="72" width="270" height="268" rx="12" fill="#eef4ff" stroke="#2e86de"/>
+  <text x="165" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#1a5a9c">① 高速互联</text>
+  <text x="48" y="124" font-size="11.5" fill="#444">NVLink/NVSwitch、灵衢 UB</text>
+  <text x="48" y="144" font-size="11.5" fill="#444">每卡 TB/s 级 · 全互联 · 亚微秒</text>
+  <text x="48" y="170" font-size="12" font-weight="700" fill="#1a5a9c">铜缆 vs 光互联</text>
+  <rect x="48" y="182" width="204" height="66" rx="7" fill="#fff" stroke="#bcd4f0"/>
+  <text x="60" y="202" font-size="10.5" fill="#555"><tspan font-weight="700">铜缆：</tspan>省电/稳定/便宜</text>
+  <text x="60" y="220" font-size="10.5" fill="#999">但 ≤2m → 域锁死单柜（NVL72）</text>
+  <text x="60" y="240" font-size="10.5" fill="#555"><tspan font-weight="700">光互联：</tspan>可跨柜做大域（CM384）</text>
+  <rect x="48" y="258" width="204" height="66" rx="7" fill="#fff" stroke="#bcd4f0"/>
+  <text x="60" y="278" font-size="10.5" fill="#999">代价：贵/功耗高/光模块脆弱</text>
+  <text x="60" y="298" font-size="10.5" fill="#555">趋势：NPO/CPO 把光拉近芯片</text>
+  <text x="60" y="316" font-size="10.5" fill="#999">降功耗、缩距离、提带宽密度</text>
+
+  <rect x="315" y="72" width="270" height="268" rx="12" fill="#f2f9e8" stroke="#5a8c00"/>
+  <text x="450" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#3a5c00">② 显存池化 + 一致性</text>
+  <text x="333" y="124" font-size="11.5" fill="#444">N 张卡显存合成一个大池</text>
+  <text x="333" y="144" font-size="11.5" fill="#444">统一编址：直接 load/store 对端显存</text>
+  <g font-size="10" fill="#fff" font-weight="700">
+    <rect x="333" y="160" width="55" height="30" rx="5" fill="#76b900"/><text x="360" y="180" text-anchor="middle">卡1</text>
+    <rect x="393" y="160" width="55" height="30" rx="5" fill="#76b900"/><text x="420" y="180" text-anchor="middle">卡2</text>
+    <rect x="453" y="160" width="55" height="30" rx="5" fill="#76b900"/><text x="480" y="180" text-anchor="middle">卡N</text>
+  </g>
+  <rect x="333" y="196" width="175" height="26" rx="5" fill="#5a8c00"/>
+  <text x="420" y="214" text-anchor="middle" font-size="10.5" fill="#fff" font-weight="700">统一寻址大显存池（UB Memory）</text>
+  <text x="333" y="246" font-size="12" font-weight="700" fill="#3a5c00">Cache 一致性取舍</text>
+  <text x="333" y="266" font-size="10.5" fill="#555">硬件强一致：好写，但域大→协议开销爆炸</text>
+  <text x="333" y="284" font-size="10.5" fill="#555">软件弱一致：难写，但扩展性好</text>
+  <text x="333" y="308" font-size="10.5" fill="#999">类比：多人实时协同编辑 vs 检查点合并</text>
+  <text x="333" y="326" font-size="10.5" fill="#999">域越大越倾向「适度一致 + 软件同步」</text>
+
+  <rect x="600" y="72" width="270" height="268" rx="12" fill="#fdeeee" stroke="#c0392b"/>
+  <text x="735" y="98" text-anchor="middle" font-size="15" font-weight="700" fill="#9c2619">③ 供电与散热</text>
+  <text x="618" y="124" font-size="11.5" fill="#444">单柜功率：传统十几 kW → 超节点 100+ kW</text>
+  <text x="618" y="144" font-size="11.5" fill="#444">NVL72 ~120 kW；CM384 ~559 kW</text>
+  <text x="618" y="170" font-size="12" font-weight="700" fill="#9c2619">为什么必然液冷</text>
+  <rect x="618" y="182" width="234" height="60" rx="7" fill="#fff" stroke="#eac6c2"/>
+  <text x="630" y="202" font-size="10.5" fill="#555">单卡功耗 &gt;1000W，风冷到极限</text>
+  <text x="630" y="220" font-size="10.5" fill="#555">液体导热远强于空气 → 冷板直触发热件</text>
+  <text x="630" y="238" font-size="10.5" fill="#999">散热跟不上就降频 = 算力打折</text>
+  <text x="618" y="266" font-size="12" font-weight="700" fill="#9c2619">功耗墙</text>
+  <text x="618" y="286" font-size="10.5" fill="#555">堆得越密→发热越多→散热/供电成硬约束</text>
+  <text x="618" y="306" font-size="10.5" fill="#999">电力充裕地区：可用高功耗换更大扩展性</text>
+  <text x="618" y="324" font-size="10.5" fill="#999">PUE、液冷供应链成为新的竞争维度</text>
+
+  <rect x="30" y="356" width="840" height="104" rx="10" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="50" y="382" font-size="13" font-weight="700" fill="#333">一句话串起来：</text>
+  <text x="50" y="406" font-size="11.5" fill="#555">互联决定「卡间能不能又快又全地连」，池化决定「显存能不能当一个大池用」，散热供电决定「这台机器能不能跑满、长期稳」。</text>
+  <text x="50" y="430" font-size="11.5" fill="#555">三者缺一不可——任何一环是短板，上百张卡就「粘不成」一台真正可用的超级计算机。</text>
+  <text x="50" y="452" font-size="11.5" fill="#999">这也是为什么超节点比的是「系统工程」，而非单颗芯片的算力。</text>
+</svg>

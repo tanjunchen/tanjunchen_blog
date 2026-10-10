@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="500" fill="#ffffff"/>
+  <text x="450" y="32" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">超节点是什么：一台「逻辑上的超级计算机」</text>
+  <text x="450" y="54" text-anchor="middle" font-size="11" fill="#888">物理上是一整个机柜/多机柜，逻辑上对软件呈现为「一台拥有超大显存池的巨型加速器」</text>
+
+  <!-- ===== 左图：Scale-up 域 ===== -->
+  <rect x="40" y="74" width="500" height="400" rx="14" fill="#fbfdf6" stroke="#5a8c00" stroke-width="2"/>
+  <text x="290" y="104" text-anchor="middle" font-size="15" font-weight="700" fill="#3a5c00">一个 Scale-up 域（超节点）</text>
+
+  <!-- 连接线（卡 → 交换芯片），放在卡片下层 -->
+  <g stroke="#9ac24a" stroke-width="2">
+    <line x1="130" y1="194" x2="250" y2="242"/>
+    <line x1="290" y1="194" x2="290" y2="242"/>
+    <line x1="450" y1="194" x2="330" y2="242"/>
+    <line x1="130" y1="340" x2="250" y2="300"/>
+    <line x1="290" y1="340" x2="290" y2="300"/>
+    <line x1="450" y1="340" x2="330" y2="300"/>
+  </g>
+
+  <!-- 上排三张卡 -->
+  <g>
+    <rect x="86" y="150" width="88" height="44" rx="7" fill="#76b900"/><text x="130" y="178" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">卡 1</text>
+    <rect x="246" y="150" width="88" height="44" rx="7" fill="#76b900"/><text x="290" y="178" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">卡 2</text>
+    <rect x="406" y="150" width="88" height="44" rx="7" fill="#76b900"/><text x="450" y="178" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">卡 3</text>
+  </g>
+
+  <!-- 中间交换芯片 -->
+  <rect x="215" y="242" width="150" height="58" rx="8" fill="#5a8c00"/>
+  <text x="290" y="268" text-anchor="middle" font-size="12.5" fill="#fff" font-weight="700">高速交换芯片</text>
+  <text x="290" y="287" text-anchor="middle" font-size="10.5" fill="#dfeec0">NVSwitch / UB Switch</text>
+
+  <!-- 下排三张卡 -->
+  <g>
+    <rect x="86" y="340" width="88" height="44" rx="7" fill="#76b900"/><text x="130" y="368" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">卡 N-1</text>
+    <rect x="246" y="340" width="88" height="44" rx="7" fill="#76b900"/><text x="290" y="368" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">卡 N</text>
+    <rect x="406" y="340" width="88" height="44" rx="7" fill="#76b900"/><text x="450" y="368" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">卡 …</text>
+  </g>
+
+  <text x="290" y="428" text-anchor="middle" font-size="11.5" fill="#3a5c00" font-weight="700">N 张卡经交换芯片全互联</text>
+  <text x="290" y="449" text-anchor="middle" font-size="11.5" fill="#3a5c00" font-weight="700">显存合成一个统一寻址的大池子</text>
+
+  <!-- ===== 右图：5 把尺子 ===== -->
+  <rect x="562" y="74" width="308" height="400" rx="12" fill="#f7f9fb" stroke="#dbe2ea"/>
+  <text x="584" y="106" font-size="14.5" font-weight="700" fill="#333">衡量一个超节点的 5 把尺子</text>
+
+  <g stroke="#e4e9ef" stroke-width="1">
+    <line x1="584" y1="176" x2="848" y2="176"/>
+    <line x1="584" y1="230" x2="848" y2="230"/>
+    <line x1="584" y1="284" x2="848" y2="284"/>
+    <line x1="584" y1="338" x2="848" y2="338"/>
+  </g>
+
+  <text x="584" y="146" font-size="12.5" font-weight="700" fill="#1a5a9c">① 域内卡数（domain size）</text>
+  <text x="584" y="166" font-size="11" fill="#666">一个全互联域里有几张卡：8 → 72 → 384 →…</text>
+
+  <text x="584" y="200" font-size="12.5" font-weight="700" fill="#1a5a9c">② 互联带宽（per-GPU / 聚合）</text>
+  <text x="584" y="220" font-size="11" fill="#666">每卡 TB/s 级，机柜聚合可达上百 TB/s</text>
+
+  <text x="584" y="254" font-size="12.5" font-weight="700" fill="#1a5a9c">③ 互联延迟</text>
+  <text x="584" y="274" font-size="11" fill="#666">亚微秒级（对比跨机网络的微秒~几十微秒）</text>
+
+  <text x="584" y="308" font-size="12.5" font-weight="700" fill="#1a5a9c">④ 是否全互联（all-to-all）</text>
+  <text x="584" y="328" font-size="11" fill="#666">任意两卡能否同时跑满带宽，无阻塞</text>
+
+  <text x="584" y="362" font-size="12.5" font-weight="700" fill="#1a5a9c">⑤ 显存是否统一寻址</text>
+  <text x="584" y="382" font-size="11" fill="#666">一张卡能否「直接读」另一张卡显存（load/store）</text>
+
+  <rect x="580" y="400" width="272" height="58" rx="8" fill="#ffffff" stroke="#cdd7e0"/>
+  <text x="596" y="424" font-size="11" fill="#555">边界：机柜 ≠ 超节点。关键看卡间是否</text>
+  <text x="596" y="444" font-size="11" fill="#555">「高带宽 + 低延迟 + 全互联」地紧耦合。</text>
+</svg>
