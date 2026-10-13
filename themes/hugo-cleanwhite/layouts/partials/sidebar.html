@@ -91,6 +91,22 @@
                    </a>
                </li>
                {{ end }}
+               {{ with .Site.Params.social.wechat_official }}
+               <li>
+                   <a target="_blank" href="{{ . | relURL }}" title="{{ with $.Site.Params.social.wechat_official_name }}{{ . }}{{ end }}{{ with $.Site.Params.social.wechat_official_id }} ({{ . }}){{ end }}">
+                       {{ with $.Site.Params.social.wechat_official_avatar }}
+                       <span class="fa-stack fa-lg">
+                           <img src="{{ . | relURL }}" alt="{{ $.Site.Params.social.wechat_official_name }}" style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:2em;height:2em;border-radius:50%;object-fit:cover;margin:0;display:inline-block;" />
+                       </span>
+                       {{ else }}
+                       <span class="fa-stack fa-lg">
+                           <i class="fas fa-circle fa-stack-2x"></i>
+                           <i class="fab fa-weixin fa-stack-1x fa-inverse"></i>
+                       </span>
+                       {{ end }}
+                   </a>
+               </li>
+               {{ end }}
                {{ with .Site.Params.social.gitlab }}
                <li>
                    <a target="_blank" href="{{ . }}">

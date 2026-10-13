@@ -70,6 +70,13 @@ home = ["HTML", "RSS", "Algolia"]
     email          = "tanjunchen20@gmail.com"
     github         = "https://github.com/tanjunchen"
     wechat         = 'img/wechat.jpg'
+    # 微信公众号：AI-庖丁解牛 (PaoDing-AI)
+    # 点击打开公众号二维码图片，用微信扫码即可关注/进入公众号
+    wechat_official        = "img/weixin_gongzhonghao.png"
+    wechat_official_name   = "AI-庖丁解牛"
+    wechat_official_id     = "PaoDing-AI"
+    # 公众号头像图片，放到 static/img/ 目录下
+    wechat_official_avatar = "img/qrcode_for_gh_58a53077077a_258.jpg"
   
   [[params.friend_link]]
   title = "tanjunchen的博客"
