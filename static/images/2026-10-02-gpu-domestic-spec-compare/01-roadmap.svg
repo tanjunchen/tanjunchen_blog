@@ -1,0 +1,165 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 1920" font-family="'PingFang SC','Microsoft YaHei','Hiragino Sans GB','Helvetica Neue',Arial,sans-serif">
+  <rect width="1180" height="1920" fill="#ffffff"/>
+
+  <!-- ===== Header ===== -->
+  <text x="590" y="48" text-anchor="middle" font-size="30" font-weight="800" fill="#1f2d3d">国产 GPU 厂商技术路线与发展历程</text>
+  <text x="590" y="78" text-anchor="middle" font-size="14" fill="#8a94a6">2018 → 2026+ · 从首代 AI 芯片到十万卡超节点 · 数据按各厂商公开资料整理（截至 2026年10月）</text>
+
+  <!-- ===== Legend ===== -->
+  <rect x="24" y="99" width="14" height="14" rx="3" fill="#f2634f"/><text x="44" y="111" font-size="13" fill="#3a4253">华为昇腾</text>
+  <rect x="116" y="99" width="14" height="14" rx="3" fill="#0fa697"/><text x="136" y="111" font-size="13" fill="#3a4253">壁仞科技</text>
+  <rect x="208" y="99" width="14" height="14" rx="3" fill="#6c5ce7"/><text x="228" y="111" font-size="13" fill="#3a4253">天数智芯</text>
+  <rect x="300" y="99" width="14" height="14" rx="3" fill="#d6479b"/><text x="320" y="111" font-size="13" fill="#3a4253">摩尔线程</text>
+  <rect x="392" y="99" width="14" height="14" rx="3" fill="#2f86d9"/><text x="412" y="111" font-size="13" fill="#3a4253">海光信息</text>
+  <rect x="484" y="99" width="14" height="14" rx="3" fill="#12b886"/><text x="504" y="111" font-size="13" fill="#3a4253">寒武纪</text>
+  <rect x="564" y="99" width="14" height="14" rx="3" fill="#9b6cf0"/><text x="584" y="111" font-size="13" fill="#3a4253">沐曦</text>
+  <rect x="631" y="99" width="14" height="14" rx="3" fill="#ef8e35"/><text x="651" y="111" font-size="13" fill="#3a4253">百度昆仑芯</text>
+  <rect x="736" y="99" width="14" height="14" rx="3" fill="#1f9bd6"/><text x="756" y="111" font-size="13" fill="#3a4253">阿里平头哥</text>
+  <rect x="841" y="99" width="14" height="14" rx="3" fill="#f5a623"/><text x="861" y="111" font-size="13" fill="#3a4253">燧原科技</text>
+
+  <!-- ===== Stage 1: 2018-2019 ===== -->
+  <text x="20" y="168" font-size="20" font-weight="800" fill="#1f2d3d">2018 – 2019</text>
+  <text x="20" y="190" font-size="11" fill="#8a94a6">起步，首代AI芯片与创业潮</text>
+
+  <rect x="190" y="150" width="310" height="92" rx="14" fill="#f2634f"/>
+  <text x="345" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昇腾910</text>
+  <text x="345" y="214" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">7nm 达芬奇架构</text>
+  <rect x="520" y="150" width="310" height="92" rx="14" fill="#ef8e35"/>
+  <text x="675" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昆仑1代</text>
+  <text x="675" y="214" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">百度首款AI芯片</text>
+  <rect x="850" y="150" width="310" height="92" rx="14" fill="#1f9bd6"/>
+  <text x="1005" y="188" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">含光800</text>
+  <text x="1005" y="214" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">阿里首款AI芯片</text>
+
+  <rect x="190" y="258" width="310" height="92" rx="14" fill="#6c5ce7"/>
+  <text x="345" y="296" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">天数智芯成立</text>
+  <text x="345" y="322" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">启动GPGPU研发</text>
+  <rect x="520" y="258" width="310" height="92" rx="14" fill="#0fa697"/>
+  <text x="675" y="296" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">壁仞科技成立</text>
+  <text x="675" y="322" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">2019.09</text>
+  <rect x="850" y="258" width="310" height="92" rx="14" fill="#d6479b"/>
+  <text x="1005" y="296" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">摩尔线程成立</text>
+  <text x="1005" y="322" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">2020.10 筹建</text>
+
+  <rect x="190" y="366" width="310" height="92" rx="14" fill="#f5a623"/>
+  <text x="345" y="404" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">燧原科技成立</text>
+  <text x="345" y="430" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">2018.03</text>
+
+  <!-- ===== Stage 2: 2020-2021 ===== -->
+  <text x="20" y="520" font-size="20" font-weight="800" fill="#1f2d3d">2020 – 2021</text>
+  <text x="20" y="542" font-size="11" fill="#8a94a6">初代量产，从0到1突破</text>
+
+  <rect x="190" y="502" width="310" height="92" rx="14" fill="#6c5ce7"/>
+  <text x="345" y="540" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">天垓100</text>
+  <text x="345" y="566" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">7nm 国产首款通用GPU</text>
+  <rect x="520" y="502" width="310" height="92" rx="14" fill="#2f86d9"/>
+  <text x="675" y="540" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">深算一号Z100</text>
+  <text x="675" y="566" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">7nm 类ROCm</text>
+  <rect x="850" y="502" width="310" height="92" rx="14" fill="#12b886"/>
+  <text x="1005" y="540" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">思元290</text>
+  <text x="1005" y="566" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">首款AI训练芯片</text>
+
+  <rect x="190" y="610" width="310" height="92" rx="14" fill="#9b6cf0"/>
+  <text x="345" y="648" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">沐曦成立</text>
+  <text x="345" y="674" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">2020.09</text>
+  <rect x="520" y="610" width="310" height="92" rx="14" fill="#ef8e35"/>
+  <text x="675" y="648" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昆仑2代量产</text>
+  <text x="675" y="674" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">云端训练/推理</text>
+  <rect x="850" y="610" width="310" height="92" rx="14" fill="#f5a623"/>
+  <text x="1005" y="648" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">云燧第一代</text>
+  <text x="1005" y="674" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">完成千卡集群</text>
+
+  <!-- ===== Stage 3: 2022-2023 ===== -->
+  <text x="20" y="764" font-size="20" font-weight="800" fill="#1f2d3d">2022 – 2023</text>
+  <text x="20" y="786" font-size="11" fill="#8a94a6">规模化，冲击千卡集群</text>
+
+  <rect x="190" y="746" width="310" height="92" rx="14" fill="#0fa697"/>
+  <text x="345" y="784" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">BR100</text>
+  <text x="345" y="810" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">7nm+Chiplet · BF16 512T</text>
+  <rect x="520" y="746" width="310" height="92" rx="14" fill="#12b886"/>
+  <text x="675" y="784" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">思元370/590</text>
+  <text x="675" y="810" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">推理/训练</text>
+  <rect x="850" y="746" width="310" height="92" rx="14" fill="#d6479b"/>
+  <text x="1005" y="784" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">S3000/S4000</text>
+  <text x="1005" y="810" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">训推一体</text>
+
+  <rect x="190" y="854" width="310" height="92" rx="14" fill="#f2634f"/>
+  <text x="345" y="892" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昇腾910B</text>
+  <text x="345" y="918" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">FP16 ~376T</text>
+  <rect x="520" y="854" width="310" height="92" rx="14" fill="#9b6cf0"/>
+  <text x="675" y="892" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">曦云C500</text>
+  <text x="675" y="918" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">FP16 280T · 64GB</text>
+  <rect x="850" y="854" width="310" height="92" rx="14" fill="#6c5ce7"/>
+  <text x="1005" y="892" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">智铠100</text>
+  <text x="1005" y="918" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">推理芯片</text>
+
+  <rect x="190" y="962" width="310" height="92" rx="14" fill="#f5a623"/>
+  <text x="345" y="1000" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">云燧2代</text>
+  <text x="345" y="1026" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">训练+推理产品</text>
+
+  <!-- ===== Stage 4: 2024-2025 ===== -->
+  <text x="20" y="1116" font-size="20" font-weight="800" fill="#1f2d3d">2024 – 2025</text>
+  <text x="20" y="1138" font-size="11" fill="#8a94a6">成熟，万卡集群与大显存</text>
+
+  <rect x="190" y="1098" width="310" height="92" rx="14" fill="#f2634f"/>
+  <text x="345" y="1136" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昇腾910C</text>
+  <text x="345" y="1162" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">800T FP16 · 128GB</text>
+  <rect x="520" y="1098" width="310" height="92" rx="14" fill="#ef8e35"/>
+  <text x="675" y="1136" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昆仑芯P800</text>
+  <text x="675" y="1162" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">未公开</text>
+  <rect x="850" y="1098" width="310" height="92" rx="14" fill="#d6479b"/>
+  <text x="1005" y="1136" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">MTT S5000</text>
+  <text x="1005" y="1162" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">FP8 1000T · 万卡</text>
+
+  <rect x="190" y="1206" width="310" height="92" rx="14" fill="#12b886"/>
+  <text x="345" y="1244" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">思元590规模落地</text>
+  <text x="345" y="1270" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">营收爆发</text>
+  <rect x="520" y="1206" width="310" height="92" rx="14" fill="#9b6cf0"/>
+  <text x="675" y="1244" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">曦云C600</text>
+  <text x="675" y="1270" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">144GB HBM3e · 全国产</text>
+  <rect x="850" y="1206" width="310" height="92" rx="14" fill="#2f86d9"/>
+  <text x="1005" y="1244" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">深算二号 K100-AI</text>
+  <text x="1005" y="1270" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">FP16 192T · 64GB</text>
+
+  <rect x="190" y="1314" width="310" height="92" rx="14" fill="#f5a623"/>
+  <text x="345" y="1352" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">S60量产 / L600</text>
+  <text x="345" y="1378" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.92">S60出货10万+ · L600 144GB</text>
+
+  <!-- ===== Stage 5: 2026+ ===== -->
+  <text x="20" y="1468" font-size="20" font-weight="800" fill="#1f2d3d">2026+</text>
+  <text x="20" y="1490" font-size="11" fill="#8a94a6">路线图，十万卡与先进封装</text>
+
+  <rect x="190" y="1450" width="310" height="92" rx="14" fill="#f2634f"/>
+  <text x="345" y="1488" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">昇腾950PR/DT</text>
+  <text x="345" y="1514" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">自研HBM · FP8 1P/2P</text>
+  <rect x="520" y="1450" width="310" height="92" rx="14" fill="#0fa697"/>
+  <text x="675" y="1488" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">壁仞 BR20X</text>
+  <text x="675" y="1514" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.92">第2代架构·FP8/FP4·2026商用</text>
+  <rect x="850" y="1450" width="310" height="92" rx="14" fill="#d6479b"/>
+  <text x="1005" y="1488" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">摩尔线程 花港架构</text>
+  <text x="1005" y="1514" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">华山训推 + 庐山图形</text>
+
+  <rect x="190" y="1558" width="310" height="92" rx="14" fill="#9b6cf0"/>
+  <text x="345" y="1596" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">沐曦 C700</text>
+  <text x="345" y="1622" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.92">综合对标H100 · 2026H2流片</text>
+  <rect x="520" y="1558" width="310" height="92" rx="14" fill="#ef8e35"/>
+  <text x="675" y="1596" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">昆仑芯 M100/M300</text>
+  <text x="675" y="1622" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.92">2026推理 → 2027多模态训推</text>
+  <rect x="850" y="1558" width="310" height="92" rx="14" fill="#12b886"/>
+  <text x="1005" y="1596" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">思元690</text>
+  <text x="1005" y="1622" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">5nm · ~700T · 196GB</text>
+
+  <rect x="190" y="1666" width="310" height="92" rx="14" fill="#2f86d9"/>
+  <text x="345" y="1704" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">深算三号 BW1000</text>
+  <text x="345" y="1730" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">全精度覆盖</text>
+  <rect x="520" y="1666" width="310" height="92" rx="14" fill="#1f9bd6"/>
+  <text x="675" y="1704" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">真武810E (PPU)</text>
+  <text x="675" y="1730" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">96GB · 700GB/s 互联</text>
+  <rect x="850" y="1666" width="310" height="92" rx="14" fill="#f2634f"/>
+  <text x="1005" y="1704" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">Atlas 950/960 超节点</text>
+  <text x="1005" y="1730" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">万卡 · 十万卡</text>
+
+  <rect x="190" y="1774" width="310" height="92" rx="14" fill="#f5a623"/>
+  <text x="345" y="1812" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">燧原 邃思迭代</text>
+  <text x="345" y="1838" text-anchor="middle" font-size="12.5" fill="#ffffff" opacity="0.92">L600 后续产品</text>
+</svg>

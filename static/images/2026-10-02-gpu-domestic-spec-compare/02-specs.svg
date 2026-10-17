@@ -125,7 +125,7 @@
   <g clip-path="url(#spectbl)">
     <rect x="40" y="1260" width="1090" height="626" fill="#ffffff"/>
     <rect x="40" y="1260" width="1090" height="46" fill="#f1f3f7"/>
-    <rect x="40" y="1422" width="1090" height="58" fill="#f6f8ff"/>
+    <rect x="40" y="1828" width="1090" height="58" fill="#f6f8ff"/>
     <line x1="40" y1="1306" x2="1130" y2="1306" stroke="#e7eaf0" stroke-width="1"/>
     <line x1="40" y1="1364" x2="1130" y2="1364" stroke="#eef0f4" stroke-width="1"/>
     <line x1="40" y1="1422" x2="1130" y2="1422" stroke="#eef0f4" stroke-width="1"/>
@@ -150,100 +150,100 @@
   <text x="1066" y="1289" text-anchor="middle" font-size="14" font-weight="700" fill="#3a4253">来源</text>
 
   <!-- row0 华为 昇腾910C -->
-  <text x="150" y="1341" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">华为 昇腾910C</text>
-  <text x="322" y="1335" text-anchor="middle" font-size="12" fill="#6b7488">7nm级(SMIC)</text>
+  <text x="150" y="1342" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">华为 昇腾910C</text>
+  <text x="322" y="1334" text-anchor="middle" font-size="12" fill="#6b7488">7nm级(SMIC)</text>
   <text x="322" y="1352" text-anchor="middle" font-size="12" fill="#6b7488">双die</text>
-  <text x="446" y="1341" text-anchor="middle" font-size="12.5" fill="#6b7488">800</text>
-  <text x="570" y="1341" text-anchor="middle" font-size="12.5" fill="#6b7488">128GB HBM</text>
-  <text x="694" y="1341" text-anchor="middle" font-size="12.5" fill="#6b7488">3.2 TB/s</text>
-  <text x="818" y="1341" text-anchor="middle" font-size="12.5" fill="#6b7488">784 GB/s</text>
-  <text x="942" y="1341" text-anchor="middle" font-size="12.5" fill="#6b7488">~310~600W</text>
-  <text x="1066" y="1341" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <text x="446" y="1342" text-anchor="middle" font-size="12.5" fill="#6b7488">800</text>
+  <text x="570" y="1342" text-anchor="middle" font-size="12.5" fill="#6b7488">128GB HBM</text>
+  <text x="694" y="1342" text-anchor="middle" font-size="12.5" fill="#6b7488">3.2 TB/s</text>
+  <text x="818" y="1342" text-anchor="middle" font-size="12.5" fill="#6b7488">784 GB/s</text>
+  <text x="942" y="1342" text-anchor="middle" font-size="12.5" fill="#6b7488">~310~600W</text>
+  <text x="1066" y="1342" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
   <!-- row1 壁仞 BR100 -->
-  <text x="150" y="1399" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">壁仞 BR100</text>
-  <text x="322" y="1399" text-anchor="middle" font-size="12" fill="#6b7488">7nm+Chiplet</text>
-  <text x="446" y="1399" text-anchor="middle" font-size="12.5" fill="#6b7488">512*</text>
-  <text x="570" y="1399" text-anchor="middle" font-size="12.5" fill="#6b7488">64GB HBM2e</text>
-  <text x="694" y="1399" text-anchor="middle" font-size="12.5" fill="#6b7488">—</text>
-  <text x="818" y="1399" text-anchor="middle" font-size="12.5" fill="#6b7488">BLINK 8卡</text>
-  <text x="942" y="1399" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
-  <text x="1066" y="1399" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
-  <!-- row2 百度 昆仑芯P800 (masked) -->
-  <text x="150" y="1457" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">百度 昆仑芯P800</text>
-  <text x="322" y="1457" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
-  <text x="446" y="1457" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
-  <text x="570" y="1457" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
-  <text x="694" y="1457" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
-  <text x="818" y="1457" text-anchor="middle" font-size="12.5" fill="#6b7488">XPU Link</text>
-  <text x="942" y="1457" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
-  <text x="1066" y="1457" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
-  <!-- row3 寒武纪 思元590 -->
-  <text x="150" y="1515" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">寒武纪 思元590</text>
-  <text x="322" y="1515" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm</text>
-  <text x="446" y="1515" text-anchor="middle" font-size="12.5" fill="#6b7488">~314</text>
-  <text x="570" y="1515" text-anchor="middle" font-size="12.5" fill="#6b7488">96GB HBM2e</text>
-  <text x="694" y="1515" text-anchor="middle" font-size="12.5" fill="#6b7488">~2 TB/s</text>
-  <text x="818" y="1515" text-anchor="middle" font-size="12" fill="#6b7488">MLU-Link~400G</text>
-  <text x="942" y="1515" text-anchor="middle" font-size="12.5" fill="#6b7488">~350W</text>
-  <text x="1066" y="1515" text-anchor="middle" font-size="12.5" fill="#e07a35">研报估</text>
-  <!-- row4 沐曦 曦云C600 -->
-  <text x="150" y="1573" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">沐曦 曦云C600</text>
-  <text x="322" y="1573" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm 国产</text>
-  <text x="446" y="1573" text-anchor="middle" font-size="12.5" fill="#6b7488">FP8 1000</text>
-  <text x="570" y="1573" text-anchor="middle" font-size="12.5" fill="#6b7488">144GB HBM3e</text>
-  <text x="694" y="1573" text-anchor="middle" font-size="12.5" fill="#6b7488">3.6 TB/s</text>
-  <text x="818" y="1573" text-anchor="middle" font-size="12.5" fill="#6b7488">MetaXLink</text>
-  <text x="942" y="1573" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
-  <text x="1066" y="1573" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
-  <!-- row5 摩尔线程 S5000 -->
-  <text x="150" y="1631" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">摩尔线程 S5000</text>
-  <text x="322" y="1631" text-anchor="middle" font-size="12.5" fill="#6b7488">12nm MUSA</text>
-  <text x="446" y="1631" text-anchor="middle" font-size="12.5" fill="#6b7488">FP8 1000</text>
-  <text x="570" y="1631" text-anchor="middle" font-size="12.5" fill="#6b7488">80GB GDDR6</text>
-  <text x="694" y="1631" text-anchor="middle" font-size="12.5" fill="#6b7488">1.6 TB/s</text>
-  <text x="818" y="1631" text-anchor="middle" font-size="12.5" fill="#6b7488">784 GB/s</text>
-  <text x="942" y="1631" text-anchor="middle" font-size="12.5" fill="#6b7488">~350W</text>
-  <text x="1066" y="1631" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
-  <!-- row6 海光 深算二号 -->
-  <text x="150" y="1706" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">海光 深算二号</text>
-  <text x="150" y="1724" text-anchor="middle" font-size="11.5" fill="#8a94a6">(K100AI)</text>
-  <text x="322" y="1712" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm 类ROCm</text>
-  <text x="446" y="1712" text-anchor="middle" font-size="12.5" fill="#6b7488">~192</text>
-  <text x="570" y="1712" text-anchor="middle" font-size="12.5" fill="#6b7488">64GB HBM2</text>
-  <text x="694" y="1712" text-anchor="middle" font-size="12.5" fill="#6b7488">896 GB/s</text>
-  <text x="818" y="1712" text-anchor="middle" font-size="12.5" fill="#6b7488">~100 GB/s</text>
-  <text x="942" y="1712" text-anchor="middle" font-size="12.5" fill="#6b7488">~350W</text>
-  <text x="1066" y="1712" text-anchor="middle" font-size="12.5" fill="#e07a35">媒体估</text>
-  <!-- row7 天数智芯 天垓100 -->
-  <text x="150" y="1770" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">天数智芯 天垓100</text>
-  <text x="322" y="1770" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm</text>
-  <text x="446" y="1770" text-anchor="middle" font-size="12.5" fill="#6b7488">147</text>
-  <text x="570" y="1770" text-anchor="middle" font-size="12.5" fill="#6b7488">32GB HBM2</text>
-  <text x="694" y="1770" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
-  <text x="818" y="1770" text-anchor="middle" font-size="12.5" fill="#6b7488">64 GB/s</text>
-  <text x="942" y="1770" text-anchor="middle" font-size="12.5" fill="#6b7488">250W</text>
-  <text x="1066" y="1770" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
-  <!-- row8 阿里平头哥 -->
-  <text x="150" y="1822" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2d3d">阿里平头哥</text>
-  <text x="150" y="1840" text-anchor="middle" font-size="11.5" fill="#8a94a6">PPU(真武810E)</text>
-  <text x="322" y="1828" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
-  <text x="446" y="1822" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
-  <text x="446" y="1840" text-anchor="middle" font-size="11" fill="#8a94a6">对标H20</text>
-  <text x="570" y="1828" text-anchor="middle" font-size="12.5" fill="#6b7488">96GB HBM2e</text>
-  <text x="694" y="1828" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
-  <text x="818" y="1828" text-anchor="middle" font-size="12.5" fill="#6b7488">700 GB/s</text>
-  <text x="942" y="1828" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
-  <text x="1066" y="1828" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
-  <!-- row9 燧原 L600 -->
-  <text x="150" y="1874" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">燧原 L600</text>
-  <text x="322" y="1874" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
-  <text x="446" y="1868" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
-  <text x="446" y="1884" text-anchor="middle" font-size="11" fill="#8a94a6">FP8原生</text>
-  <text x="570" y="1874" text-anchor="middle" font-size="12.5" fill="#6b7488">144GB HBM3e</text>
-  <text x="694" y="1874" text-anchor="middle" font-size="12.5" fill="#6b7488">3.6 TB/s</text>
-  <text x="818" y="1874" text-anchor="middle" font-size="12.5" fill="#6b7488">800 GB/s</text>
-  <text x="942" y="1874" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
-  <text x="1066" y="1874" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <text x="150" y="1400" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">壁仞 BR100</text>
+  <text x="322" y="1400" text-anchor="middle" font-size="12" fill="#6b7488">7nm+Chiplet</text>
+  <text x="446" y="1400" text-anchor="middle" font-size="12.5" fill="#6b7488">512*</text>
+  <text x="570" y="1400" text-anchor="middle" font-size="12.5" fill="#6b7488">64GB HBM2e</text>
+  <text x="694" y="1400" text-anchor="middle" font-size="12.5" fill="#6b7488">—</text>
+  <text x="818" y="1400" text-anchor="middle" font-size="12.5" fill="#6b7488">BLINK 8卡</text>
+  <text x="942" y="1400" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
+  <text x="1066" y="1400" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <!-- row2 寒武纪 思元590 -->
+  <text x="150" y="1458" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">寒武纪 思元590</text>
+  <text x="322" y="1458" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm</text>
+  <text x="446" y="1458" text-anchor="middle" font-size="12.5" fill="#6b7488">~314</text>
+  <text x="570" y="1458" text-anchor="middle" font-size="12.5" fill="#6b7488">96GB HBM2e</text>
+  <text x="694" y="1458" text-anchor="middle" font-size="12.5" fill="#6b7488">~2 TB/s</text>
+  <text x="818" y="1458" text-anchor="middle" font-size="12" fill="#6b7488">MLU-Link~400G</text>
+  <text x="942" y="1458" text-anchor="middle" font-size="12.5" fill="#6b7488">~350W</text>
+  <text x="1066" y="1458" text-anchor="middle" font-size="12.5" fill="#e07a35">研报估</text>
+  <!-- row3 沐曦 曦云C600 -->
+  <text x="150" y="1516" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">沐曦 曦云C600</text>
+  <text x="322" y="1516" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm 国产</text>
+  <text x="446" y="1516" text-anchor="middle" font-size="12.5" fill="#6b7488">FP8 1000</text>
+  <text x="570" y="1516" text-anchor="middle" font-size="12.5" fill="#6b7488">144GB HBM3e</text>
+  <text x="694" y="1516" text-anchor="middle" font-size="12.5" fill="#6b7488">3.6 TB/s</text>
+  <text x="818" y="1516" text-anchor="middle" font-size="12.5" fill="#6b7488">MetaXLink</text>
+  <text x="942" y="1516" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
+  <text x="1066" y="1516" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <!-- row4 摩尔线程 S5000 -->
+  <text x="150" y="1574" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">摩尔线程 S5000</text>
+  <text x="322" y="1574" text-anchor="middle" font-size="12.5" fill="#6b7488">12nm MUSA</text>
+  <text x="446" y="1574" text-anchor="middle" font-size="12.5" fill="#6b7488">FP8 1000</text>
+  <text x="570" y="1574" text-anchor="middle" font-size="12.5" fill="#6b7488">80GB GDDR6</text>
+  <text x="694" y="1574" text-anchor="middle" font-size="12.5" fill="#6b7488">1.6 TB/s</text>
+  <text x="818" y="1574" text-anchor="middle" font-size="12.5" fill="#6b7488">784 GB/s</text>
+  <text x="942" y="1574" text-anchor="middle" font-size="12.5" fill="#6b7488">~350W</text>
+  <text x="1066" y="1574" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <!-- row5 海光 深算二号 -->
+  <text x="150" y="1626" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">海光 深算二号</text>
+  <text x="150" y="1644" text-anchor="middle" font-size="11.5" fill="#8a94a6">(K100AI)</text>
+  <text x="322" y="1632" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm 类ROCm</text>
+  <text x="446" y="1632" text-anchor="middle" font-size="12.5" fill="#6b7488">~192</text>
+  <text x="570" y="1632" text-anchor="middle" font-size="12.5" fill="#6b7488">64GB HBM2</text>
+  <text x="694" y="1632" text-anchor="middle" font-size="12.5" fill="#6b7488">896 GB/s</text>
+  <text x="818" y="1632" text-anchor="middle" font-size="12.5" fill="#6b7488">~100 GB/s</text>
+  <text x="942" y="1632" text-anchor="middle" font-size="12.5" fill="#6b7488">~350W</text>
+  <text x="1066" y="1632" text-anchor="middle" font-size="12.5" fill="#e07a35">媒体估</text>
+  <!-- row6 天数智芯 天垓100 -->
+  <text x="150" y="1690" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">天数智芯 天垓100</text>
+  <text x="322" y="1690" text-anchor="middle" font-size="12.5" fill="#6b7488">7nm</text>
+  <text x="446" y="1690" text-anchor="middle" font-size="12.5" fill="#6b7488">147</text>
+  <text x="570" y="1690" text-anchor="middle" font-size="12.5" fill="#6b7488">32GB HBM2</text>
+  <text x="694" y="1690" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
+  <text x="818" y="1690" text-anchor="middle" font-size="12.5" fill="#6b7488">64 GB/s</text>
+  <text x="942" y="1690" text-anchor="middle" font-size="12.5" fill="#6b7488">250W</text>
+  <text x="1066" y="1690" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <!-- row7 阿里平头哥 -->
+  <text x="150" y="1742" text-anchor="middle" font-size="13" font-weight="600" fill="#1f2d3d">阿里平头哥</text>
+  <text x="150" y="1760" text-anchor="middle" font-size="11.5" fill="#8a94a6">PPU(真武810E)</text>
+  <text x="322" y="1748" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
+  <text x="446" y="1742" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
+  <text x="446" y="1760" text-anchor="middle" font-size="11" fill="#8a94a6">对标H20</text>
+  <text x="570" y="1748" text-anchor="middle" font-size="12.5" fill="#6b7488">96GB HBM2e</text>
+  <text x="694" y="1748" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
+  <text x="818" y="1748" text-anchor="middle" font-size="12.5" fill="#6b7488">700 GB/s</text>
+  <text x="942" y="1748" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
+  <text x="1066" y="1748" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <!-- row8 燧原 L600 -->
+  <text x="150" y="1806" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">燧原 L600</text>
+  <text x="322" y="1806" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
+  <text x="446" y="1800" text-anchor="middle" font-size="12.5" fill="#6b7488">未公开</text>
+  <text x="446" y="1818" text-anchor="middle" font-size="11" fill="#8a94a6">FP8原生</text>
+  <text x="570" y="1806" text-anchor="middle" font-size="12.5" fill="#6b7488">144GB HBM3e</text>
+  <text x="694" y="1806" text-anchor="middle" font-size="12.5" fill="#6b7488">3.6 TB/s</text>
+  <text x="818" y="1806" text-anchor="middle" font-size="12.5" fill="#6b7488">800 GB/s</text>
+  <text x="942" y="1806" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
+  <text x="1066" y="1806" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
+  <!-- row9 百度 昆仑芯P800 (masked, moved to last) -->
+  <text x="150" y="1864" text-anchor="middle" font-size="13.5" font-weight="600" fill="#1f2d3d">百度 昆仑芯P800</text>
+  <text x="322" y="1864" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
+  <text x="446" y="1864" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
+  <text x="570" y="1864" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
+  <text x="694" y="1864" text-anchor="middle" font-size="12.5" font-weight="600" fill="#8a94a6">未公开</text>
+  <text x="818" y="1864" text-anchor="middle" font-size="12.5" fill="#6b7488">XPU Link</text>
+  <text x="942" y="1864" text-anchor="middle" font-size="12.5" fill="#6b7488">~400W</text>
+  <text x="1066" y="1864" text-anchor="middle" font-size="12.5" fill="#16a34a">官方</text>
 
   <text x="40" y="1922" font-size="13" fill="#9aa3b2">*壁仞BR100：512为稠密BF16，INT8峰值1024 TOPS。 来源标注：</text>
   <text x="372" y="1922" font-size="13" font-weight="600" fill="#16a34a">绿=厂商官方</text>
