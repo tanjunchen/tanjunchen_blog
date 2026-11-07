@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="420" fill="#ffffff"/>
+
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#1a1a1a">按 config 粗算的参数量，与官方口径全部落在 ±6% 内</text>
+  <text x="450" y="57" text-anchor="middle" font-size="11" fill="#888">偏差 =（粗算 − 官方）/ 官方；绿色为 ±6% 容差区，落在区内说明公式与厂商口径是同一套账</text>
+
+  <!-- 容差带 -->
+  <rect x="368" y="76" width="324" height="286" fill="#f3f8ea"/>
+  <text x="698" y="90" font-size="10" fill="#7a9a3f">±6%</text>
+
+  <!-- 网格与零线 -->
+  <g stroke="#e2e2e2" stroke-width="1">
+    <line x1="260" y1="76" x2="260" y2="362"/>
+    <line x1="395" y1="76" x2="395" y2="362"/>
+    <line x1="665" y1="76" x2="665" y2="362"/>
+    <line x1="800" y1="76" x2="800" y2="362"/>
+  </g>
+  <line x1="530" y1="76" x2="530" y2="362" stroke="#999" stroke-width="1.4" stroke-dasharray="4 3"/>
+
+  <g font-size="12">
+    <text x="250" y="106" text-anchor="end" fill="#333">GLM-5.3</text>
+    <line x1="530" y1="101" x2="476" y2="101" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="476" cy="101" r="4.5" fill="#5a8c00"/>
+    <text x="466" y="106" text-anchor="end" fill="#5a8c00" font-weight="700">−2%</text>
+
+    <text x="250" y="134" text-anchor="end" fill="#333">GLM-5.3-Flash</text>
+    <line x1="530" y1="129" x2="422" y2="129" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="422" cy="129" r="4.5" fill="#5a8c00"/>
+    <text x="412" y="134" text-anchor="end" fill="#5a8c00" font-weight="700">−4%</text>
+
+    <text x="250" y="162" text-anchor="end" fill="#333">DeepSeek-V4-Pro</text>
+    <line x1="530" y1="157" x2="449" y2="157" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="449" cy="157" r="4.5" fill="#5a8c00"/>
+    <text x="439" y="162" text-anchor="end" fill="#5a8c00" font-weight="700">−3%</text>
+
+    <text x="250" y="190" text-anchor="end" fill="#333">DeepSeek-V4-Flash</text>
+    <line x1="530" y1="185" x2="476" y2="185" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="476" cy="185" r="4.5" fill="#5a8c00"/>
+    <text x="466" y="190" text-anchor="end" fill="#5a8c00" font-weight="700">−2%</text>
+
+    <text x="250" y="218" text-anchor="end" fill="#333">Qwen3.5-397B</text>
+    <line x1="530" y1="213" x2="476" y2="213" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="476" cy="213" r="4.5" fill="#5a8c00"/>
+    <text x="466" y="218" text-anchor="end" fill="#5a8c00" font-weight="700">−2%</text>
+
+    <text x="250" y="246" text-anchor="end" fill="#333">Qwen3.6-35B-A3B</text>
+    <line x1="530" y1="241" x2="368" y2="241" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="368" cy="241" r="4.5" fill="#5a8c00"/>
+    <text x="358" y="246" text-anchor="end" fill="#5a8c00" font-weight="700">−6%</text>
+
+    <text x="250" y="274" text-anchor="end" fill="#333">Qwen3.8-2.4T</text>
+    <line x1="530" y1="269" x2="503" y2="269" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="503" cy="269" r="4.5" fill="#5a8c00"/>
+    <text x="493" y="274" text-anchor="end" fill="#5a8c00" font-weight="700">−1%</text>
+
+    <text x="250" y="302" text-anchor="end" fill="#333">Kimi K3</text>
+    <line x1="530" y1="297" x2="449" y2="297" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="449" cy="297" r="4.5" fill="#5a8c00"/>
+    <text x="439" y="302" text-anchor="end" fill="#5a8c00" font-weight="700">−3%</text>
+
+    <text x="250" y="330" text-anchor="end" fill="#333">混元 Hy3</text>
+    <line x1="530" y1="325" x2="449" y2="325" stroke="#bcd49a" stroke-width="2"/>
+    <circle cx="449" cy="325" r="4.5" fill="#5a8c00"/>
+    <text x="439" y="330" text-anchor="end" fill="#5a8c00" font-weight="700">−3%</text>
+
+    <text x="250" y="358" text-anchor="end" fill="#333">MiniMax M3</text>
+    <circle cx="530" cy="353" r="4.5" fill="#5a8c00"/>
+    <text x="542" y="358" fill="#5a8c00" font-weight="700">≈0</text>
+  </g>
+
+  <!-- 坐标轴 -->
+  <line x1="260" y1="372" x2="800" y2="372" stroke="#bbb" stroke-width="1.2"/>
+  <g font-size="10.5" fill="#888" text-anchor="middle">
+    <text x="260" y="390">−10%</text>
+    <text x="395" y="390">−5%</text>
+    <text x="530" y="390">0</text>
+    <text x="665" y="390">+5%</text>
+    <text x="800" y="390">+10%</text>
+  </g>
+</svg>

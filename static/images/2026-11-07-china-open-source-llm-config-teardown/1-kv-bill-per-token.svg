@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="520" fill="#ffffff"/>
+
+  <text x="450" y="36" text-anchor="middle" font-size="21" font-weight="700" fill="#1a1a1a">同样标称 1M 上下文，每 token 的 KV 账单相差约 7 倍</text>
+  <text x="450" y="60" text-anchor="middle" font-size="11" fill="#888">BF16 口径，仅统计随序列长度增长的 KV；标尺以 GLM-5.3 与 GLM-5.3-Flash 对比，全表跨度 12.4–120 KB</text>
+
+  <!-- 图例 -->
+  <rect x="210" y="80" width="11" height="11" rx="2" fill="#3d6fb4"/>
+  <text x="228" y="90" font-size="11" fill="#555">MLA / 压缩 / 稀疏（KV 随长度增长）</text>
+  <rect x="520" y="80" width="11" height="11" rx="2" fill="#5a8c00"/>
+  <text x="538" y="90" font-size="11" fill="#555">线性混合（KV 最省）</text>
+
+  <!-- 行 1：MiniMax M3 120.0 -->
+  <text x="200" y="130" text-anchor="end" font-size="13" fill="#333">MiniMax M3</text>
+  <rect x="210" y="117" width="590" height="26" rx="4" fill="#3d6fb4"/>
+  <text x="790" y="135" text-anchor="end" font-size="13" font-weight="700" fill="#ffffff">120.0 KB</text>
+
+  <!-- 行 2：Qwen3.8 92.0 -->
+  <text x="200" y="180" text-anchor="end" font-size="13" fill="#333">Qwen3.8-2.4T</text>
+  <rect x="210" y="167" width="452" height="26" rx="4" fill="#3d6fb4"/>
+  <text x="652" y="185" text-anchor="end" font-size="13" font-weight="700" fill="#ffffff">92.0 KB</text>
+
+  <!-- 行 3：GLM-5.3 87.8 -->
+  <text x="200" y="230" text-anchor="end" font-size="13" fill="#333">GLM-5.3</text>
+  <rect x="210" y="217" width="432" height="26" rx="4" fill="#3d6fb4"/>
+  <text x="632" y="235" text-anchor="end" font-size="13" font-weight="700" fill="#ffffff">87.8 KB</text>
+
+  <!-- 行 4：DeepSeek-V3.2 68.6 -->
+  <text x="200" y="280" text-anchor="end" font-size="13" fill="#333">DeepSeek-V3.2</text>
+  <rect x="210" y="267" width="337" height="26" rx="4" fill="#3d6fb4"/>
+  <text x="537" y="285" text-anchor="end" font-size="13" font-weight="700" fill="#ffffff">68.6 KB</text>
+
+  <!-- 行 5：Kimi K3 27.0 -->
+  <text x="200" y="330" text-anchor="end" font-size="13" fill="#333">Kimi K3</text>
+  <rect x="210" y="317" width="133" height="26" rx="4" fill="#5a8c00"/>
+  <text x="351" y="335" font-size="13" font-weight="700" fill="#5a8c00">27.0 KB</text>
+
+  <!-- 行 6：DeepSeek-V4-Pro 17.5 -->
+  <text x="200" y="380" text-anchor="end" font-size="13" fill="#333">DeepSeek-V4-Pro</text>
+  <rect x="210" y="367" width="86" height="26" rx="4" fill="#3d6fb4"/>
+  <text x="304" y="385" font-size="13" font-weight="700" fill="#3d6fb4">17.5 KB</text>
+
+  <!-- 行 7：GLM-5.3-Flash 12.4 -->
+  <text x="200" y="430" text-anchor="end" font-size="13" fill="#333">GLM-5.3-Flash</text>
+  <rect x="210" y="417" width="61" height="26" rx="4" fill="#5a8c00"/>
+  <text x="279" y="435" font-size="13" font-weight="700" fill="#5a8c00">12.4 KB</text>
+
+  <!-- 7 倍差距标注 -->
+  <path d="M814 217 L822 217 L822 443 L814 443" fill="none" stroke="#c0392b" stroke-width="1.6"/>
+  <text x="830" y="324" font-size="13" font-weight="700" fill="#c0392b">≈7×</text>
+  <text x="830" y="342" font-size="9.5" fill="#c0392b">GLM-5.3</text>
+  <text x="830" y="355" font-size="9.5" fill="#c0392b">/ Flash</text>
+
+  <!-- 结论条 -->
+  <rect x="40" y="462" width="820" height="34" rx="8" fill="#fdf3f2" stroke="#e8b4ae" stroke-width="1"/>
+  <text x="450" y="484" text-anchor="middle" font-size="12.5" fill="#a03a2c">能不能跑满 1M，不取决于参数量，而取决于注意力结构：<tspan font-weight="700">88 KB 与 12 KB 的差距，直接决定高并发长上下文赚不赚钱</tspan></text>
+</svg>

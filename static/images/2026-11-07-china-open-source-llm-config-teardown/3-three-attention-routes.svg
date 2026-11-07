@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" font-family="'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif">
+  <rect width="900" height="500" fill="#ffffff"/>
+
+  <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#1a1a1a">同一张牌桌，三种省钱姿势</text>
+  <text x="450" y="57" text-anchor="middle" font-size="11" fill="#888">不是风格差异，而是三条不同的成本曲线：省的计算、省的显存、省的不是同一笔钱</text>
+
+  <!-- 卡片 1：压缩 -->
+  <rect x="40" y="76" width="260" height="300" rx="12" fill="#f8fafd" stroke="#c3d3e8" stroke-width="1.5"/>
+  <rect x="40" y="76" width="260" height="40" rx="12" fill="#3d6fb4"/>
+  <rect x="40" y="104" width="260" height="12" fill="#3d6fb4"/>
+  <text x="170" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">① 压缩 KV + 稀疏检索</text>
+  <text x="60" y="140" font-size="11" font-weight="700" fill="#3d6fb4">代表</text>
+  <text x="60" y="158" font-size="11.5" fill="#333">DeepSeek CSA / HCA</text>
+  <text x="60" y="176" font-size="11.5" fill="#333">GLM DSA + IndexShare</text>
+  <text x="60" y="194" font-size="11.5" fill="#333">ERNIE ÷128、MiniMax MSA</text>
+  <text x="60" y="220" font-size="11" font-weight="700" fill="#3d6fb4">强项</text>
+  <text x="60" y="238" font-size="11.5" fill="#333">保真度高，KV 可控</text>
+  <text x="60" y="256" font-size="11.5" fill="#333">17–120 KB / token 区间</text>
+  <text x="60" y="282" font-size="11" font-weight="700" fill="#c0392b">代价</text>
+  <text x="60" y="300" font-size="11.5" fill="#333">压缩器与索引器最复杂</text>
+  <text x="60" y="318" font-size="11.5" fill="#333">调参成本最高</text>
+  <text x="60" y="344" font-size="11.5" fill="#3d6fb4" font-weight="700">代表：GLM-5.3 88 KB</text>
+
+  <!-- 卡片 2：线性 -->
+  <rect x="320" y="76" width="260" height="300" rx="12" fill="#f8fbf2" stroke="#cfe0b0" stroke-width="1.5"/>
+  <rect x="320" y="76" width="260" height="40" rx="12" fill="#5a8c00"/>
+  <rect x="320" y="104" width="260" height="12" fill="#5a8c00"/>
+  <text x="450" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">② 线性 / 状态空间混合</text>
+  <text x="340" y="140" font-size="11" font-weight="700" fill="#5a8c00">代表</text>
+  <text x="340" y="158" font-size="11.5" fill="#333">Qwen GDN（全:线 1:3）</text>
+  <text x="340" y="176" font-size="11.5" fill="#333">Kimi KDA（全:线 1:3）</text>
+  <text x="340" y="194" font-size="11.5" fill="#333">GLM-5.3-Flash（1:3.1）</text>
+  <text x="340" y="220" font-size="11" font-weight="700" fill="#5a8c00">强项</text>
+  <text x="340" y="238" font-size="11.5" fill="#333">长上下文吞吐最好</text>
+  <text x="340" y="256" font-size="11.5" fill="#333">Kimi 27 KB、Flash 12 KB</text>
+  <text x="340" y="282" font-size="11" font-weight="700" fill="#c0392b">代价</text>
+  <text x="340" y="300" font-size="11.5" fill="#333">Qwen 例外：4 KV 头×256 → 92 KB</text>
+  <text x="340" y="318" font-size="11.5" fill="#333">定长状态有固定开销，靠稀疏层补召回</text>
+  <text x="340" y="344" font-size="11.5" fill="#5a8c00" font-weight="700">省的是 KV 增长，不是全部显存</text>
+
+  <!-- 卡片 3：稀疏 MoE -->
+  <rect x="600" y="76" width="260" height="300" rx="12" fill="#fdfbf5" stroke="#e8d9b8" stroke-width="1.5"/>
+  <rect x="600" y="76" width="260" height="40" rx="12" fill="#b07d2b"/>
+  <rect x="600" y="104" width="260" height="12" fill="#b07d2b"/>
+  <text x="730" y="102" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">③ 极致稀疏 MoE（全员）</text>
+  <text x="620" y="140" font-size="11" font-weight="700" fill="#b07d2b">代表</text>
+  <text x="620" y="158" font-size="11.5" fill="#333">所有旗舰都在做</text>
+  <text x="620" y="176" font-size="11.5" fill="#333">激活比压到 3%–6%</text>
+  <text x="620" y="194" font-size="11.5" fill="#333">Kimi 896 选 16 ≈ 1.8%</text>
+  <text x="620" y="220" font-size="11" font-weight="700" fill="#b07d2b">强项</text>
+  <text x="620" y="238" font-size="11.5" fill="#333">单 token 计算便宜</text>
+  <text x="620" y="256" font-size="11.5" fill="#333">容量与成本解耦</text>
+  <text x="620" y="282" font-size="11" font-weight="700" fill="#c0392b">代价</text>
+  <text x="620" y="300" font-size="11.5" fill="#333">总参数大，显存门槛高</text>
+  <text x="620" y="318" font-size="11.5" fill="#333">专家并行通信开销</text>
+  <text x="620" y="344" font-size="11.5" fill="#b07d2b" font-weight="700">省的是算力，不是显存</text>
+
+  <!-- 底部结论 -->
+  <rect x="40" y="396" width="820" height="52" rx="10" fill="#f5f5f5" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="450" y="418" text-anchor="middle" font-size="12" fill="#555">竞争单位已经从「参数多大」变成「每个激活参数换多少能力 / 每百万 token 要多少 KV」</text>
+  <text x="450" y="437" text-anchor="middle" font-size="10.5" fill="#999">三条路线不互斥：DeepSeek 与 GLM 同时用了压缩 + 稀疏，GLM-Flash 同时用了线性 + 稀疏</text>
+</svg>
