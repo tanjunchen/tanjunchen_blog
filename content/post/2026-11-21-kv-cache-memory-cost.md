@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "一张 80G 卡，装得下模型，装不下上下文"
-subtitle:   "KV Cache 的账本、八层优化，和几个容易踩的坑"
+title:      "KV Cache 到底吃了多少显存"
+subtitle:   "一张 80G 卡，装得下模型，装不下上下文"
 description: "从一张 80GB 卡的显存账出发，讲清 KV Cache 为什么是长上下文和高并发的瓶颈，拆解模型结构、精度、保留、分配、复用、存储、传输、调度八层优化，以及逻辑删除、误差叠加、驱逐不可逆、回迁抢带宽几个坑。"
 author:     "tanjunchen"
 date:       2026-11-21
