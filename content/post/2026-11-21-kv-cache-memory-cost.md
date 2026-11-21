@@ -14,6 +14,8 @@ tags:
 categories:
     - TECHNOLOGY
 showtoc:    true
+aliases:
+    - /post/2026-11-21-kv-cache-panorama/
 ---
 
 <style>
